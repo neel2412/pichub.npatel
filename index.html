@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="Photos/PicHubStudios-Circle.png">
+    <link href='https://fonts.googleapis.com/css?family=Yellowtail' rel='stylesheet'>
+    <title>Pichub | Home</title>
+    <link rel="stylesheet" href="index.css">
+    <style>
+        /* CSS for the fixed button */
+        #open_preferences_center {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        #open_preferences_center:hover {
+            background-color: #555;
+        }
+
+        body{
+            min-height: 100vh;
+        }
+
+        
+    </style>
+</head>
+<body>
+
+
+
+<!-- HTML -->
+<div id="cookieConsent" style="display: none;">
+    <div id="cookieConsentPopup">
+        <p>This website doesn’t store any cookies or data on your device.</p>
+        <button id="cookieConsentButton">Got it!</button>
+    </div>
+</div>
+
+<!-- CSS -->
+<style>
+    #cookieConsent {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        overflow: hidden;
+        animation: fadeIn 0.5s ease-out;
+    }
+    
+    #cookieConsentPopup {
+        background-color: #222;
+        color: #eee;
+        padding: 20px;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 350px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        font-family: Arial, sans-serif;
+        text-align: center;
+        opacity: 0;
+        animation: slideIn 0.5s ease-out forwards;
+    }
+    
+    #cookieConsentPopup p {
+        margin: 0 0 15px 0;
+        font-size: 14px;
+    }
+    
+    #cookieConsentPopup button {
+        background-color: #444;
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 14px;
+        transition: background-color 0.3s ease;
+    }
+    
+    #cookieConsentPopup button:hover {
+        background-color: #555;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translate(-50%, -60%);
+            opacity: 0;
+        }
+        to {
+            transform: translate(-50%, -50%);
+            opacity: 1;
+        }
+    }
+</style>
+
+<!-- JavaScript -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var consent = document.getElementById("cookieConsent");
+        var consentButton = document.getElementById("cookieConsentButton");
+
+        // Check if the user has already seen the consent popup
+        if (!sessionStorage.getItem("cookieConsentSeen")) {
+            // Show the consent popup
+            consent.style.display = "block";
+        }
+
+        // Hide the popup and set session storage item when the button is clicked
+        consentButton.onclick = function () {
+            consent.style.display = "none";
+            sessionStorage.setItem("cookieConsentSeen", "true");
+        };
+    });
+</script>
+
+
+
+    <header>
+        <nav class="nav">
+            <ul class="left-nav">
+                <li><a class="active" href="index.html">Home</a></li>
+            </ul>
+            <ul class="right-nav" id="right-nav">
+                <li><a href="About US.html">About Us</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contactus.html">Contact Us</a></li>
+                <li><a href="https://pichub.co.uk/newsletter/templates/">Subscribe</a></li>
+            </ul>
+            <div class="hamburger-menu" id="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+        <div class="sidebar" id="sidebar">
+            <a href="About US.html">About Us</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="contactus.html">Contact Us</a>
+            <li><a href="https://pichub.co.uk/newsletter/templates/">Subscribe</a></li>
+        </div>
+    </header>
+
+
+
+    <main>
+        <div class="pichub">
+            <p>PicHub</p>
+        </div>
+        <div class="text">
+            <p><b>There Is A Lot More Than What You Think</b></p>
+        </div>
+        <div class="button-container">
+          <a href="gallery.html"><button>Categories</button></a>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="footer-container">
+            <ul class="footer-link">
+                <li><a class="social_link" href="https://www.facebook.com/people/PicHub/61563090242216/">
+                    <ion-icon name="logo-facebook"></ion-icon>
+                  </a></li>
+                <li><a class="social_link" href="mailto:info@npatel.co.uk">
+                    <ion-icon name="mail"></ion-icon>
+                  </a></li>
+                <li><a class="social_link" href="https://www.instagram.com/pichub__official/">
+                    <ion-icon name="logo-instagram"></ion-icon>
+                  </a></li>
+            </ul>
+            <ul class="footer-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="About US.html">About us</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="About US.html#team-grid">Team</a></li>
+                <li><a href="contactus.html">Contact us</a></li>
+                <li><a href="https://pichub.co.uk/newsletter/templates/">Subscribe</a></li>
+            </ul>
+            <div class="copyright">
+                &copy; PicHub | All rights reserved |<b><u><a href="Privacy Policy.html" style="text-decoration: none; color: white;">Privacy Policy</a></u></b>
+            </div>
+        </div>
+    </footer>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script src="index.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3555166871540561"
+     crossorigin="anonymous"></script>
+     <script type="text/javascript">
+        var infolinks_pid = 3425530;
+        var infolinks_wsid = 0;
+        </script>
+
+</body>
+</html>

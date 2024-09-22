@@ -1,0 +1,215 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('https://wallpaperaccess.com/full/5345479.jpg');
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    padding-top: 150px;
+}
+
+
+
+
+.intro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.intro .about {
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.4); /* White background with 80% opacity */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    max-width: 900px;
+    margin: auto;
+    position: center;
+    transform: translate( 0px, -30px);
+}
+
+.intro h1 {
+    font-size: 3em;
+    margin: 0.5em 0;
+}
+
+.intro p {
+    font-size: 1.5em;
+    margin: 0.5em 0;
+}
+
+.team {
+    padding: 4em 2em;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.team h2 {
+    margin-bottom: 1em;
+    font-size: 2.5em;
+}
+
+.team-grid {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2em;
+    position: center;
+    justify-content: center;
+}
+
+.team-grid {
+    display: flex;
+    flex-direction: row; /* Display items in a row */
+    justify-content: center; /* Center items horizontally */
+    gap: 2em;
+    padding: 4em 2em;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.team-member {
+    width: 300px; /* Adjust based on your content */
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    margin: 0 1em; /* Adjust spacing between team members */
+}
+
+.team-member img {
+    border-radius: 10px 10px 0 0; /* Rounded corners only on the top */
+    width: 100%; /* Ensure the image takes up the full width of its container */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Cover to fit the square shape */
+    max-height: 300px; /* Limit the height to maintain aspect ratio */
+}
+
+.team-member h3 {
+    margin: 0.5em 0 0.2em 0;
+    font-size: 1.8em;
+}
+
+.team-member p {
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 1em;
+}
+
+
+
+        /* Media Queries */
+        @media only screen and (max-width: 1200px) {
+            .intro h1 {
+                font-size: 2.5em;
+            }
+            .intro p {
+                font-size: 1.2em;
+            }
+            .team h2 {
+                font-size: 2em;
+            }
+            .team-member {
+                width: 250px;
+            }
+            .team-member h3 {
+                font-size: 1.5em;
+            }
+            .team-member p {
+                font-size: 1em;
+            }
+        }
+
+        @media only screen and (max-width: 992px) {
+            .intro h1 {
+                font-size: 2em;
+            }
+            .intro p {
+                font-size: 1em;
+            }
+            .team h2 {
+                font-size: 1.8em;
+            }
+            .team-member {
+                width: 200px;
+            }
+            .team-member h3 {
+                font-size: 1.3em;
+            }
+            .team-member p {
+                font-size: 0.9em;
+            }
+        }
+
+        @media only screen and (max-width: 768px) {
+            .team-grid {
+                flex-direction: column;
+                gap: 1em;
+            }
+            .team-member {
+                width: 90%;
+            }
+        }
+
+        @media only screen and (max-width: 600px) {
+            .intro {
+                height: auto;
+                padding: 10px;
+            }
+            .intro .about {
+                padding: 15px;
+            }
+            .intro h1 {
+                font-size: 1.5em;
+            }
+            .intro p {
+                font-size: 0.9em;
+            }
+            .team h2 {
+                font-size: 1.5em;
+            }
+            .team-member {
+                width: 100%;
+                margin: 0.5em 0;
+            }
+            .team-member h3 {
+                font-size: 1.2em;
+            }
+            .team-member p {
+                font-size: 0.8em;
+            }
+        }
+
+        @media only screen and (max-width: 480px) {
+            .intro {
+                padding: 5px;
+            }
+            .intro .about {
+                padding: 10px;
+            }
+            .intro h1 {
+                font-size: 1.2em;
+            }
+            .intro p {
+                font-size: 0.8em;
+            }
+            .team h2 {
+                font-size: 1.2em;
+            }
+            .team-member {
+                width: 100%;
+            }
+            .team-member h3 {
+                font-size: 1em;
+            }
+            .team-member p {
+                font-size: 0.7em;
+            }
+        }
