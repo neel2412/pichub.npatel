@@ -5,166 +5,146 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PicHub - Explore Stunning Photos</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #111;
-            color: #fff;
-            line-height: 1.6;
-            text-align: center;
-            overflow: hidden; /* Prevents scrollbars */
-        }
-
-        /* Navbar Styles */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-            background-color: #000;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        nav .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #fff;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-        }
-
-        nav ul li {
-            margin-left: 2rem;
-        }
-
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: color 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: #f39c12;
-        }
-
-        /* Intro Section */
-        .intro {
-            position: relative;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            text-align: center;
-        }
-
-        .intro h2 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .intro p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-
-        .intro button {
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-            color: #fff;
-            background-color: #f39c12;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .intro button:hover {
-            background-color: #e67e22;
-        }
-
-        /* Particle Background */
-        #particles-js {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: -1;
-        }
-
-        /* Overlay for cursor lines */
-        #line-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #000;
-            padding: 1rem 0;
-            text-align: center;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-        }
-
-        footer p {
-            margin-bottom: 0.5rem;
-        }
-
-        footer a {
-            color: #fff;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            color: #f39c12;
-        }
-    </style>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+  
     <!-- Navbar -->
     <nav>
-        <div class="logo">PicHub</div>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Categories</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
+      <div class="logo">PicHub</div>
+      <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#team">Our Team</a></li>
+          <li><a href="#subscribe">Subscribe</a></li>
+      </ul>
+  </nav>
+
+  <div class="intro">
+      <h2>Explore Stunning Photos</h2>
+      <p>Find and download amazing images from our vast collection.</p>
+      <button onclick="location.href='gallery.html'">Explore Now</button>
+  </div>
+
+  <div id="particles-js"></div>
+
+  <div class="container">
+      <div class="box">
+          <span></span>
+          <div class="content">
+              <h2>Anime</h2>
+              <p> Discover the Anime Spectra Gallery.</p>
+              <a href="nature.html">View Gallery</a>
+          </div>
+      </div>
+      <div class="box">
+          <span></span>
+          <div class="content">
+              <h2>Vintage</h2>
+              <p>Step into the Vintage Art Gallery.</p>
+              <a href="cities.html">View Gallery</a>
+          </div>
+      </div>
+      <div class="box">
+          <span></span>
+          <div class="content">
+              <h2>Urban</h2>
+              <p>Experience the Urban Art Gallery.</p>
+              <a href="abstract.html">View Gallery</a>
+          </div>
+      </div>
+      <div class="box">
+          <span></span>
+          <div class="content">
+              <h2>Real-Life</h2>
+              <p>Welcome to the Real Life Art Gallery.</p>
+              <a href="nature.html">View Gallery</a>
+          </div>
+      </div>
+      <div class="box">
+          <span></span>
+          <div class="content">
+              <h2>Digital Painting</h2>
+              <p>Explore the Digital Painting Gallery, where innovation meets artistry.</p>
+              <a href="cities.html">View Gallery</a>
+          </div>
+      </div>
+      <div class="box">
+          <span></span>
+          <div class="content">
+              <h2>Wallpaper-Type</h2>
+              <p>Transform your space with the Wallpaper Gallery.</p>
+              <a href="abstract.html">View Gallery</a>
+          </div>
+      </div>
+  </div>
+
+  <section class="about-section">
+    <div class="About">
+      <img src="PicHubStudios-Circle.png" alt="Pichub Logo" class="logo">
+      <h2>Welcome to Pichub</h2>
+      <p>Your ultimate destination for high-quality, royalty-free photographs available for download. Our mission is to make stunning visuals accessible to everyone, from creative professionals to hobbyists and students.</p>
+
+      <h3>Who We Are</h3>
+      <p>At Pichub, we are a passionate team of photographers, artists, and tech enthusiasts who believe in the power of visual storytelling. We curate a diverse collection of photographs that cater to a wide range of needs and preferences.</p>
+
+      <p>Pichub is proud to be part of the <span class="highlight">Npatel</span> organization, committed to bringing accessible creative resources to all.</p>
+    </div>
+  </section>
+
+  <section class="our-team" id="team">
+      <h2>Our Team</h2>
+      <div class="team-members">
+          <div class="member">
+              <img src="n.jpg" alt="Team Member 1">
+              <h3>Storm</h3>
+              <p>CEO | Editor</p>
+          </div>
+          <div class="member">
+              <img src="s.jpg" alt="Team Member 2">
+              <h3>Shadow</h3>
+              <p>President | Editor</p>
+          </div>
+          <div class="member">
+              <img src="j.jpg" alt="Team Member 3">
+              <h3>Neon Ghost</h3>
+              <p>Researcher</p>
+          </div>
+      </div>
+      <br>
+  </section>
+
+
+
+  <footer>
+    <div class="footer-container">
+        <ul class="footer-link">
+            <li><a class="social_link" href="https://www.facebook.com/people/PicHub/61563090242216/">
+                <ion-icon name="logo-facebook"></ion-icon>
+            </a></li>
+            <li><a class="social_link" href="mailto:info@npatel.co.uk">
+                <ion-icon name="mail"></ion-icon>
+            </a></li>
+            <li><a class="social_link" href="https://www.instagram.com/pichub__official/">
+                <ion-icon name="logo-instagram"></ion-icon>
+            </a></li>
         </ul>
-    </nav>
-
-    <!-- Particle Background & Intro Section -->
-    <section class="intro">
-        <div id="particles-js"></div>
-        <canvas id="line-canvas"></canvas>
-        <h2>Welcome to PicHub</h2>
-        <p>Explore stunning photos from different categories. Download high-quality images for free.</p>
-        <button>Explore Now</button>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 PicHub. All Rights Reserved.</p>
-        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-    </footer>
+        <ul class="footer-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="About US.html">About us</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="About US.html#team-grid">Team</a></li>
+            <li><a href="contactus.html">Contact us</a></li>
+            <li><a href="https://pichub.co.uk/newsletter/templates/">Subscribe</a></li>
+        </ul>
+        <div class="copyright">
+            &copy; PicHub | All rights reserved |
+            <b><u><a href="Privacy Policy.html" style="text-decoration: none; color: white;">Privacy Policy</a></u></b>
+        </div>
+    </div>
+</footer>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 
     <!-- Particles.js Configuration -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -188,16 +168,16 @@
               "color": "#000000"
             },
             "polygon": {
-              "nb_sides": 5
+              "nb_sides": 11
             }
           },
           "opacity": {
-            "value": 0.5,
+            "value": 2,
             "random": false,
             "anim": {
               "enable": false,
               "speed": 1,
-              "opacity_min": 0.1,
+              "opacity_min": 0.5,
               "sync": false
             }
           },
@@ -231,56 +211,45 @@
           "events": {
             "onhover": {
               "enable": true,
-              "mode": "none" // Disable default hover effects
+              "mode": "grab"
             },
             "onclick": {
               "enable": true,
-              "mode": "push" // Add more particles on click
+              "mode": "push"
             },
             "resize": true
+          },
+          "modes": {
+            "grab": {
+              "distance": 300,
+              "line_linked": {
+                "opacity": 5
+              }
+            },
+            "bubble": {
+              "distance": 600,
+              "size": 40,
+              "duration": 2,
+              "opacity": 8,
+              "speed": 3
+            },
+            "repulse": {
+              "distance": 200,
+              "duration": 0.4
+            },
+            "push": {
+              "particles_nb": 4
+            },
+            "remove": {
+              "particles_nb": 2
+            }
           }
         },
         "retina_detect": true
       });
-
-      const canvas = document.getElementById('line-canvas');
-      const ctx = canvas.getContext('2d');
-
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-
-      // Update canvas size on resize
-      window.addEventListener('resize', () => {
-          canvas.width = window.innerWidth;
-          canvas.height = window.innerHeight;
-      });
-
-      // Draw lines from cursor to nearby particles
-      const drawLines = (e) => {
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-          const mouseX = e.clientX;
-          const mouseY = e.clientY;
-
-          const particles = window.pJSDom[0].particles; // Access particles from particles.js
-
-          particles.array.forEach((particle) => {
-              const dx = particle.x - mouseX;
-              const dy = particle.y - mouseY;
-              const distance = Math.sqrt(dx * dx + dy * dy);
-
-              // Only draw lines if the distance is within a certain range
-              if (distance < 100) { // Adjust distance for line visibility
-                  ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
-                  ctx.lineWidth = 1;
-                  ctx.beginPath();
-                  ctx.moveTo(mouseX, mouseY);
-                  ctx.lineTo(particle.x, particle.y);
-                  ctx.stroke();
-              }
-          });
-      };
-
-      window.addEventListener('mousemove', drawLines);
     </script>
+
+    <!-- Cursor Animation Script -->
+    
 </body>
 </html>
