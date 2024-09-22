@@ -173,7 +173,7 @@
         "particles": {
           "number": {
             "value": 80,
-            "density": {
+ "density": {
               "enable": true,
               "value_area": 800
             }
@@ -255,7 +255,7 @@
           canvas.height = window.innerHeight;
       });
 
-      // Draw lines from cursor to nearby particles
+      // Function to draw lines from cursor to nearby particles
       const drawLines = (e) => {
           ctx.clearRect(0, 0, canvas.width, canvas.height);
           const mouseX = e.clientX;
@@ -280,6 +280,7 @@
           });
       };
 
+      // Add event listener for mouse movement
       window.addEventListener('mousemove', drawLines);
     </script>
 </body>
