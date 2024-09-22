@@ -19,7 +19,7 @@ exports.handler = async function(event, context) {
 
   const mailOptions = {
     from: `Website Contact Form <${data.email}>`,
-    to: 'inq@npatel.co.uk', // The email address where you want to receive messages
+    to: 'inq@pichub.npatel.co.uk', // The email address where you want to receive messages
     subject: `New enquiry from ${data.name}`,
     text: data.message,
   };

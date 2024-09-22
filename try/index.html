@@ -3,572 +3,284 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PicHub</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PicHub - Explore Stunning Photos</title>
     <style>
-        body {
+        * {
             margin: 0;
-            background-color: #212121; /* Dark background */
+            padding: 0;
+            box-sizing: border-box;
         }
-        canvas {
-            display: block;
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: #fff;
+            line-height: 1.6;
+            text-align: center;
+            overflow: hidden; /* Prevents scrollbars */
+        }
+
+        /* Navbar Styles */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #000;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #f39c12;
+        }
+
+        /* Intro Section */
+        .intro {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .intro h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .intro p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .intro button {
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #f39c12;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .intro button:hover {
+            background-color: #e67e22;
+        }
+
+        /* Particle Background */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        /* Overlay for cursor lines */
+        #line-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000;
+            padding: 1rem 0;
+            text-align: center;
+            position: relative;
+            bottom: 0;
             width: 100%;
         }
 
+        footer p {
+            margin-bottom: 0.5rem;
+        }
 
-        header {
-    background: #333;
-    color: #fff;
-    padding: 10px 20px;
-    position: fixed;
-    top: 20px; /* Initial position below the top */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%; /* Increase width slightly */
-    max-width: 1200px;
-    z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 10px; /* Cylindrical structure */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: opacity 0.3s ease-in-out; /* Smooth transition for opacity */
-    border: 5px solid #5f5858; /* Gray border */
-}
+        footer a {
+            color: #fff;
+            text-decoration: none;
+        }
 
-header.hidden {
-    opacity: 0; /* Make header transparent to hide it */
-}
-
-header .logo {
-    display: flex;
-    align-items: center;
-}
-
-header .logo img {
-    height: 40px;
-    margin-right: 10px;
-}
-
-.active {
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-header nav {
-    display: flex;
-    align-items: left;
-}
-
-header nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    align-items: left;
-}
-
-header nav ul li {
-    margin: 0 10px;
-}
-
-header nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 15px;
-    border-radius: 10px;
-    transition: background 0.3s;
-}
-
-header nav ul li a:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.menu-icon {
-    display: none;
-    cursor: pointer;
-    font-size: 24px;
-}
-
-/* Sidebar Menu */
-#sidebar-menu {
-    position: fixed;
-    top: 0;
-    right: -250px;
-    width: 250px;
-    height: 100%;
-    background: #333;
-    color: #fff;
-    transition: right 0.3s ease;
-    z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-#sidebar-menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    text-align: center;
-}
-
-#sidebar-menu ul li {
-    margin: 10px 0;
-}
-
-#sidebar-menu ul li a {
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 15px;
-    border-radius: 10px;
-    display: block;
-    transition: background 0.3s;
-}
-
-#sidebar-menu ul li a:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
-
-/* Overlay */
-#overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 9998;
-    display: none;
-}
-
-/* Media queries */
-@media (max-width: 768px) {
-    header nav ul {
-        display: none;
-    }
-
-    .menu-icon {
-        display: block;
-    }
-}
-
-#sidebar-menu.active {
-    right: 0;
-}
-
-@media (min-width: 601px) and (max-width: 1200px) {
-    header nav ul {
-        display: flex;
-    }
-
-    .menu-icon {
-        display: none;
-    }
-
-    #sidebar-menu {
-        width: 250px;
-    }
-
-    #sidebar-menu.active {
-        right: 0;
-    }
-}
-
-@media (min-width: 1201px) {
-    header nav ul {
-        display: flex;
-    }
-
-    .menu-icon {
-        display: none;
-    }
-
-    #sidebar-menu {
-        width: 250px;
-    }
-
-    #sidebar-menu.active {
-        right: 0;
-    }
-}
-
-
-
-footer {
-    position: relative;
-    bottom: 0;
-    left: 0;
-    width: auto;
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-}
-.footer-container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-
-.footer-link {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    font-size: 1.8em;
-}
-
-
-.footer-link a:hover ion-icon {
-    scale: 1.2;
-    transform: translateY( -10px);
-    color: #ccc;
-    transition: 0.25s;
-}
-
-
-
-.footer-link li {
-    margin: 0 10px;
-}
-.footer-link a {
-    color: #fff;
-    text-decoration: none;
-}     
-
-.footer-link a:hover{
-    scale: 1.2;
-}
-
-.footer-nav {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 20px;
-}
-.footer-nav li {
-    margin: 0 20px;
-}
-.footer-nav a {
-    color: #fff;
-    text-decoration: none;
-}
-.footer-nav a:hover {
-    color: #ccc;
-}
-.copyright {
-    margin-top: 20px;
-    font-size: 14px;
-}
-
-/* Add media queries to adjust footer styles for different screen sizes */
-@media only screen and (max-width: 768px) {
-/* For screens with a maximum width of 768px (e.g., tablets) */
-.footer-container {
-max-width: 90%;
-margin: 0 auto;
-}
-.footer-icon {
-font-size: 3em;
-margin-bottom: 20px;
-text-align: center;
-}
-.footer-nav {
-display: block;
-text-align: center;
-}
-.footer-nav li {
-display: inline-block;
-margin: 0 10px;
-}
-.footer-nav a {
-font-size: 1.2em;
-}
-}
-
-@media only screen and (max-width: 480px) {
-/* For screens with a maximum width of 480px (e.g., mobile phones) */
-.footer-container {
-max-width: 80%;
-margin: 0 auto;
-}
-.footer-icon {
-font-size: 2.5em;
-margin-bottom: 15px;
-text-align: center;
-}
-.footer-nav {
-display: block;
-text-align: center;
-}
-.footer-nav li {
-display: inline-block;
-margin: 0 10px;
-}
-.footer-nav a {
-font-size: 1.0em;
-}
-}
-
-@media only screen and (max-width: 320px) {
-/* For screens with a maximum width of 320px (e.g., small mobile phones) */
-.footer-container {
-max-width: 70%;
-margin: 0 auto;
-}
-.footer-icon {
-font-size: 2em;
-margin-bottom: 10px;
-text-align: center;
-}
-.footer-nav {
-display: block;
-text-align: center;
-}
-.footer-nav li {
-display: inline-block;
-margin: 0 10px;
-}
-.footer-nav a {
-font-size: 0.8em;
-}
-}
-
+        footer a:hover {
+            color: #f39c12;
+        }
     </style>
 </head>
 <body>
-  <header>
-    <div class="logo">
-        <img src="Photos/PicHubStudios-Circle.png" alt="Logo">
-        <span>PicHub</span>
-    </div>
+    <!-- Navbar -->
     <nav>
+        <div class="logo">PicHub</div>
         <ul>
-            <li><a class="active" href="index.html">Home</a></li>
-            <li><a href="About US.html">About Us</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="contactus.html">Contact Us</a></li>
-            <li><a href="https://pichub.co.uk/newsletter/templates/">Subscribe</a></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Categories</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
         </ul>
     </nav>
-    <div class="menu-icon" onclick="toggleMenu()">
-        <i class="fas fa-bars"></i>
-    </div>
-  </header>
 
+    <!-- Particle Background & Intro Section -->
+    <section class="intro">
+        <div id="particles-js"></div>
+        <canvas id="line-canvas"></canvas>
+        <h2>Welcome to PicHub</h2>
+        <p>Explore stunning photos from different categories. Download high-quality images for free.</p>
+        <button>Explore Now</button>
+    </section>
 
-  <div id="sidebar-menu">
-    <ul>
-        <li><a class="active" href="index.html">Home</a></li>
-        <li><a href="About US.html">About Us</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="contactus.html">Contact Us</a></li>
-        <li><a href="https://pichub.co.uk/newsletter/templates/">Subscribe</a></li>
-    </ul>
-</div>
-<div id="overlay" onclick="toggleMenu()"></div>
-
-
-
-    <canvas id="canvas" width="100%" height="100%"></canvas>
-
+    <!-- Footer -->
     <footer>
-      <div class="footer-container">
-          <ul class="footer-link">
-              <li><a class="social_link" href="https://www.facebook.com/people/PicHub/61563090242216/">
-                  <ion-icon name="logo-facebook"></ion-icon>
-              </a></li>
-              <li><a class="social_link" href="mailto:info@npatel.co.uk">
-                  <ion-icon name="mail"></ion-icon>
-              </a></li>
-              <li><a class="social_link" href="https://www.instagram.com/pichub__official/">
-                  <ion-icon name="logo-instagram"></ion-icon>
-              </a></li>
-          </ul>
-          <ul class="footer-nav">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="About US.html">About us</a></li>
-              <li><a href="gallery.html">Gallery</a></li>
-              <li><a href="About US.html#team-grid">Team</a></li>
-              <li><a href="contactus.html">Contact us</a></li>
-              <li><a href="https://pichub.co.uk/newsletter/templates/">Subscribe</a></li>
-          </ul>
-          <div class="copyright">
-              &copy; PicHub | All rights reserved |
-              <b><u><a href="Privacy Policy.html" style="text-decoration: none; color: white;">Privacy Policy</a></u></b>
-          </div>
-      </div>
-  </footer>
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script>
-      // JavaScript to handle the header fade in and out on scroll
-      let lastScrollTop = 0;
-      const header = document.querySelector('header');
+        <p>&copy; 2024 PicHub. All Rights Reserved.</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
 
-      window.addEventListener('scroll', function() {
-          let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-          if (scrollTop > lastScrollTop) {
-              // Downscroll
-              header.classList.add('hidden');
-          } else {
-              // Upscroll
-              header.classList.remove('hidden');
-          }
-          lastScrollTop = scrollTop;
-      });
-  </script>
-
+    <!-- Particles.js Configuration -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        let canvas = document.getElementById('canvas');
-        let ctx = canvas.getContext('2d');
-        let particles = [];
-        let cursorX, cursorY;
-        let linkedLines = [];
-
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        window.addEventListener('mousemove', (e) => {
-            cursorX = e.clientX;
-            cursorY = e.clientY;
-        });
-
-        class Particle {
-            constructor(x, y) {
-                this.x = x;
-                this.y = y;
-                this.vx = Math.random() * 2 - 1;
-                this.vy = Math.random() * 2 - 1;
-                this.radius = Math.random() * 2 + 1;
-                this.connected = false; /* Add a connected flag */
+      particlesJS('particles-js', {
+        "particles": {
+          "number": {
+            "value": 80,
+            "density": {
+              "enable": true,
+              "value_area": 800
             }
-
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-
-                if (this.x < 0 || this.x > canvas.width * 2) { /* Extended boundary */
-                    this.vx *= -1;
-                }
-                if (this.y < 0 || this.y > canvas.height * 2) { /* Extended boundary */
-                    this.vy *= -1;
-                }
+          },
+          "color": {
+            "value": "#ffffff"
+          },
+          "shape": {
+            "type": "circle",
+            "stroke": {
+              "width": 0,
+              "color": "#000000"
+            },
+            "polygon": {
+              "nb_sides": 5
             }
-
-            draw() {
-                ctx.save();
-                ctx.translate(this.x, this.y);
-                ctx.beginPath();
-                ctx.moveTo(-this.radius, -this.radius);
-                ctx.lineTo(this.radius, this.radius);
-                ctx.moveTo(-this.radius, this.radius);
-                ctx.lineTo(this.radius, -this.radius);
-                if (this.connected) { /* Fully visible if connected */
-                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
-                } else { /* Partially visible if not connected */
-                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
-                }
-                ctx.lineWidth = 1;
-                ctx.stroke();
-                ctx.restore();
+          },
+          "opacity": {
+            "value": 0.5,
+            "random": false,
+            "anim": {
+              "enable": false,
+              "speed": 1,
+              "opacity_min": 0.1,
+              "sync": false
             }
-        }
-
-        for (let i = 0; i < 1500; i++) { /* Increased particle count for an even denser network */
-            particles.push(new Particle(Math.random() * canvas.width * 2, Math.random() * canvas.height * 2));
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            let nearestParticles = [];
-            let nearestDistances = [];
-
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-
-                let dx = particles[i].x - cursorX;
-                let dy = particles[i].y - cursorY;
-                let distance = Math.sqrt(dx * dx + dy * dy);
-
-                if (distance < 200) { /* Increased distance threshold */
-                    nearestParticles.push(particles[i]);
-                    nearestDistances.push(distance);
-                } else {
-                    particles[i].connected = false; /* Reset connection flag if not near cursor */
-                }
+          },
+          "size": {
+            "value": 5,
+            "random": true,
+            "anim": {
+              "enable": false,
+              "speed": 40,
+              "size_min": 0.1,
+              "sync": false
             }
-
-            nearestParticles.sort((a, b) => nearestDistances[nearestParticles.indexOf(a)] - nearestDistances[nearestParticles.indexOf(b)]);
-
-            for (let i = 0; i < 15; i++) { /* Increased number of particles linked to cursor */
-                if (nearestParticles[i]) {
-                    nearestParticles[i].connected = true; /* Mark as connected */
-                    ctx.beginPath();
-                    ctx.moveTo(nearestParticles[i].x, nearestParticles[i].y);
-                    ctx.lineTo(cursorX, cursorY);
-                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)'; /* Brighter line color */
-                    ctx.lineWidth = 0.5;
-                    ctx.stroke();
-                }
+          },
+          "move": {
+            "enable": true,
+            "speed": 4,
+            "direction": "none",
+            "random": true,
+            "straight": false,
+            "out_mode": "out",
+            "bounce": false,
+            "attract": {
+              "enable": false,
+              "rotateX": 600,
+              "rotateY": 1200
             }
+          }
+        },
+        "interactivity": {
+          "detect_on": "canvas",
+          "events": {
+            "onhover": {
+              "enable": true,
+              "mode": "none" // Disable default hover effects
+            },
+            "onclick": {
+              "enable": true,
+              "mode": "push" // Add more particles on click
+            },
+            "resize": true
+          }
+        },
+        "retina_detect": true
+      });
 
-            /* Draw lines between nearest particles */
-            for (let i = 0; i < 5; i++) { /* Increased number of interlinked particles */
-                for (let j = i + 1; j < 5; j++) {
-                    if (nearestParticles[i] && nearestParticles[j]) {
-                        let lineOpacity = 1;
-                        let lineDistance = Math.sqrt(Math.pow(nearestParticles[i].x - nearestParticles[j].x, 2) + Math.pow(nearestParticles[i].y - nearestParticles[j].y, 2));
-                        if (lineDistance > 50) { /* Fade out lines when distance is greater than 50 */
-                            lineOpacity = 1 - (lineDistance - 50) / 150;
-                        }
-                        ctx.beginPath();
-                        ctx.moveTo(nearestParticles[i].x, nearestParticles[i].y);
-                        ctx.lineTo(nearestParticles[j].x, nearestParticles[j].y);
-                        ctx.strokeStyle = `rgba(255, 255, 255, ${lineOpacity})`; /* Use line opacity */
-                        ctx.lineWidth = 0.5;
-                        ctx.stroke();
-                    }
-                }
-            }
+      const canvas = document.getElementById('line-canvas');
+      const ctx = canvas.getContext('2d');
 
-            requestAnimationFrame(animate);
-        }
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
 
-        animate();
+      // Update canvas size on resize
+      window.addEventListener('resize', () => {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+      });
+
+      // Draw lines from cursor to nearby particles
+      const drawLines = (e) => {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          const mouseX = e.clientX;
+          const mouseY = e.clientY;
+
+          const particles = window.pJSDom[0].particles; // Access particles from particles.js
+
+          particles.array.forEach((particle) => {
+              const dx = particle.x - mouseX;
+              const dy = particle.y - mouseY;
+              const distance = Math.sqrt(dx * dx + dy * dy);
+
+              // Only draw lines if the distance is within a certain range
+              if (distance < 100) { // Adjust distance for line visibility
+                  ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+                  ctx.lineWidth = 1;
+                  ctx.beginPath();
+                  ctx.moveTo(mouseX, mouseY);
+                  ctx.lineTo(particle.x, particle.y);
+                  ctx.stroke();
+              }
+          });
+      };
+
+      window.addEventListener('mousemove', drawLines);
     </script>
-
-    
-<Script>
-  /* header fade in fade out */
-    document.addEventListener("DOMContentLoaded", function() {
-      const menuIcon = document.querySelector('.menu-icon');
-      const sidebarMenu = document.getElementById('sidebar-menu');
-      const overlay = document.getElementById('overlay');
-
-      // Toggle sidebar menu
-      menuIcon.addEventListener('click', function() {
-          sidebarMenu.classList.toggle('active');
-          overlay.style.display = 'block';
-      });
-
-      // Close sidebar menu when clicking outside
-      overlay.addEventListener('click', function() {
-          sidebarMenu.classList.remove('active');
-          overlay.style.display = 'none';
-      });
-  });
-</Script>
-
-
 </body>
 </html>
