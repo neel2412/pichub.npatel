@@ -3,285 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>PicHub - Explore Stunning Photos</title>
+    <title>Particle Network</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: Arial, sans-serif;
-            background-color: #111;
-            color: #fff;
-            line-height: 1.6;
-            text-align: center;
-            overflow: hidden; /* Prevents scrollbars */
+            margin: 0;
+            background-color: #f0f0f0;
         }
-
-        /* Navbar Styles */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-            background-color: #000;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        nav .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #fff;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-        }
-
-        nav ul li {
-            margin-left: 2rem;
-        }
-
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: color 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: #f39c12;
-        }
-
-        /* Intro Section */
-        .intro {
-            position: relative;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            text-align: center;
-        }
-
-        .intro h2 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .intro p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-
-        .intro button {
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-            color: #fff;
-            background-color: #f39c12;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .intro button:hover {
-            background-color: #e67e22;
-        }
-
-        /* Particle Background */
-        #particles-js {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: -1;
-        }
-
-        /* Overlay for cursor lines */
-        #line-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #000;
-            padding: 1rem 0;
-            text-align: center;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-        }
-
-        footer p {
-            margin-bottom: 0.5rem;
-        }
-
-        footer a {
-            color: #fff;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            color: #f39c12;
+        canvas {
+            display: block;
         }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav>
-        <div class="logo">PicHub</div>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Categories</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
-
-    <!-- Particle Background & Intro Section -->
-    <section class="intro">
-        <div id="particles-js"></div>
-        <canvas id="line-canvas"></canvas>
-        <h2>Welcome to PicHub</h2>
-        <p>Explore stunning photos from different categories. Download high-quality images for free.</p>
-        <button>Explore Now</button>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 PicHub. All Rights Reserved.</p>
-        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-    </footer>
-
-    <!-- Particles.js Configuration -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <canvas id="canvas" width="100%" height="100%"></canvas>
     <script>
-      particlesJS('particles-js', {
-        "particles": {
-          "number": {
-            "value": 80,
- "density": {
-              "enable": true,
-              "value_area": 800
+        let canvas = document.getElementById('canvas');
+        let ctx = canvas.getContext('2d');
+        let particles = [];
+        let cursorX, cursorY;
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        window.addEventListener('mousemove', (e) => {
+            cursorX = e.clientX;
+            cursorY = e.clientY;
+        });
+
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.vx = Math.random() * 2 - 1;
+                this.vy = Math.random() * 2 - 1;
+                this.radius = Math.random() * 2 + 1;
             }
-          },
-          "color": {
-            "value": "#ffffff"
-          },
-          "shape": {
-            "type": "circle",
-            "stroke": {
-              "width": 0,
-              "color": "#000000"
-            },
-            "polygon": {
-              "nb_sides": 5
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > canvas.width) {
+                    this.vx *= -1;
+                }
+                if (this.y < 0 || this.y > canvas.height) {
+                    this.vy *= -1;
+                }
+
+                let dx = this.x - cursorX;
+                let dy = this.y - cursorY;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < 50) {
+                    this.vx += (cursorX - this.x) * 0.01;
+                    this.vy += (cursorY - this.y) * 0.01;
+                }
             }
-          },
-          "opacity": {
-            "value": 0.5,
-            "random": false,
-            "anim": {
-              "enable": false,
-              "speed": 1,
-              "opacity_min": 0.1,
-              "sync": false
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+                ctx.fill();
             }
-          },
-          "size": {
-            "value": 5,
-            "random": true,
-            "anim": {
-              "enable": false,
-              "speed": 40,
-              "size_min": 0.1,
-              "sync": false
+        }
+
+        for (let i = 0; i < 100; i++) {
+            particles.push(new Particle(Math.random() * canvas.width, Math.random() * canvas.height));
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
             }
-          },
-          "move": {
-            "enable": true,
-            "speed": 4,
-            "direction": "none",
-            "random": true,
-            "straight": false,
-            "out_mode": "out",
-            "bounce": false,
-            "attract": {
-              "enable": false,
-              "rotateX": 600,
-              "rotateY": 1200
-            }
-          }
-        },
-        "interactivity": {
-          "detect_on": "canvas",
-          "events": {
-            "onhover": {
-              "enable": true,
-              "mode": "none" // Disable default hover effects
-            },
-            "onclick": {
-              "enable": true,
-              "mode": "push" // Add more particles on click
-            },
-            "resize": true
-          }
-        },
-        "retina_detect": true
-      });
 
-      const canvas = document.getElementById('line-canvas');
-      const ctx = canvas.getContext('2d');
+            requestAnimationFrame(animate);
+        }
 
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-
-      // Update canvas size on resize
-      window.addEventListener('resize', () => {
-          canvas.width = window.innerWidth;
-          canvas.height = window.innerHeight;
-      });
-
-      // Function to draw lines from cursor to nearby particles
-      const drawLines = (e) => {
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-          const mouseX = e.clientX;
-          const mouseY = e.clientY;
-
-          const particles = window.pJSDom[0].particles; // Access particles from particles.js
-
-          particles.array.forEach((particle) => {
-              const dx = particle.x - mouseX;
-              const dy = particle.y - mouseY;
-              const distance = Math.sqrt(dx * dx + dy * dy);
-
-              // Only draw lines if the distance is within a certain range
-              if (distance < 100) { // Adjust distance for line visibility
-                  ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
-                  ctx.lineWidth = 1;
-                  ctx.beginPath();
-                  ctx.moveTo(mouseX, mouseY);
-                  ctx.lineTo(particle.x, particle.y);
-                  ctx.stroke();
-              }
-          });
-      };
-
-      // Add event listener for mouse movement
-      window.addEventListener('mousemove', drawLines);
+        animate();
     </script>
 </body>
 </html>
