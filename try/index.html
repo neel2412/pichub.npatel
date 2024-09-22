@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Particle Network</title>
+    <title>Particle Network (Dark Theme) with Linked Lines and Nearest Particles</title>
     <style>
         body {
             margin: 0;
-            background-color: #f0f0f0;
+            background-color: #212121; /* Dark background */
         }
         canvas {
             display: block;
@@ -21,6 +21,7 @@
         let ctx = canvas.getContext('2d');
         let particles = [];
         let cursorX, cursorY;
+        let linkedLines = [];
 
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
@@ -43,47 +44,82 @@
                 this.x += this.vx;
                 this.y += this.vy;
 
-                if (this.x < 0 || this.x > canvas.width) {
+                if (this.x < 0 || this.x > canvas.width * 2) { /* Extended boundary */
                     this.vx *= -1;
                 }
-                if (this.y < 0 || this.y > canvas.height) {
+                if (this.y < 0 || this.y > canvas.height * 2) { /* Extended boundary */
                     this.vy *= -1;
-                }
-
-                let dx = this.x - cursorX;
-                let dy = this.y - cursorY;
-                let distance = Math.sqrt(dx * dx + dy * dy);
-
-                if (distance < 50) {
-                    this.vx += (cursorX - this.x) * 0.01;
-                    this.vy += (cursorY - this.y) * 0.01;
                 }
             }
 
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.3)'; /* Brighter particle color */
                 ctx.fill();
             }
         }
 
-        for (let i = 0; i < 100; i++) {
-            particles.push(new Particle(Math.random() * canvas.width, Math.random() * canvas.height));
+        for (let i = 0; i < 1500; i++) { /* Increased particle count for an even denser network */
+            particles.push(new Particle(Math.random() * canvas.width * 2, Math.random() * canvas.height * 2));
         }
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+            let nearestParticles = [];
+            let nearestDistances = [];
+
             for (let i = 0; i < particles.length; i++) {
                 particles[i].update();
                 particles[i].draw();
+
+                let dx = particles[i].x - cursorX;
+                let dy = particles[i].y - cursorY;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < 200) { /* Increased distance threshold */
+                    nearestParticles.push(particles[i]);
+                    nearestDistances.push(distance);
+                }
+            }
+
+            nearestParticles.sort((a, b) => nearestDistances[nearestParticles.indexOf(a)] - nearestDistances[nearestParticles.indexOf(b)]);
+
+            for (let i = 0; i < 7; i++) { /* Increased number of particles linked to cursor */
+                if (nearestParticles[i]) {
+                    ctx.beginPath();
+                    ctx.moveTo(nearestParticles[i].x, nearestParticles[i].y);
+                    ctx.lineTo(cursorX, cursorY);
+                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)'; /* Brighter line color */
+                    ctx.lineWidth = 0.5;
+                    ctx.stroke();
+                }
+            }
+
+            /* Draw lines between nearest particles */
+            for (let i = 0; i < 5; i++) { /* Increased number of interlinked particles */
+                for (let j = i + 1; j < 5; j++) {
+                    if (nearestParticles[i] && nearestParticles[j]) {
+                        let lineOpacity = 1;
+                        let lineDistance = Math.sqrt(Math.pow(nearestParticles[i].x - nearestParticles[j].x, 2) + Math.pow(nearestParticles[i].y - nearestParticles[j].y, 2));
+                        if (lineDistance > 50) { /* Fade out lines when distance is greater than 50 */
+                            lineOpacity = 1 - (lineDistance - 50) / 150;
+                        }
+                        ctx.beginPath();
+                        ctx.moveTo(nearestParticles[i].x, nearestParticles[i].y);
+                        ctx.lineTo(nearestParticles[j].x, nearestParticles[j].y);
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${lineOpacity})`; /* Use line opacity */
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                }
             }
 
             requestAnimationFrame(animate);
         }
 
-        animate();
+        animate ();
     </script>
 </body>
 </html>
