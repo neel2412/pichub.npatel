@@ -5,117 +5,166 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PicHub - Explore Stunning Photos</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="header.footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:900" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="icon" type="image/x-icon" href="Photos/PicHubStudios-Circle.png">
 </head>
 <body>
+  <div id="cookieConsent" style="display: none;">
+    <div id="cookieConsentPopup">
+        <p>This website doesn’t store any cookies or data on your device.</p>
+        <button id="cookieConsentButton">Got it!</button>
+    </div>
+</div>
 
-  
-    <!-- Navbar -->
-    <nav>
-      <div class="logo">PicHub</div>
-      <ul>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#team">Our Team</a></li>
-          <li><a href="#subscribe">Subscribe</a></li>
-      </ul>
-  </nav>
+<!-- CSS -->
+<style>
+    #cookieConsent {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        overflow: hidden;
+        animation: fadeIn 0.5s ease-out;
+    }
+    
+    #cookieConsentPopup {
+        background-color: #222;
+        color: #eee;
+        padding: 20px;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 350px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        font-family: Arial, sans-serif;
+        text-align: center;
+        opacity: 0;
+        animation: slideIn 0.5s ease-out forwards;
+    }
+    
+    #cookieConsentPopup p {
+        margin: 0 0 15px 0;
+        font-size: 14px;
+    }
+    
+    #cookieConsentPopup button {
+        background-color: #444;
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 14px;
+        transition: background-color 0.3s ease;
+    }
+    
+    #cookieConsentPopup button:hover {
+        background-color: #555;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translate(-50%, -60%);
+            opacity: 0;
+        }
+        to {
+            transform: translate(-50%, -50%);
+            opacity: 1;
+        }
+    }
+</style>
+
+
+
+<!-- JavaScript -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var consent = document.getElementById("cookieConsent");
+        var consentButton = document.getElementById("cookieConsentButton");
+
+        // Check if the user has already seen the consent popup
+        if (!sessionStorage.getItem("cookieConsentSeen")) {
+            // Show the consent popup
+            consent.style.display = "block";
+        }
+
+        // Hide the popup and set session storage item when the button is clicked
+        consentButton.onclick = function () {
+            consent.style.display = "none";
+            sessionStorage.setItem("cookieConsentSeen", "true");
+        };
+    });
+</script>
+
+
+
+
+
+
+
+        <header>
+            <div class="logo">
+                <img src="PicHubStudios-Circle.png" alt="Logo">
+                <span>PicHub</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a class="active" href="https://pichub.npatel.co.uk">Home</a></li>
+                    <li><a href="https://pichub.npatel.co.uk/about%20us">About Us</a></li>
+                    <li><a href="https://pichub.npatel.co.uk/gallery">Gallery</a></li>
+                    <li><a href="https://pichub.npatel.co.uk/newsletter/templates/">Subscribe</a></li>
+                </ul>
+            </nav>
+            <div class="menu-icon" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </header>
+
+
+        <div id="sidebar-menu">
+            <ul>
+                <li><a class="active" href="https://pichub.npatel.co.uk">Home</a></li>
+                <li><a href="https://pichub.npatel.co.uk/about%20us">About Us</a></li>
+                <li><a href="https://pichub.npatel.co.uk/gallery">Gallery</a></li>
+                <li><a href="https://pichub.npatel.co.uk/newsletter/templates/">Subscribe</a></li>
+            </ul>
+        </div>
+        <div id="overlay" onclick="toggleMenu()"></div>  
+
 
   <div class="intro">
-      <h2>Explore Stunning Photos</h2>
+    <div class="text-container">
+        <h1>PicHub</h1>
+      </div>
+      <h3>Explore Stunning Photos</h3>
       <p>Find and download amazing images from our vast collection.</p>
       <button onclick="location.href='gallery.html'">Explore Now</button>
   </div>
 
-  <div id="particles-js"></div>
+  
 
-  <div class="container">
-      <div class="box">
-          <span></span>
-          <div class="content">
-              <h2>Anime</h2>
-              <p> Discover the Anime Spectra Gallery.</p>
-              <a href="nature.html">View Gallery</a>
-          </div>
-      </div>
-      <div class="box">
-          <span></span>
-          <div class="content">
-              <h2>Vintage</h2>
-              <p>Step into the Vintage Art Gallery.</p>
-              <a href="cities.html">View Gallery</a>
-          </div>
-      </div>
-      <div class="box">
-          <span></span>
-          <div class="content">
-              <h2>Urban</h2>
-              <p>Experience the Urban Art Gallery.</p>
-              <a href="abstract.html">View Gallery</a>
-          </div>
-      </div>
-      <div class="box">
-          <span></span>
-          <div class="content">
-              <h2>Real-Life</h2>
-              <p>Welcome to the Real Life Art Gallery.</p>
-              <a href="nature.html">View Gallery</a>
-          </div>
-      </div>
-      <div class="box">
-          <span></span>
-          <div class="content">
-              <h2>Digital Painting</h2>
-              <p>Explore the Digital Painting Gallery, where innovation meets artistry.</p>
-              <a href="cities.html">View Gallery</a>
-          </div>
-      </div>
-      <div class="box">
-          <span></span>
-          <div class="content">
-              <h2>Wallpaper-Type</h2>
-              <p>Transform your space with the Wallpaper Gallery.</p>
-              <a href="abstract.html">View Gallery</a>
-          </div>
-      </div>
-  </div>
-
-  <section class="about-section">
-    <div class="About">
-      <img src="PicHubStudios-Circle.png" alt="Pichub Logo" class="logo">
-      <h2>Welcome to Pichub</h2>
-      <p>Your ultimate destination for high-quality, royalty-free photographs available for download. Our mission is to make stunning visuals accessible to everyone, from creative professionals to hobbyists and students.</p>
-
-      <h3>Who We Are</h3>
-      <p>At Pichub, we are a passionate team of photographers, artists, and tech enthusiasts who believe in the power of visual storytelling. We curate a diverse collection of photographs that cater to a wide range of needs and preferences.</p>
-
-      <p>Pichub is proud to be part of the <span class="highlight">Npatel</span> organization, committed to bringing accessible creative resources to all.</p>
-    </div>
-  </section>
-
-  <section class="our-team" id="team">
-      <h2>Our Team</h2>
-      <div class="team-members">
-          <div class="member">
-              <img src="n.jpg" alt="Team Member 1">
-              <h3>Storm</h3>
-              <p>CEO | Editor</p>
-          </div>
-          <div class="member">
-              <img src="s.jpg" alt="Team Member 2">
-              <h3>Shadow</h3>
-              <p>President | Editor</p>
-          </div>
-          <div class="member">
-              <img src="j.jpg" alt="Team Member 3">
-              <h3>Neon Ghost</h3>
-              <p>Researcher</p>
-          </div>
-      </div>
-      <br>
-  </section>
-
-
+ 
 
   <footer>
     <div class="footer-container">
@@ -146,110 +195,31 @@
 </footer>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 
-    <!-- Particles.js Configuration -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script>
-      particlesJS('particles-js', {
-        "particles": {
-          "number": {
-            "value": 80,
-            "density": {
-              "enable": true,
-              "value_area": 800
-            }
-          },
-          "color": {
-            "value": "#ffffff"
-          },
-          "shape": {
-            "type": "circle",
-            "stroke": {
-              "width": 0,
-              "color": "#000000"
-            },
-            "polygon": {
-              "nb_sides": 11
-            }
-          },
-          "opacity": {
-            "value": 2,
-            "random": false,
-            "anim": {
-              "enable": false,
-              "speed": 1,
-              "opacity_min": 0.5,
-              "sync": false
-            }
-          },
-          "size": {
-            "value": 5,
-            "random": true,
-            "anim": {
-              "enable": false,
-              "speed": 40,
-              "size_min": 0.1,
-              "sync": false
-            }
-          },
-          "move": {
-            "enable": true,
-            "speed": 4,
-            "direction": "none",
-            "random": true,
-            "straight": false,
-            "out_mode": "out",
-            "bounce": false,
-            "attract": {
-              "enable": false,
-              "rotateX": 600,
-              "rotateY": 1200
-            }
-          }
-        },
-        "interactivity": {
-          "detect_on": "canvas",
-          "events": {
-            "onhover": {
-              "enable": true,
-              "mode": "grab"
-            },
-            "onclick": {
-              "enable": true,
-              "mode": "push"
-            },
-            "resize": true
-          },
-          "modes": {
-            "grab": {
-              "distance": 300,
-              "line_linked": {
-                "opacity": 5
-              }
-            },
-            "bubble": {
-              "distance": 600,
-              "size": 40,
-              "duration": 2,
-              "opacity": 8,
-              "speed": 3
-            },
-            "repulse": {
-              "distance": 200,
-              "duration": 0.4
-            },
-            "push": {
-              "particles_nb": 4
-            },
-            "remove": {
-              "particles_nb": 2
-            }
-          }
-        },
-        "retina_detect": true
-      });
-    </script>
 
-    <!-- Cursor Animation Script -->
+<script>
+    // JavaScript to handle the header fade in and out on scroll
+    let lastScrollTop = 0;
+    const header = document.querySelector('header');
+
+    window.addEventListener('scroll', function() {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > lastScrollTop) {
+            // Downscroll
+            header.classList.add('hidden');
+        } else {
+            // Upscroll
+            header.classList.remove('hidden');
+        }
+        lastScrollTop = scrollTop;
+    });
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
     
 </body>
 </html>
