@@ -1,88 +1,299 @@
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-      * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-      }
+body {
+    font-family: Arial, sans-serif;
+    background-color: #111;
+    position: inherit;
+    color: #fff;
+    line-height: 1.6;
+    text-align: center;
+    overflow-x: hidden;
+}
 
-      body {
-          font-family: Arial, sans-serif;
-          background-color: #111;
-          position: inherit;
-          color: #fff;
-          line-height: 1.6;
-          text-align: center;
-          overflow-x: hidden;
-      }
-
-      /* Intro Section */
-      .intro {
-          position: relative;
-          height: 100vh;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          flex-direction: column;
-          text-align: center;
-      }
-
-      .intro h2 {
-          font-size: 5rem;
-          margin-bottom: 1rem;
-      }
-
-      .intro p {
-          font-size: 2rem;
-          margin-bottom: 2rem;
-      }
-
-      .intro button {
-          padding: 0.75rem 1.5rem;
-          font-size: 1rem;
-          color: #fff;
-          background-color: #f39c12;
-          border: none;
-          cursor: pointer;
-          transition: background-color 0.3s;
-      }
-
-      .intro button:hover {
-          background-color: #e67e22;
-      }
-
-      
-.text-container {
-
+/* Intro Section */
+.intro {
+    position: relative;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  .text-container h1{
+    flex-direction: column;
+    text-align: center;
+}
+
+.intro h2 {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+}
+
+.intro p {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.intro button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #f39c12;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.intro button:hover {
+    background-color: #e67e22;
+}
+
+.text-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-container h1 {
     margin: 0;
     font-size: 150px;
-    color: rgba(225,225,225, .01);
+    color: rgba(225, 225, 225, 0.01);
     background-image: url("https://images.unsplash.com/photo-1499195333224-3ce974eecb47?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=2cf549433129d4227d1879347b9e78ce&auto=format&fit=crop&w=1248&q=80");
     background-repeat: repeat;
-    -webkit-background-clip:text;
+    -webkit-background-clip: text;
     animation: animate 15s ease-in-out infinite;
     text-align: center;
     text-transform: uppercase;
     font-weight: 900;
-  }
-  
-    @keyframes animate {
-      0%, 100% {
+}
+
+@keyframes animate {
+    0%, 100% {
         background-position: left top;
-      }
-      25%{
+    }
+    25% {
         background-position: right bottom;
-       }
-      50% {
+    }
+    50% {
         background-position: left bottom;
-      }
-      75% {
+    }
+    75% {
         background-position: right top;
-      }   
-  }
-  
+    }
+}
+
+/* Cookies Consent CSS */
+#cookieConsent {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    overflow: hidden;
+    animation: fadeIn 0.5s ease-out;
+}
+
+#cookieConsentPopup {
+    background-color: #222;
+    color: #eee;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 350px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    font-family: Arial, sans-serif;
+    text-align: center;
+    opacity: 0;
+    animation: slideIn 0.5s ease-out forwards;
+}
+
+#cookieConsentPopup p {
+    margin: 0 0 15px 0;
+    font-size: 14px;
+}
+
+#cookieConsentPopup button {
+    background-color: #444;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+#cookieConsentPopup button:hover {
+    background-color: #555;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translate(-50%, -60%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
+
+/* Enhanced Media Queries */
+
+/* Extra Small Devices (Portrait Phones, less than 480px) */
+@media (max-width: 479px) {
+    .intro h2 {
+        font-size: 2.5rem;
+    }
+
+    .intro p {
+        font-size: 1.2rem;
+    }
+
+    .intro button {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .text-container h1 {
+        font-size: 60px;
+    }
+}
+
+/* Small Devices (Landscape Phones, 480px and up) */
+@media (min-width: 480px) and (max-width: 599px) {
+    .intro h2 {
+        font-size: 3rem;
+    }
+
+    .intro p {
+        font-size: 1.4rem;
+    }
+
+    .intro button {
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+    }
+
+    .text-container h1 {
+        font-size: 80px;
+    }
+}
+
+/* Medium Devices (Tablets, 600px and up) */
+@media (min-width: 600px) and (max-width: 767px) {
+    .intro h2 {
+        font-size: 3.5rem;
+    }
+
+    .intro p {
+        font-size: 1.6rem;
+    }
+
+    .intro button {
+        padding: 0.65rem 1.3rem;
+        font-size: 1rem;
+    }
+
+    .text-container h1 {
+        font-size: 100px;
+    }
+}
+
+/* Large Devices (Small Laptops, 768px and up) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .intro h2 {
+        font-size: 4rem;
+    }
+
+    .intro p {
+        font-size: 1.8rem;
+    }
+
+    .intro button {
+        padding: 0.7rem 1.4rem;
+        font-size: 1.1rem;
+    }
+
+    .text-container h1 {
+        font-size: 120px;
+    }
+}
+
+/* Extra Large Devices (Desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .intro h2 {
+        font-size: 4.5rem;
+    }
+
+    .intro p {
+        font-size: 1.9rem;
+    }
+
+    .intro button {
+        padding: 0.75rem 1.5rem;
+        font-size: 1.2rem;
+    }
+
+    .text-container h1 {
+        font-size: 140px;
+    }
+}
+
+/* Ultra Large Devices (Large Desktops, 1200px and up) */
+@media (min-width: 1200px) and (max-width: 1439px) {
+    .intro h2 {
+        font-size: 5rem;
+    }
+
+    .intro p {
+        font-size: 2rem;
+    }
+
+    .intro button {
+        padding: 0.8rem 1.6rem;
+        font-size: 1.3rem;
+    }
+
+    .text-container h1 {
+        font-size: 160px;
+    }
+}
+
+/* Extra Extra Large Devices (Very Large Desktops, 1440px and up) */
+@media (min-width: 1440px) {
+    .intro h2 {
+        font-size: 5rem;
+    }
+
+    .intro p {
+        font-size: 2rem;
+    }
+
+    .intro button {
+        padding: 0.9rem 1.8rem;
+        font-size: 1.4rem;
+    }
+
+    .text-container h1 {
+        font-size: 200px;
+    }
+}
