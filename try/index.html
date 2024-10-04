@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PicHub - Explore Stunning Photos</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="header.footer.js"></script>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="header.footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -59,24 +60,33 @@
                     <li><a class="active" href="https://pichub.npatel.co.uk">Home</a></li>
                     <li><a href="https://pichub.npatel.co.uk/about%20us">About Us</a></li>
                     <li><a href="https://pichub.npatel.co.uk/gallery">Gallery</a></li>
-                    <li><a href="https://pichub.npatel.co.uk/newsletter/templates/">Subscribe</a></li>
+                    <li><a href="https://pichub.npatel.co.uk/Newsletter/templates/index.html">Subscribe</a></li>
                 </ul>
             </nav>
             <div class="menu-icon" onclick="toggleMenu()">
                 <i class="fas fa-bars"></i>
             </div>
         </header>
-
+        <div id="sidebar-menu">
+            <ul>
+                <li><a class="active" href="https://pichub.npatel.co.uk">Home</a></li>
+                <li><a href="https://pichub.npatel.co.uk/about%20us">About Us</a></li>
+                <li><a href="https://pichub.npatel.co.uk/gallery">Gallery</a></li>
+                <li><a href="https://pichub.npatel.co.uk/Newsletter/templates/index.html">Subscribe</a></li>
+            </ul>
+        </div>
+        <div id="overlay" onclick="toggleMenu()"></div> 
 
 
 
   <div class="intro">
+    
     <div class="text-container">
         <h1>PicHub</h1>
       </div>
       <h3>Explore Stunning Photos</h3>
       <p>Find and download amazing images from our vast collection.</p>
-      <button onclick="location.href='gallery.html'">Explore Now</button>
+      <button class='glowing-btn'><a href="https://pichub.npatel.co.uk/gallery"><span class='glowing-txt'>Ex<span class='faulty-letter'>pl</span>ore</span></a></button>
   </div>
 
   
@@ -103,27 +113,23 @@
           <div>
             <h2>Company</h2>
             <ul>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Blog</a></li>
-              <li><a href="#">Contact Us</a></li>
+              <li><a href="https://pichub.npatel.co.uk/about%20us">About</a></li>
+              <li><a href="https://pichub.npatel.co.uk/comingsoon">Contact Us</a></li>
             </ul>
           </div>
           <div>
             <h2>PicHub</h2>
             <ul>
-              <li><a href="#">Pricing</a></li>
-              <li><a href="#">Showcase</a></li>
-              <li><a href="#">Resources</a></li>
-              <li><a href="#">Community</a></li>
+              <li><a href="https://pichub.npatel.co.uk/gallery">Gallery</a></li>
+              <li><a href="https://pichub.npatel.co.uk/about%20us#team-grid">Team</a></li>
             </ul>
           </div>
           <div>
             <h2>Connect</h2>
             <ul>
-              <li><a href="#">Codepen</a></li>
-              <li><a href="#">GitHub</a></li>
-              <li><a href="#">Facebook</a></li>
-              <li><a href="#">Linkedin</a></li>
+              <li><a href="https://pichub.npatel.co.uk/newsletter/templates/">Subscribe/a></li>
+              <li><a href="https://www.instagram.com/pichub__official/">Instgram</a></li>
+              <li><a href="https://www.facebook.com/people/PicHub/61563090242216/">Facebook</a></li>
             </ul>
           </div>
         </nav>

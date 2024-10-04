@@ -3,122 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="Photos/PicHubStudios-Circle.png">
-    <link href='https://fonts.googleapis.com/css?family=Yellowtail' rel='stylesheet'>
-    <title>Pichub | Home</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PicHub - Explore Stunning Photos</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="index.js"></script>
     <link rel="stylesheet" href="index.css">
-    <style>
-        /* CSS for the fixed button */
-        #open_preferences_center {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            padding: 10px 20px;
-            background-color: #333;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            text-align: center;
-            text-decoration: none;
-            cursor: pointer;
-            z-index: 1000;
-        }
-        #open_preferences_center:hover {
-            background-color: #555;
-        }
-
-        body{
-            min-height: 100vh;
-        }
-
-        
-    </style>
+    <link rel="stylesheet" href="index1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:900" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="icon" type="image/x-icon" href="Photos/PicHubStudios-Circle.png">
 </head>
 <body>
-
-
-
-<!-- HTML -->
-<div id="cookieConsent" style="display: none;">
+  <div id="cookieConsent" style="display: none;">
     <div id="cookieConsentPopup">
         <p>This website doesn’t store any cookies or data on your device.</p>
         <button id="cookieConsentButton">Got it!</button>
     </div>
 </div>
 
-<!-- CSS -->
-<style>
-    #cookieConsent {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 1000;
-        overflow: hidden;
-        animation: fadeIn 0.5s ease-out;
-    }
-    
-    #cookieConsentPopup {
-        background-color: #222;
-        color: #eee;
-        padding: 20px;
-        border-radius: 8px;
-        width: 90%;
-        max-width: 350px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        font-family: Arial, sans-serif;
-        text-align: center;
-        opacity: 0;
-        animation: slideIn 0.5s ease-out forwards;
-    }
-    
-    #cookieConsentPopup p {
-        margin: 0 0 15px 0;
-        font-size: 14px;
-    }
-    
-    #cookieConsentPopup button {
-        background-color: #444;
-        color: #fff;
-        border: none;
-        padding: 8px 16px;
-        cursor: pointer;
-        border-radius: 4px;
-        font-size: 14px;
-        transition: background-color 0.3s ease;
-    }
-    
-    #cookieConsentPopup button:hover {
-        background-color: #555;
-    }
 
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
-    }
-
-    @keyframes slideIn {
-        from {
-            transform: translate(-50%, -60%);
-            opacity: 0;
-        }
-        to {
-            transform: translate(-50%, -50%);
-            opacity: 1;
-        }
-    }
-</style>
 
 <!-- JavaScript -->
 <script>
@@ -142,79 +46,128 @@
 
 
 
-    <header>
-        <nav class="nav">
-            <ul class="left-nav">
-                <li><a class="active" href="index.html">Home</a></li>
-            </ul>
-            <ul class="right-nav" id="right-nav">
-                <li><a href="About US.html">About Us</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="contactus.html">Contact Us</a></li>
-                <li><a href="https://pichub.co.uk/newsletter/templates/">Subscribe</a></li>
-            </ul>
-            <div class="hamburger-menu" id="hamburger-menu">
-                <span></span>
-                <span></span>
-                <span></span>
+
+
+
+
+        <header>
+            <div class="logo">
+                <img src="Photos/PicHubStudios-Circle.png" alt="Logo">
+                <span>PicHub</span>
             </div>
-        </nav>
-        <div class="sidebar" id="sidebar">
-            <a href="About US.html">About Us</a>
-            <a href="gallery.html">Gallery</a>
-            <a href="contactus.html">Contact Us</a>
-            <li><a href="https://pichub.co.uk/newsletter/templates/">Subscribe</a></li>
+            <nav>
+                <ul>
+                    <li><a class="active" href="https://pichub.npatel.co.uk">Home</a></li>
+                    <li><a href="https://pichub.npatel.co.uk/about%20us">About Us</a></li>
+                    <li><a href="https://pichub.npatel.co.uk/gallery">Gallery</a></li>
+                    <li><a href="https://pichub.npatel.co.uk/Newsletter/templates/index.html">Subscribe</a></li>
+                </ul>
+            </nav>
+            <div class="menu-icon" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </header>
+        <div id="sidebar-menu">
+            <ul>
+                <li><a class="active" href="https://pichub.npatel.co.uk">Home</a></li>
+                <li><a href="https://pichub.npatel.co.uk/about%20us">About Us</a></li>
+                <li><a href="https://pichub.npatel.co.uk/gallery">Gallery</a></li>
+                <li><a href="https://pichub.npatel.co.uk/Newsletter/templates/index.html">Subscribe</a></li>
+            </ul>
         </div>
-    </header>
+        <div id="overlay" onclick="toggleMenu()"></div> 
 
 
 
-    <main>
-        <div class="pichub">
-            <p>PicHub</p>
-        </div>
-        <div class="text">
-            <p><b>There Is A Lot More Than What You Think</b></p>
-        </div>
-        <div class="button-container">
-          <a href="gallery.html"><button>Categories</button></a>
-        </div>
-    </main>
+  <div class="intro">
     
-    <footer>
-        <div class="footer-container">
-            <ul class="footer-link">
-                <li><a class="social_link" href="https://www.facebook.com/people/PicHub/61563090242216/">
-                    <ion-icon name="logo-facebook"></ion-icon>
-                  </a></li>
-                <li><a class="social_link" href="mailto:info@npatel.co.uk">
-                    <ion-icon name="mail"></ion-icon>
-                  </a></li>
-                <li><a class="social_link" href="https://www.instagram.com/pichub__official/">
-                    <ion-icon name="logo-instagram"></ion-icon>
-                  </a></li>
-            </ul>
-            <ul class="footer-nav">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="About US.html">About us</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="About US.html#team-grid">Team</a></li>
-                <li><a href="contactus.html">Contact us</a></li>
-                <li><a href="https://pichub.co.uk/newsletter/templates/">Subscribe</a></li>
-            </ul>
-            <div class="copyright">
-                &copy; PicHub | All rights reserved |<b><u><a href="Privacy Policy.html" style="text-decoration: none; color: white;">Privacy Policy</a></u></b>
-            </div>
-        </div>
-    </footer>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script src="index.js"></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3555166871540561"
-     crossorigin="anonymous"></script>
-     <script type="text/javascript">
-        var infolinks_pid = 3425530;
-        var infolinks_wsid = 0;
-        </script>
+    <div class="text-container">
+        <h1>PicHub</h1>
+      </div>
+      <h3>Explore Stunning Photos</h3>
+      <p>Find and download amazing images from our vast collection.</p>
+      <button class='glowing-btn'><a href="https://pichub.npatel.co.uk/gallery"><span class='glowing-txt'>Ex<span class='faulty-letter'>pl</span>ore</span></a></button>
+  </div>
 
+  
+
+ 
+
+  <footer>
+    <div class="footer-wrapper">
+      <div class="footer-section">
+        <div class="footer-subscribe">
+          <h2>
+            Subscribe to the PicHub newsletter to stay up-to-date with the latest releases
+          </h2>
+          <div class="input-box">
+            <input type="email" placeholder="Email Address" />
+            <button>
+              <svg width="41" height="22" viewBox="0 0 41 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M40.002 11.001H0.501953M40.002 11.001L30.002 1.00098M40.002 11.001L30.002 21.001" stroke="white"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <nav class="footer-nav">
+          <div>
+            <h2>Company</h2>
+            <ul>
+              <li><a href="https://pichub.npatel.co.uk/about%20us">About</a></li>
+              <li><a href="https://pichub.npatel.co.uk/comingsoon">Contact Us</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2>PicHub</h2>
+            <ul>
+              <li><a href="https://pichub.npatel.co.uk/gallery">Gallery</a></li>
+              <li><a href="https://pichub.npatel.co.uk/about%20us#team-grid">Team</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2>Connect</h2>
+            <ul>
+              <li><a href="https://pichub.npatel.co.uk/newsletter/templates/">Subscribe</a></li>
+              <li><a href="https://www.instagram.com/pichub__official/">Instgram</a></li>
+              <li><a href="https://www.facebook.com/people/PicHub/61563090242216/">Facebook</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <div class="footer-copyright">
+        <p>©2024 PicHub, Inc. All rights reserved.</p>
+        <p>Privacy Policy.</p>
+        <p>Terms of Use.</p>
+      </div>
+    </div>
+  </footer>
+
+
+<script>
+    // JavaScript to handle the header fade in and out on scroll
+    let lastScrollTop = 0;
+    const header = document.querySelector('header');
+
+    window.addEventListener('scroll', function() {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > lastScrollTop) {
+            // Downscroll
+            header.classList.add('hidden');
+        } else {
+            // Upscroll
+            header.classList.remove('hidden');
+        }
+        lastScrollTop = scrollTop;
+    });
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+    
 </body>
 </html>
