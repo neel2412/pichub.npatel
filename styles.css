@@ -351,6 +351,12 @@ body {
   animation: none;
 }
 
+.glowing-btn a:hover {
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: none;
+  animation: none;
+}
+
 .glowing-btn:hover .glowing-txt {
   animation: none;
 }
