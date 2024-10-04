@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PicHub | Gallery</title>
+    <link rel="stylesheet" href="header.footer.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="anime_gallery.css">
+    <link rel="icon" type="image/x-icon" href="Photos/PicHubStudios-Circle.png">
+    <script src="header.footer.js"></script>
+    <link rel="icon" type="image/x-icon" href="Photos/PicHubStudios-Circle.png">
+</head>
+<body>
+
+
+
+    <!-- HTML -->
+<div id="cookieConsent" style="display: none;">
+    <div id="cookieConsentPopup">
+        <p>This website doesn’t store any cookies or data on your device.</p>
+        <button id="cookieConsentButton">Got it!</button>
+    </div>
+</div>
+
+<!-- CSS -->
+<style>
+    #cookieConsent {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        overflow: hidden;
+        animation: fadeIn 0.5s ease-out;
+    }
+    
+    #cookieConsentPopup {
+        background-color: #222;
+        color: #eee;
+        padding: 20px;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 350px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        font-family: Arial, sans-serif;
+        text-align: center;
+        opacity: 0;
+        animation: slideIn 0.5s ease-out forwards;
+    }
+    
+    #cookieConsentPopup p {
+        margin: 0 0 15px 0;
+        font-size: 14px;
+    }
+    
+    #cookieConsentPopup button {
+        background-color: #444;
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 14px;
+        transition: background-color 0.3s ease;
+    }
+    
+    #cookieConsentPopup button:hover {
+        background-color: #555;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translate(-50%, -60%);
+            opacity: 0;
+        }
+        to {
+            transform: translate(-50%, -50%);
+            opacity: 1;
+        }
+    }
+</style>
+
+<!-- JavaScript -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var consent = document.getElementById("cookieConsent");
+        var consentButton = document.getElementById("cookieConsentButton");
+
+        // Check if the user has already seen the consent popup
+        if (!sessionStorage.getItem("cookieConsentSeen")) {
+            // Show the consent popup
+            consent.style.display = "block";
+        }
+
+        // Hide the popup and set session storage item when the button is clicked
+        consentButton.onclick = function () {
+            consent.style.display = "none";
+            sessionStorage.setItem("cookieConsentSeen", "true");
+        };
+    });
+</script>
+
+
+
+
+
+
+
+
+    <header>
+        <div class="logo">
+            <img src="Photos/PicHubStudios-Circle.png" alt="Logo">
+            <span>PicHub</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="https://pichub.co.uk/">Home</a></li>
+                <li><a href="https://pichub.co.uk/about%20us">About Us</a></li>
+                <li><a href="https://pichub.co.uk/gallery">Gallery</a></li>
+                <li><a class="active" href="https://pichub.co.uk/Anime/anime_gallery">Anime Gallery</a></li>
+                <li><a href="https://pichub.co.uk/contactus">Contact Us</a></li>
+                <li><a href="https://pichub.co.uk/newsletter/templates/">Subscribe</a></li>
+            </ul>
+        </nav>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+
+    <div id="sidebar-menu">
+        <ul>
+            <li><a href="https://pichub.co.uk/">Home</a></li>
+            <li><a href="https://pichub.co.uk/about%20us">About Us</a></li>
+            <li><a href="https://pichub.co.uk/gallery">Gallery</a></li>
+            <li><a class="active" href="https://pichub.co.uk/Anime/anime_gallery">Anime Gallery</a></li>
+            <li><a href="https://pichub.co.uk/contactus">Contact Us</a></li>
+            <li><a href="https://pichub.co.uk/newsletter/templates/">Subscribe</a></li>
+        </ul>
+    </div>
+    <div id="overlay" onclick="toggleMenu()"></div>  
+    <div id="overlay" onclick="toggleMenu()"></div>   
+    <main>
+        <div class="card-slider-container">
+            <div class="card-slider" id="card-slider">
+                <div class="card" onclick="goToDetails('tokyo-ghoul_anime.html')">
+                    <img src="Photos\anime-gallery\tokyo-ghoul.webp" alt="Image 1">
+                    <h3>Tokyo Ghoul</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('naruto_anime.html')">
+                    <img src="Photos\anime-gallery\naruto.jpg" alt="Image 2">
+                    <h3>Naruto</h3>
+                </div>
+                <div class="card" onclick="goToDetails('jujutsu-kaisen_anime.html')">
+                    <img src="Photos\anime-gallery\jujutsu-kaisen.jpg" alt="Image 3">
+                    <h3>JJK</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('tokyo-revengers_anime.html')">
+                    <img src="Photos\anime-gallery\tokyo-revengers.webp" alt="Image 4">
+                    <h3>Tokyo Revengers</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('DBS_anime.html')">
+                    <img src="Photos\anime-gallery\DBS.jpg" alt="Image 5">
+                    <h3>DBS</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('solo-leveling_anime.html')">
+                    <img src="Photos\anime-gallery\solo-leveling.jpg" alt="Image 6">
+                    <h3>Solo Leveling</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('demon-slayer_anime.html')">
+                    <img src="Photos\anime-gallery\demon-slayer.jpg" alt="Image ">
+                    <h3>Demon Slayer</h3>
+                </div>
+
+                <div class="card"  onclick="goToDetails('ai-art_anime.html')">
+                    <img src="Photos/anime-gallery/Ai-art.jpg" alt="Image ">
+                    <h3>Ai-Art</h3>
+                </div>
+
+
+                <div class="card" onclick="goToDetails('tokyo-ghoul_anime.html')">
+                    <img src="Photos\anime-gallery\tokyo-ghoul.webp" alt="Image 1">
+                    <h3>Tokyo Ghoul</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('naruto_anime.html')">
+                    <img src="Photos\anime-gallery\naruto.jpg" alt="Image 2">
+                    <h3>Naruto</h3>
+                </div>
+                <div class="card" onclick="goToDetails('jujutsu-kaisen_anime.html')">
+                    <img src="Photos\anime-gallery\jujutsu-kaisen.jpg" alt="Image 3">
+                    <h3>JJK</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('tokyo-revengers_anime.html')">
+                    <img src="Photos\anime-gallery\tokyo-revengers.webp" alt="Image 4">
+                    <h3>Tokyo Revengers</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('DBS_anime.html')">
+                    <img src="Photos\anime-gallery\DBS.jpg" alt="Image 5">
+                    <h3>DBS</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('solo-leveling_anime.html')">
+                    <img src="Photos\anime-gallery\solo-leveling.jpg" alt="Image 6">
+                    <h3>Solo Leveling</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('demon-slayer_anime.html')">
+                    <img src="Photos\anime-gallery\demon-slayer.jpg" alt="Image ">
+                    <h3>Demon Slayer</h3>
+                </div>
+
+                <div class="card"  onclick="goToDetails('ai-art_anime.html')">
+                    <img src="Photos/anime-gallery/Ai-art.jpg" alt="Image ">
+                    <h3>Ai-Art</h3>
+                </div>
+
+
+                <div class="card" onclick="goToDetails('tokyo-ghoul_anime.html')">
+                    <img src="Photos\anime-gallery\tokyo-ghoul.webp" alt="Image 1">
+                    <h3>Tokyo Ghoul</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('naruto_anime.html')">
+                    <img src="Photos\anime-gallery\naruto.jpg" alt="Image 2">
+                    <h3>Naruto</h3>
+                </div>
+                <div class="card" onclick="goToDetails('jujutsu-kaisen_anime.html')">
+                    <img src="Photos\anime-gallery\jujutsu-kaisen.jpg" alt="Image 3">
+                    <h3>JJK</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('tokyo-revengers_anime.html')">
+                    <img src="Photos\anime-gallery\tokyo-revengers.webp" alt="Image 4">
+                    <h3>Tokyo Revengers</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('DBS_anime.html')">
+                    <img src="Photos\anime-gallery\DBS.jpg" alt="Image 5">
+                    <h3>DBS</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('solo-leveling_anime.html')">
+                    <img src="Photos\anime-gallery\solo-leveling.jpg" alt="Image 6">
+                    <h3>Solo Leveling</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('demon-slayer_anime.html')">
+                    <img src="Photos\anime-gallery\demon-slayer.jpg" alt="Image ">
+                    <h3>Demon Slayer</h3>
+                </div>
+
+                <div class="card"  onclick="goToDetails('ai-art_anime.html')">
+                    <img src="Photos/anime-gallery/Ai-art.jpg" alt="Image ">
+                    <h3>Ai-Art</h3>
+                </div>
+
+
+                <div class="card" onclick="goToDetails('tokyo-ghoul_anime.html')">
+                    <img src="Photos\anime-gallery\tokyo-ghoul.webp" alt="Image 1">
+                    <h3>Tokyo Ghoul</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('naruto_anime.html')">
+                    <img src="Photos\anime-gallery\naruto.jpg" alt="Image 2">
+                    <h3>Naruto</h3>
+                </div>
+                <div class="card" onclick="goToDetails('jujutsu-kaisen_anime.html')">
+                    <img src="Photos\anime-gallery\jujutsu-kaisen.jpg" alt="Image 3">
+                    <h3>JJK</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('tokyo-revengers_anime.html')">
+                    <img src="Photos\anime-gallery\tokyo-revengers.webp" alt="Image 4">
+                    <h3>Tokyo Revengers</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('DBS_anime.html')">
+                    <img src="Photos\anime-gallery\DBS.jpg" alt="Image 5">
+                    <h3>DBS</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('solo-leveling_anime.html')">
+                    <img src="Photos\anime-gallery\solo-leveling.jpg" alt="Image 6">
+                    <h3>Solo Leveling</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('demon-slayer_anime.html')">
+                    <img src="Photos\anime-gallery\demon-slayer.jpg" alt="Image ">
+                    <h3>Demon Slayer</h3>
+                </div>
+
+                <div class="card"  onclick="goToDetails('ai-art_anime.html')">
+                    <img src="Photos/anime-gallery/Ai-art.jpg" alt="Image ">
+                    <h3>Ai-Art</h3>
+                </div>
+
+
+                <div class="card" onclick="goToDetails('tokyo-ghoul_anime.html')">
+                    <img src="Photos\anime-gallery\tokyo-ghoul.webp" alt="Image 1">
+                    <h3>Tokyo Ghoul</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('naruto_anime.html')">
+                    <img src="Photos\anime-gallery\naruto.jpg" alt="Image 2">
+                    <h3>Naruto</h3>
+                </div>
+                <div class="card" onclick="goToDetails('jujutsu-kaisen_anime.html')">
+                    <img src="Photos\anime-gallery\jujutsu-kaisen.jpg" alt="Image 3">
+                    <h3>JJK</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('tokyo-revengers_anime.html')">
+                    <img src="Photos\anime-gallery\tokyo-revengers.webp" alt="Image 4">
+                    <h3>Tokyo Revengers</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('DBS_anime.html')">
+                    <img src="Photos\anime-gallery\DBS.jpg" alt="Image 5">
+                    <h3>DBS</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('solo-leveling_anime.html')">
+                    <img src="Photos\anime-gallery\solo-leveling.jpg" alt="Image 6">
+                    <h3>Solo Leveling</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('demon-slayer_anime.html')">
+                    <img src="Photos\anime-gallery\demon-slayer.jpg" alt="Image ">
+                    <h3>Demon Slayer</h3>
+                </div>
+
+                <div class="card"  onclick="goToDetails('ai-art_anime.html')">
+                    <img src="Photos/anime-gallery/Ai-art.jpg" alt="Image ">
+                    <h3>Ai-Art</h3>
+                </div>
+
+
+                <div class="card" onclick="goToDetails('tokyo-ghoul_anime.html')">
+                    <img src="Photos\anime-gallery\tokyo-ghoul.webp" alt="Image 1">
+                    <h3>Tokyo Ghoul</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('naruto_anime.html')">
+                    <img src="Photos\anime-gallery\naruto.jpg" alt="Image 2">
+                    <h3>Naruto</h3>
+                </div>
+                <div class="card" onclick="goToDetails('jujutsu-kaisen_anime.html')">
+                    <img src="Photos\anime-gallery\jujutsu-kaisen.jpg" alt="Image 3">
+                    <h3>JJK</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('tokyo-revengers_anime.html')">
+                    <img src="Photos\anime-gallery\tokyo-revengers.webp" alt="Image 4">
+                    <h3>Tokyo Revengers</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('DBS_anime.html')">
+                    <img src="Photos\anime-gallery\DBS.jpg" alt="Image 5">
+                    <h3>DBS</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('solo-leveling_anime.html')">
+                    <img src="Photos\anime-gallery\solo-leveling.jpg" alt="Image 6">
+                    <h3>Solo Leveling</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('demon-slayer_anime.html')">
+                    <img src="Photos\anime-gallery\demon-slayer.jpg" alt="Image ">
+                    <h3>Demon Slayer</h3>
+                </div>
+
+                <div class="card"  onclick="goToDetails('ai-art_anime.html')">
+                    <img src="Photos/anime-gallery/Ai-art.jpg" alt="Image ">
+                    <h3>Ai-Art</h3>
+                </div>
+
+
+                <div class="card" onclick="goToDetails('tokyo-ghoul_anime.html')">
+                    <img src="Photos\anime-gallery\tokyo-ghoul.webp" alt="Image 1">
+                    <h3>Tokyo Ghoul</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('naruto_anime.html')">
+                    <img src="Photos\anime-gallery\naruto.jpg" alt="Image 2">
+                    <h3>Naruto</h3>
+                </div>
+                <div class="card" onclick="goToDetails('jujutsu-kaisen_anime.html')">
+                    <img src="Photos\anime-gallery\jujutsu-kaisen.jpg" alt="Image 3">
+                    <h3>JJK</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('tokyo-revengers_anime.html')">
+                    <img src="Photos\anime-gallery\tokyo-revengers.webp" alt="Image 4">
+                    <h3>Tokyo Revengers</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('DBS_anime.html')">
+                    <img src="Photos\anime-gallery\DBS.jpg" alt="Image 5">
+                    <h3>DBS</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('solo-leveling_anime.html')">
+                    <img src="Photos\anime-gallery\solo-leveling.jpg" alt="Image 6">
+                    <h3>Solo Leveling</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('demon-slayer_anime.html')">
+                    <img src="Photos\anime-gallery\demon-slayer.jpg" alt="Image ">
+                    <h3>Demon Slayer</h3>
+                </div>
+
+                <div class="card"  onclick="goToDetails('ai-art_anime.html')">
+                    <img src="Photos/anime-gallery/Ai-art.jpg" alt="Image ">
+                    <h3>Ai-Art</h3>
+                </div>
+
+
+                <div class="card" onclick="goToDetails('tokyo-ghoul_anime.html')">
+                    <img src="Photos\anime-gallery\tokyo-ghoul.webp" alt="Image 1">
+                    <h3>Tokyo Ghoul</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('naruto_anime.html')">
+                    <img src="Photos\anime-gallery\naruto.jpg" alt="Image 2">
+                    <h3>Naruto</h3>
+                </div>
+                <div class="card" onclick="goToDetails('jujutsu-kaisen_anime.html')">
+                    <img src="Photos\anime-gallery\jujutsu-kaisen.jpg" alt="Image 3">
+                    <h3>JJK</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('tokyo-revengers_anime.html')">
+                    <img src="Photos\anime-gallery\tokyo-revengers.webp" alt="Image 4">
+                    <h3>Tokyo Revengers</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('DBS_anime.html')">
+                    <img src="Photos\anime-gallery\DBS.jpg" alt="Image 5">
+                    <h3>DBS</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('solo-leveling_anime.html')">
+                    <img src="Photos\anime-gallery\solo-leveling.jpg" alt="Image 6">
+                    <h3>Solo Leveling</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('demon-slayer_anime.html')">
+                    <img src="Photos\anime-gallery\demon-slayer.jpg" alt="Image ">
+                    <h3>Demon Slayer</h3>
+                </div>
+
+                <div class="card"  onclick="goToDetails('ai-art_anime.html')">
+                    <img src="Photos/anime-gallery/Ai-art.jpg" alt="Image ">
+                    <h3>Ai-Art</h3>
+                </div>
+
+
+                <div class="card" onclick="goToDetails('tokyo-ghoul_anime.html')">
+                    <img src="Photos\anime-gallery\tokyo-ghoul.webp" alt="Image 1">
+                    <h3>Tokyo Ghoul</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('naruto_anime.html')">
+                    <img src="Photos\anime-gallery\naruto.jpg" alt="Image 2">
+                    <h3>Naruto</h3>
+                </div>
+                <div class="card" onclick="goToDetails('jujutsu-kaisen_anime.html')">
+                    <img src="Photos\anime-gallery\jujutsu-kaisen.jpg" alt="Image 3">
+                    <h3>JJK</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('tokyo-revengers_anime.html')">
+                    <img src="Photos\anime-gallery\tokyo-revengers.webp" alt="Image 4">
+                    <h3>Tokyo Revengers</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('DBS_anime.html')">
+                    <img src="Photos\anime-gallery\DBS.jpg" alt="Image 5">
+                    <h3>DBS</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('solo-leveling_anime.html')">
+                    <img src="Photos\anime-gallery\solo-leveling.jpg" alt="Image 6">
+                    <h3>Solo Leveling</h3>
+                </div>
+                <div class="card"  onclick="goToDetails('demon-slayer_anime.html')">
+                    <img src="Photos\anime-gallery\demon-slayer.jpg" alt="Image ">
+                    <h3>Demon Slayer</h3>
+                </div>
+
+                <div class="card"  onclick="goToDetails('ai-art_anime.html')">
+                    <img src="Photos/anime-gallery/Ai-art.jpg" alt="Image ">
+                    <h3>Ai-Art</h3>
+                </div>
+
+                
+
+
+
+            </div>
+        </div>
+        
+
+
+
+        <div class= "textcenter">
+            <h1><br><u>  Anime Categories  </u></h1>
+        </div>
+
+
+
+
+
+        <div class="square-container">
+            <div class="square" onclick="goToDetails('tokyo-ghoul_anime.html')">
+                <div class="square-content">
+                    <img src="Photos\anime-gallery\tokyo-ghoul.webp" alt="Image 4">
+                </div>
+                <div class="slide-out-text">
+                    <h3><strong>Tokyo <br> Ghoul</strong></h3>
+                    <p>Head to<br>Gallery</p>
+                </div>
+            </div>
+            <div class="square" onclick="goToDetails('naruto_anime.html')">
+                <div class="square-content">
+                    <img src="Photos\anime-gallery\naruto.jpg" alt="Image 4">
+                </div>
+                <div class="slide-out-text">
+                    <h3><strong>Naruto</strong></h3>
+                    <p>Head to<br>Gallery</p>
+                </div>
+            </div>
+            <div class="square" onclick="goToDetails('jujutsu-kaisen_anime.html')">
+                <div class="square-content">
+                    <img src="Photos\anime-gallery\jujutsu-kaisen.jpg" alt="Image 4">
+                </div>
+                <div class="slide-out-text">
+                    <h3><strong>JJK</strong></h3>
+                    <p>Head to<br>Gallery</p>
+                </div>
+            </div>
+            <div class="square" onclick="goToDetails('tokyo-revengers_anime.html')">
+                <div class="square-content">
+                    <img src="Photos\anime-gallery\tokyo-revengers.webp" alt="Image 4">
+                </div>
+                <div class="slide-out-text">
+                    <h3><strong>Tokyo<br>Revengers</strong></h3>
+                    <p>Head to<br>Gallery</p>
+                </div>
+            </div>
+            <div class="square" onclick="goToDetails('DBS_anime.html')">
+                <div class="square-content">
+                    <img src="Photos\anime-gallery\DBS.jpg" alt="Image 4">
+                </div>
+                <div class="slide-out-text">
+                    <h3>DBS</h3>
+                    <p><strong>Head to<br>Gallery</strong></p>
+                </div>
+            </div>
+                <div class="square" onclick="goToDetails('solo-leveling_anime.html')">
+                    <div class="square-content">
+                        <img src="Photos\anime-gallery\solo-leveling.jpg" alt="Image 4">
+                    </div>
+                    <div class="slide-out-text">
+                        <h3>Solo Leveling</h3>
+                        <p><strong>Head to<br>Gallery</strong></p>
+                    </div>
+                </div>
+                    <div class="square" onclick="goToDetails('demon-slayer_anime.html')">
+                        <div class="square-content">
+                            <img src="Photos\anime-gallery\demon-slayer.jpg" alt="Image 4">
+                        </div>
+                        <div class="slide-out-text">
+                            <h3>Demon Slayer</h3>
+                            <p><strong>Head to<br>Gallery</strong></p>
+                        </div>
+            </div>
+
+            <div class="square" onclick="goToDetails('ai-art_anime.html')">
+                <div class="square-content">
+                    <img src="Photos\anime-gallery\Ai-art.jpg" alt="Image 4">
+                </div>
+                <div class="slide-out-text">
+                    <h3>Ai-Art</h3>
+                    <p><strong>Head to<br>Gallery</strong></p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    <footer class="footer">
+    
+        <footer>
+            <div class="footer-container">
+                
+                <ul class="footer-link">
+                    <li><a class="social_link" href="https://www.facebook.com/people/PicHub/61563090242216/">
+                        <ion-icon name="logo-facebook"></ion-icon>
+                      </a></li>
+                    <li><a class="social_link" href="mailto:info@npatel.co.uk">
+                        <ion-icon name="mail"></ion-icon>
+                      </a></li>
+                    <li><a class="social_link" href="https://www.instagram.com/pichub__official/">
+                        <ion-icon name="logo-instagram"></ion-icon>
+                      </a></li>
+                </ul>
+                <ul class="footer-nav">
+                    <li><a href="https://pichub.co.uk/">Home</a></li>
+                <li><a href="https://pichub.co.uk/about%20us">About Us</a></li>
+                <li><a href="https://pichub.co.uk/gallery">Gallery</a></li>
+                <li><a href="https://pichub.co.uk/about%20us#team-grid">Team</a></li>
+                <li><a href="anime_gallery.html">Anime Gallery</a></li>
+                <li><a href="https://pichub.co.uk/contactus">Contact Us</a></li>
+                <li><a href="https://pichub.co.uk/newsletter/templates/">Subscribe</a></li>
+                </ul>
+                <div class="copyright">
+                    &copy;  PicHub | All rights reserved |
+                    <b><u><a href="https://pichub.co.uk/privacy%20policy" style="text-decoration: none; color: white; " >Privacy Policy</a></u></b>
+                </div>
+            </div>
+        </footer>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  
+    <script>
+        // JavaScript function to navigate to card details pages
+        function goToDetails(url) {
+            window.location.href = url;
+        }
+    </script>
+    <script>
+        // JavaScript to handle the header fade in and out on scroll
+        let lastScrollTop = 0;
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) {
+                // Downscroll
+                header.classList.add('hidden');
+            } else {
+                // Upscroll
+                header.classList.remove('hidden');
+            }
+            lastScrollTop = scrollTop;
+        });
+    </script>
+
+</body>
+</html>

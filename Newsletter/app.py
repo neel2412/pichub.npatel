@@ -4,7 +4,7 @@ import pandas as pd
 import os
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "https://pichub.co.uk"}})
+CORS(app, resources={r"/*": {"origins": "https://pichub.npatel.co.uk"}})
 
 @app.route('/', methods=['POST'])
 def subscribe():
@@ -40,4 +40,4 @@ def subscribe():
         return "An error occurred", 500
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8080)
+    app.run(debug=True, port=8000)
