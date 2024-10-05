@@ -2,7 +2,7 @@
 
 header {
     background: #070707;
-    color: #ffecd1;
+    color: #ffe0bd ;
     padding: 10px 20px;
     position: fixed;
     top: 15px; /* Initial position below the top */
@@ -36,7 +36,7 @@ header .logo img {
 }
 
 .active {
-    color: #ffecd1;
+  color: #ffcc00 ;
 }
 
 header nav {
@@ -58,7 +58,7 @@ header nav ul li {
 }
 
 header nav ul li a {
-    color: #ffecd1;
+    color: #ffe0bd ;
     text-decoration: none;
     padding: 10px 15px;
     border-radius: 10px;
@@ -67,7 +67,7 @@ header nav ul li a {
 }
 
 header nav ul li a:hover {
-    color: #ffd700;
+    color: #ffcc00 ;
     text-decoration: none;
     font-weight: bold;
 }
@@ -86,7 +86,7 @@ header nav ul li a:hover {
     width: 250px;
     height: 100%;
     background: #070707;
-    color: #ffecd1;
+    color: #ffe0bd ;
     transition: right 0.3s ease;
     z-index: 9999;
     display: flex;
@@ -108,7 +108,7 @@ header nav ul li a:hover {
 }
 
 #sidebar-menu ul li a {
-    color: #ffecd1;
+    color: #ffe0bd ;
     text-decoration: none;
     padding: 10px 15px;
     border-radius: 10px;
@@ -117,7 +117,7 @@ header nav ul li a:hover {
 }
 
 #sidebar-menu ul li a:hover {
-  color: #ffd700;
+  color: #ffcc00 ;
 }
 
 /* Overlay */
@@ -241,7 +241,7 @@ footer {
 }
 .footer-subscribe > h2 {
   font-size: clamp(1.5rem, 2.3vw, 2.25rem);
-  color: white;
+  color: #ffe0bd ;
 }
 .input-box {
   display: flex;
@@ -249,11 +249,11 @@ footer {
   padding-block: 1rem;
   border-bottom: 1px solid rgb(255, 255, 255);
   margin-top: 3rem;
-  color: #ffecd1;
+  color: #ffe0bd ;
 }
 .input-box > input {
   flex-grow: 1;
-  color: #ffecd1;
+  color: #ffe0bd ;
 }
 
 .footer-nav {
@@ -262,6 +262,7 @@ footer {
   gap: clamp(3rem, 4vw, 7rem);
   text-align: left;
   text-decoration: none;
+  color: #ffe0bd ;
 }
 
 .footer-nav > div > h2 {
@@ -293,7 +294,7 @@ footer {
 
 .footer-nav > div a:hover {
     text-decoration: none;
-    color: #ffd700;
+    color: #ffcc00 ;
 }
   
 .footer-copyright {
@@ -301,6 +302,7 @@ footer {
   flex-wrap: wrap;
   font-size: 0.875rem;
   margin-top: 5rem;
+  color: #ffe0bd ;
 }
 
 @media (width <= 53rem) {
