@@ -238,6 +238,7 @@ footer {
 .footer-subscribe {
   max-width: clamp(20rem, 33vw, 33rem);
   text-align: left;
+  color: #ffe0bd ;
 }
 .footer-subscribe > h2 {
   font-size: clamp(1.5rem, 2.3vw, 2.25rem);
@@ -247,7 +248,7 @@ footer {
   display: flex;
   max-width: 100%;
   padding-block: 1rem;
-  border-bottom: 1px solid rgb(255, 255, 255);
+  border-bottom: 1px solid #ffe0bd ;
   margin-top: 3rem;
   color: #ffe0bd ;
 }
