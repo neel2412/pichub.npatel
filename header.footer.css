@@ -36,7 +36,7 @@ header .logo img {
 }
 
 .active {
-  color: #ffcc00 ;
+  color: #FFFC00 ;
 }
 
 header nav {
@@ -67,7 +67,7 @@ header nav ul li a {
 }
 
 header nav ul li a:hover {
-    color: #ffcc00 ;
+    color: #FFFC00 ;
     text-decoration: none;
 
 }
@@ -117,7 +117,7 @@ header nav ul li a:hover {
 }
 
 #sidebar-menu ul li a:hover {
-  color: #ffcc00 ;
+  color: #FFFC00 ;
 }
 
 /* Overlay */
@@ -295,7 +295,7 @@ footer {
 
 .footer-nav > div a:hover {
     text-decoration: none;
-    color: #ffcc00 ;
+    color: #FFFC00 ;
 }
   
 .footer-copyright {
