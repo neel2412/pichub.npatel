@@ -2,7 +2,7 @@
 
 header {
     background: #070707;
-    color: #fff;
+    color: #ffecd1;
     padding: 10px 20px;
     position: fixed;
     top: 15px; /* Initial position below the top */
@@ -58,7 +58,7 @@ header nav ul li {
 }
 
 header nav ul li a {
-    color: #fff;
+    color: #ffecd1;
     text-decoration: none;
     padding: 10px 15px;
     border-radius: 10px;
@@ -67,7 +67,7 @@ header nav ul li a {
 }
 
 header nav ul li a:hover {
-    color: #ffecd1;
+    color: #ffd700;
     text-decoration: none;
     font-weight: bold;
 }
@@ -86,7 +86,7 @@ header nav ul li a:hover {
     width: 250px;
     height: 100%;
     background: #070707;
-    color: #fff;
+    color: #ffecd1;
     transition: right 0.3s ease;
     z-index: 9999;
     display: flex;
@@ -108,7 +108,7 @@ header nav ul li a:hover {
 }
 
 #sidebar-menu ul li a {
-    color: #fff;
+    color: #ffecd1;
     text-decoration: none;
     padding: 10px 15px;
     border-radius: 10px;
@@ -117,7 +117,7 @@ header nav ul li a:hover {
 }
 
 #sidebar-menu ul li a:hover {
-    color: #ffecd1;
+  color: #ffd700;
 }
 
 /* Overlay */
@@ -293,7 +293,7 @@ footer {
 
 .footer-nav > div a:hover {
     text-decoration: none;
-    color: #ffecd1;
+    color: #ffd700;
 }
   
 .footer-copyright {
