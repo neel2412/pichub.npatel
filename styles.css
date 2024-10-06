@@ -1,4 +1,4 @@
-@ -1,467 +0,0 @@
+
 /* Base Styles */
 * {
     margin: 0;
@@ -51,7 +51,7 @@ body {
 
 .intro a:hover{
     text-decoration: none;
-    
+
 }
 
 
@@ -353,7 +353,7 @@ body {
 }
 
 .glowing-btn a:hover {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 2);
   text-shadow: none;
   animation: none;
 }
@@ -473,3 +473,137 @@ body {
     font-size: 1em;
   }
 }
+
+
+.team {
+  padding: 4em 2em;
+  text-align: center;
+  background-color: #060b14;
+}
+
+.team h2 {
+  margin-bottom: 1em;
+  font-size: 3rem;
+}
+
+.team-grid {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2em;
+  position: center;
+  justify-content: center;
+}
+
+.team-grid {
+  display: flex;
+  flex-direction: row; /* Display items in a row */
+  justify-content: center; /* Center items horizontally */
+  gap: 2em;
+  padding: 4em 2em;
+  text-align: center;
+  background-color: #060b14;
+}
+
+.team-member {
+  width: 300px; /* Adjust based on your content */
+  background:white ;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  margin: 0 1em; /* Adjust spacing between team members */
+}
+
+.team-member img {
+  border-radius: 10px;
+  width: 80%; /* Ensure the image takes up the full width of its container */
+  margin-top: 20px;
+}
+
+.team-member h3 {
+  margin: 0.5em 0 0.2em 0;
+  font-size: 1.8em;
+  color: black;
+}
+
+.team-member p {
+  font-size: 1.2em;
+  color: #666;
+  margin-bottom: 1em;
+}
+
+
+
+      /* Media Queries */
+      @media only screen and (max-width: 1200px) {
+          .team h2 {
+              font-size: 2.5em;
+          }
+          .team-member {
+              width: 250px;
+          }
+          .team-member h3 {
+              font-size: 1.5em;
+          }
+          .team-member p {
+              font-size: 1em;
+          }
+      }
+
+      @media only screen and (max-width: 992px) {
+          .team h2 {
+              font-size: 2.2em;
+          }
+          .team-member {
+              width: 200px;
+          }
+          .team-member h3 {
+              font-size: 1.3em;
+          }
+          .team-member p {
+              font-size: 0.9em;
+          }
+      }
+
+      @media only screen and (max-width: 768px) {
+          .team-grid {
+              flex-direction: column;
+              gap: 1em;
+          }
+          .team-member {
+              width: 90%;
+          }
+      }
+
+      @media only screen and (max-width: 600px) {
+          .team h2 {
+              font-size: 2em;
+          }
+          .team-member {
+              width: 80%;
+              margin: 0.5em 0;
+          }
+          .team-member h3 {
+              font-size: 1.5em;
+          }
+          .team-member p {
+              font-size: 1em;
+          }
+      }
+
+      @media only screen and (max-width: 480px) {
+          .team h2 {
+              font-size: 2em;
+          }
+          .team-member {
+              width: 80%;
+          }
+          .team-member h3 {
+              font-size: 1em;
+          }
+          .team-member p {
+              font-size: 0.8em;
+          }
+      }

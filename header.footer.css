@@ -2,7 +2,7 @@
 
 header {
     background: #070707;
-    color: #ffe0bd ;
+    color: white ;
     padding: 10px 20px;
     position: fixed;
     top: 15px; /* Initial position below the top */
@@ -17,7 +17,7 @@ header {
     align-items: center;
     transition: opacity 0.3s ease-in-out; /* Smooth transition for opacity */
     border: 5px solid #000000; /* Gray border */
-    font-weight: 500;
+    font-weight: 600;
     font-size: larger;
 }
 
@@ -36,7 +36,7 @@ header .logo img {
 }
 
 .active {
-  color: #FFFC00 ;
+  color: white ;
 }
 
 header nav {
@@ -67,7 +67,7 @@ header nav ul li a {
 }
 
 header nav ul li a:hover {
-    color: #FFFC00 ;
+    color: white;
     text-decoration: none;
 
 }
@@ -117,7 +117,7 @@ header nav ul li a:hover {
 }
 
 #sidebar-menu ul li a:hover {
-  color: #FFFC00 ;
+  color: white;
 }
 
 /* Overlay */
@@ -295,7 +295,7 @@ footer {
 
 .footer-nav > div a:hover {
     text-decoration: none;
-    color: #FFFC00 ;
+    color: white;
 }
   
 .footer-copyright {
