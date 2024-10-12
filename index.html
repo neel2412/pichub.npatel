@@ -58,8 +58,8 @@
             <nav>
                 <ul>
                     <li><a class="active" href="https://pichub.npatel.co.uk">Home</a></li>
-                    <li><a href="https://pichub.npatel.co.uk/about%20us">About Us</a></li>
-                    <li><a href="https://pichub.npatel.co.uk/gallery">Gallery</a></li>
+                    <li><a href="https://pichub.npatel.co.uk/About-US/About US.html">About Us</a></li>
+                    <li><a href="https://pichub.npatel.co.uk/Gallery/gallery.html">Gallery</a></li>
                     <li><a href="https://pichub.npatel.co.uk/Newsletter/templates/index.html">Subscribe</a></li>
                 </ul>
             </nav>
@@ -69,10 +69,10 @@
         </header>
         <div id="sidebar-menu">
             <ul>
-                <li><a class="active" href="https://pichub.npatel.co.uk">Home</a></li>
-                <li><a href="https://pichub.npatel.co.uk/about%20us">About Us</a></li>
-                <li><a href="https://pichub.npatel.co.uk/gallery">Gallery</a></li>
-                <li><a href="https://pichub.npatel.co.uk/Newsletter/templates/index.html">Subscribe</a></li>
+              <li><a class="active" href="https://pichub.npatel.co.uk">Home</a></li>
+              <li><a href="https://pichub.npatel.co.uk/About-US/About US.html">About Us</a></li>
+              <li><a href="https://pichub.npatel.co.uk/Gallery/gallery.html">Gallery</a></li>
+              <li><a href="https://pichub.npatel.co.uk/Newsletter/templates/index.html">Subscribe</a></li>
             </ul>
         </div>
         <div id="overlay" onclick="toggleMenu()"></div> 
@@ -123,28 +123,32 @@
           <h2>
             Subscribe to the PicHub newsletter to stay up-to-date with the latest releases
           </h2>
-          <div class="input-box">
-            <input type="email" placeholder="Email Address" />
-            <button>
-              <svg width="41" height="22" viewBox="0 0 41 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M40.002 11.001H0.501953M40.002 11.001L30.002 1.00098M40.002 11.001L30.002 21.001" stroke="white"></path>
-              </svg>
-            </button>
+            <form id="subscriptionForm">
+              <div class="input-box">
+                <input type="email" id="email" placeholder="Email Address" required />
+                <button type="submit" id="submitBtn">
+                  <svg width="41" height="22" viewBox="0 0 41 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M40.002 11.001H0.501953M40.002 11.001L30.002 1.00098M40.002 11.001L30.002 21.001" stroke="white"></path>
+                  </svg>
+                </button>
+              </div>
+            </form>
+            <div id="message"></div>
           </div>
-        </div>
+       
         <nav class="footer-nav">
           <div>
             <h2>Company</h2>
             <ul>
-              <li><a href="https://pichub.npatel.co.uk/about%20us">About</a></li>
+              <li><a href="https://pichub.npatel.co.uk/About-US/About US.html">About</a></li>
               <li><a href="https://pichub.npatel.co.uk/comingsoon">Contact Us</a></li>
             </ul>
           </div>
           <div>
             <h2>PicHub</h2>
             <ul>
-              <li><a href="https://pichub.npatel.co.uk/gallery">Gallery</a></li>
-              <li><a href="https://pichub.npatel.co.uk/about%20us#team-grid">Team</a></li>
+              <li><a href="https://pichub.npatel.co.uk/Gallerygallery.html">Gallery</a></li>
+              <li><a href="https://pichub.npatel.co.uk/comingsoon">Team</a></li>
             </ul>
           </div>
           <div>
@@ -166,6 +170,33 @@
     </div>
   </footer>
 
+  <script>document.getElementById('subscriptionForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    const email = document.getElementById('email').value;
+
+    // Prepare data to send
+    const formData = {
+        email: email
+    };
+
+    // Send data to the backend
+    fetch('https://tick-full-lobster.ngrok-free.app/', {  // Replace with your actual URL
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    }).then(response => response.text())
+      .then(result => {
+          document.getElementById('message').textContent = result;
+      }).catch(error => {
+          console.error('Error:', error);
+          document.getElementById('message').textContent = 'An error occurred.';
+      });
+});
+</script>
+  
 
 <script>
     // JavaScript to handle the header fade in and out on scroll
