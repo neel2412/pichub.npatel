@@ -1,379 +1,300 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gallery Categories</title>
-    <!-- Google Fonts for Modern Typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        /* Reset and Basic Styling */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="header.footer.js"></script>
+    <link rel="stylesheet" href="header.footer.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:900" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="icon" type="image/x-icon" href="Photos/PicHubStudios-Circle.png">
 
-        body,
-        html {
-            height: 100%;
-            font-family: 'Poppins', sans-serif;
-            background-color: #fff; /* White background for contrast */
-            color: #333;
-            overflow-x: hidden;
-        }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        /* Heading */
-        .container h1 {
-            font-size: 3rem;
-            margin-bottom: 40px;
-            color: #333;
-            position: relative;
-            display: inline-block;
-        }
-
-        /* Decorative Underline */
-        .container h1::after {
-            content: '';
-            position: absolute;
-            width: 60%;
-            height: 4px;
-            background: #ffe0bdaf; /* Light color for underline */
-            left: 20%;
-            bottom: -10px;
-            border-radius: 2px;
-        }
-
-        /* Grid Layout */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px; /* Reduced gap for mobile */
-            margin-bottom: 30px; /* Add some margin below the grid */
-        }
-
-        /* Grid Items */
-        .grid-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            background-color: #333; /* Dark background for grid items */
-            cursor: pointer; /* Pointer cursor for interactive elements */
-            height: 250px; /* Adjust height for mobile */
-        }
-
-        .grid-item:hover {
-            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
-            transform: translateY(-5px); /* Lift effect on hover */
-        }
-
-        /* Image Styling */
-        .grid-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .grid-item:hover img {
-            transform: scale(1.05); /* Zoom effect on image hover */
-        }
-
-        /* Overlay */
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            background: rgba(255, 224, 189, 0.9); /* Light overlay for better readability */
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: #333;
-        }
-
-        .grid-item:hover .overlay {
-            opacity: 1;
-        }
-
-        /* Overlay Content */
-        .overlay h2 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            font-weight: 600; /* Make the title bold */
-        }
-
-        .overlay p {
-            font-size: 1rem;
-            margin-bottom: 15px;
-            padding: 0 10px; /* Add padding for readability */
-        }
-
-        .overlay a {
-            text-decoration: none;
-            color: #fff; /* White color for button text */
-            font-size: 1.2rem;
-            padding: 10px 20px;
-            background: #ff5722; /* New color for button background */
-            border-radius: 30px;
-            transition: background 0.3s ease, transform 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            font-weight: 600; /* Bold button text */
-            letter-spacing: 1px; /* Slightly increase letter spacing for better readability */
-            border: 2px solid transparent; /* Border for better visual appearance */
-        }
-
-        .overlay a:hover {
-            background: #e64a19; /* Darker shade on hover */
-            transform: scale(1.05);
-            border: 2px solid #ffe0bdaf; /* Border color on hover */
-        }
-
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            .container h1 {
-                font-size: 2.5rem;
-            }
-
-            .grid-item h2 {
-                font-size: 1.3rem;
-            }
-
-            .grid-item img {
-                height: 200px; /* Further adjust height for smaller screens */
-            }
-
-            .overlay a {
-                font-size: 1rem;
-                padding: 8px 16px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container h1 {
-                font-size: 2rem;
-            }
-
-            .grid-item {
-                height: 220px; /* Adjust height for mobile devices */
-            }
-
-            .grid-item img {
-                height: 220px; /* Ensure image height matches grid item */
-            }
-
-            .overlay a {
-                font-size: 0.9rem;
-                padding: 6px 12px;
-            }
-
-            .overlay h2 {
-                font-size: 1.2rem; /* Smaller heading for mobile */
-            }
-
-            .overlay p {
-                font-size: 0.9rem; /* Smaller paragraph for mobile */
-                padding: 0 5px; /* Reduce padding for mobile */
-            }
-        }
-        
-        /* Modal Styles */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8); /* Dark overlay */
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background-color: #fff; /* White background for modal */
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            max-width: 400px; /* Limit width for better mobile experience */
-            width: 90%; /* Responsive width */
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            transform: translateY(-30px);
-            opacity: 0;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-
-        .modal-content.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-    </style>
+    
 </head>
-
 <body>
-
-    <div class="container">
-        <h1>Our Gallery Categories</h1>
-
-        <!-- Grid Layout -->
-        <div class="grid">
-            <!-- Category 1 -->
-            <div class="grid-item" onclick="openModal('nature')">
-                <img src="https://via.placeholder.com/400x300?text=Nature" alt="Nature Photography">
-                <div class="overlay">
-                    <h2>Nature</h2>
-                    <p>Explore the beauty of nature in our stunning gallery.</p>
-                    <a href="nature-gallery.html">Open Gallery</a>
-                </div>
-            </div>
-
-            <!-- Category 2 -->
-            <div class="grid-item" onclick="openModal('urban')">
-                <img src="https://via.placeholder.com/400x300?text=Urban" alt="Urban Photography">
-                <div class="overlay">
-                    <h2>Urban</h2>
-                    <p>Discover the vibrant life of urban landscapes.</p>
-                    <a href="urban-gallery.html">Open Gallery</a>
-                </div>
-            </div>
-
-            <!-- Category 3 -->
-            <div class="grid-item" onclick="openModal('portraits')">
-                <img src="https://via.placeholder.com/400x300?text=Portraits" alt="Portrait Photography">
-                <div class="overlay">
-                    <h2>Portraits</h2>
-                    <p>Capturing the essence of individuals through portraits.</p>
-                    <a href="portrait-gallery.html">Open Gallery</a>
-                </div>
-            </div>
-
-            <!-- Category 4 -->
-            <div class="grid-item" onclick="openModal('wildlife')">
-                <img src="https://via.placeholder.com/400x300?text=Wildlife" alt="Wildlife Photography">
-                <div class="overlay">
-                    <h2>Wildlife</h2>
-                    <p>Experience the thrill of wildlife photography.</p>
-                    <a href="wildlife-gallery.html">Open Gallery</a>
-                </div>
-            </div>
-
-            <!-- Category 5 -->
-            <div class="grid-item" onclick="openModal('travel')">
-                <img src="https://via.placeholder.com/400x300?text=Travel" alt="Travel Photography">
-                <div class="overlay">
-                    <h2>Travel</h2>
-                    <p>Explore our travels through stunning photographs.</p>
-                    <a href="travel-gallery.html">Open Gallery</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal Structure -->
-        <div id="modal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2 id="modal-title"></h2>
-                <p id="modal-description"></p>
-                <a id="modal-link" href="#" class="modal-button">View Gallery</a>
-            </div>
-        </div>
+  <div id="cookieConsent" style="display: none;">
+    <div id="cookieConsentPopup">
+        <p>This website doesn’t store any cookies or data on your device.</p>
+        <button id="cookieConsentButton">Got it!</button>
     </div>
+</div>
 
-    <script>
-        // Modal Variables
-        const modal = document.getElementById("modal");
-        const modalTitle = document.getElementById("modal-title");
-        const modalDescription = document.getElementById("modal-description");
-        const modalLink = document.getElementById("modal-link");
-        const modalClose = document.getElementsByClassName("close")[0];
 
-        // Open Modal Function
-        function openModal(category) {
-            const categories = {
-                nature: {
-                    title: "Nature",
-                    description: "Explore the beauty of nature in our stunning gallery.",
-                    link: "nature-gallery.html"
-                },
-                urban: {
-                    title: "Urban",
-                    description: "Discover the vibrant life of urban landscapes.",
-                    link: "urban-gallery.html"
-                },
-                portraits: {
-                    title: "Portraits",
-                    description: "Capturing the essence of individuals through portraits.",
-                    link: "portrait-gallery.html"
-                },
-                wildlife: {
-                    title: "Wildlife",
-                    description: "Experience the thrill of wildlife photography.",
-                    link: "wildlife-gallery.html"
-                },
-                travel: {
-                    title: "Travel",
-                    description: "Explore our travels through stunning photographs.",
-                    link: "travel-gallery.html"
-                }
-            };
 
-            modalTitle.textContent = categories[category].title;
-            modalDescription.textContent = categories[category].description;
-            modalLink.href = categories[category].link;
 
-            modal.style.display = "flex"; // Show the modal
-            setTimeout(() => {
-                document.querySelector('.modal-content').classList.add('show');
-            }, 10); // Allow a slight delay for the transition
+
+
+
+
+
+<header>
+  <div class="logo">
+      <img src="Photos/PicHubStudios-Circle.png" alt="Logo">
+      <span>PicHub</span>
+  </div>
+  <nav>
+      <ul>
+          <li><a href="https://pichub.npatel.co.uk">Home</a></li>
+          <li><a href="https://pichub.npatel.co.uk/About-US/About US.html">About Us</a></li>
+          <li><a class="active" href="https://pichub.npatel.co.uk/Gallery/gallery.html">Gallery</a></li>
+          <li><a href="https://pichub.npatel.co.uk/Newsletter/templates/index.html">Subscribe</a></li>
+      </ul>
+  </nav>
+  <div class="menu-icon" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
+  </div>
+</header>
+<div id="sidebar-menu">
+  <ul>
+    <li><a href="https://pichub.npatel.co.uk">Home</a></li>
+    <li><a href="https://pichub.npatel.co.uk/About-US/About US.html">About Us</a></li>
+    <li><a class="active" href="https://pichub.npatel.co.uk/Gallery/gallery.html">Gallery</a></li>
+    <li><a href="https://pichub.npatel.co.uk/Newsletter/templates/index.html">Subscribe</a></li>
+  </ul>
+</div>
+
+<div id="overlay" onclick="toggleMenu()"></div> 
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="container">
+          <h1>Our Gallery Categories</h1>
+  
+          <!-- Grid Layout -->
+          <div class="grid">
+              <!-- Category 1 -->
+              <div class="grid-item">
+                  <img src="photos/vintage.jpg" alt="Vintage">
+                  <div class="text-container">
+                      <h2>Vintage</h2>
+                  </div>
+                  <div class="overlay">
+                      <h2>Vintage</h2>
+                      <p>Explore the beauty of nature in our stunning gallery.</p>
+                      <a href="nature-gallery.html">Open Gallery</a>
+                  </div>
+              </div>
+  
+              <!-- Category 2 -->
+              <div class="grid-item">
+                  <img src="photos/urban.jpg" alt="Urban">
+                  <div class="text-container">
+                      <h2>Urban</h2>
+                  </div>
+                  <div class="overlay">
+                      <h2>Urban</h2>
+                      <p>Discover the vibrant life of urban landscapes.</p>
+                      <a href="urban-gallery.html">Open Gallery</a>
+                  </div>
+              </div>
+  
+              <!-- Category 3 -->
+              <div class="grid-item">
+                  <img src="photos/automotive.jpg" alt="Automotive">
+                  <div class="text-container">
+                      <h2>automotive</h2>
+                  </div>
+                  <div class="overlay">
+                      <h2>Automotive</h2>
+                      <p>Capturing the essence of individuals through portraits.</p>
+                      <a href="portrait-gallery.html">Open Gallery</a>
+                  </div>
+              </div>
+  
+              <!-- Category 4 -->
+              <div class="grid-item">
+                  <img src="photos/anime.jpg" alt="Anime">
+                  <div class="text-container">
+                      <h2>Anime</h2>
+                  </div>
+                  <div class="overlay">
+                      <h2>Anime</h2>
+                      <p>Experience the thrill of wildlife photography.</p>
+                      <a href="wildlife-gallery.html">Open Gallery</a>
+                  </div>
+              </div>
+  
+              <!-- Category 5 -->
+              <div class="grid-item">
+                  <img src="photos/digital painting.jpg" alt="Digital Painting">
+                  <div class="text-container">
+                      <h2>Digital</h2>
+                  </div>
+                  <div class="overlay">
+                      <h2>Digital Painting</h2>
+                      <p>Explore our travels through stunning photographs.</p>
+                      <a href="travel-gallery.html">Open Gallery</a>
+                  </div>
+              </div>
+  
+              <!-- Category 6 -->
+              <div class="grid-item">
+                  <img src="photos/wallpaper.jpg" alt="Wallpaper-Type">
+                  <div class="text-container">
+                      <h2>Wallpaper</h2>
+                  </div>
+                  <div class="overlay">
+                      <h2>Wallpaper-Type</h2>
+                      <p>Explore our travels through stunning photographs.</p>
+                      <a href="wallpaper-gallery.html">Open Gallery</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </body>
+
+
+
+
+
+
+        <footer>
+          <div class="footer-wrapper">
+            <div class="footer-section">
+              <div class="footer-subscribe">
+                <h2>
+                  Subscribe to the PicHub newsletter to stay up-to-date with the latest releases
+                </h2>
+                  <form id="subscriptionForm">
+                    <div class="input-box">
+                      <input type="email" id="email" placeholder="Email Address" required />
+                      <button type="submit" id="submitBtn">
+                        <svg width="41" height="22" viewBox="0 0 41 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M40.002 11.001H0.501953M40.002 11.001L30.002 1.00098M40.002 11.001L30.002 21.001" stroke="white"></path>
+                        </svg>
+                      </button>
+                    </div>
+                  </form>
+                  <div id="message"></div>
+                </div>
+             
+              <nav class="footer-nav">
+                <div>
+                  <h2>Company</h2>
+                  <ul>
+                    <li><a href="https://pichub.npatel.co.uk/About-US/About US.html">About</a></li>
+                    <li><a href="https://pichub.npatel.co.uk/comingsoon">Contact Us</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <h2>PicHub</h2>
+                  <ul>
+                    <li><a href="https://pichub.npatel.co.uk/Gallery/gallery.html">Gallery</a></li>
+                    <li><a href="https://pichub.npatel.co.uk/comingsoon">Team</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <h2>Connect</h2>
+                  <ul>
+                    <li><a href="https://pichub.npatel.co.uk/newsletter/templates/">Subscribe</a></li>
+                    <li><a href="https://www.instagram.com/pichub__official/">Instgram</a></li>
+                    <li><a href="https://www.facebook.com/people/PicHub/61563090242216/">Facebook</a></li>
+                  </ul>
+                </div>
+              </nav>
+            </div>
+      
+            <div class="footer-copyright">
+              <p>©2024 PicHub, Inc. All rights reserved.</p>
+              <p>Privacy Policy.</p>
+              <p>Terms of Use.</p>
+            </div>
+          </div>
+        </footer>
+
+
+        <script>
+        
+        document.getElementById('subscriptionForm').addEventListener('submit', function(event) {
+          event.preventDefault(); // Prevent the default form submission
+      
+          const email = document.getElementById('email').value;
+      
+          // Prepare data to send
+          const formData = {
+              email: email
+          };
+      
+          // Send data to the backend
+          fetch('https://tick-full-lobster.ngrok-free.app/', {  // Replace with your actual URL
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(formData)
+          }).then(response => response.text())
+            .then(result => {
+                document.getElementById('message').textContent = result;
+            }).catch(error => {
+                console.error('Error:', error);
+                document.getElementById('message').textContent = 'An error occurred.';
+            });
+      });
+
+
+          // JavaScript to handle the header fade in and out on scroll
+    let lastScrollTop = 0;
+    const header = document.querySelector('header');
+
+    window.addEventListener('scroll', function() {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > lastScrollTop) {
+            // Downscroll
+            header.classList.add('hidden');
+        } else {
+            // Upscroll
+            header.classList.remove('hidden');
+        }
+        lastScrollTop = scrollTop;
+    });
+      </script>
+
+
+<!-- JavaScript -->
+<script>
+
+    
+    document.addEventListener("DOMContentLoaded", function () {
+        var consent = document.getElementById("cookieConsent");
+        var consentButton = document.getElementById("cookieConsentButton");
+        
+        // Check if the user has already seen the consent popup
+        if (!sessionStorage.getItem("cookieConsentSeen")) {
+            // Show the consent popup
+            consent.style.display = "block";
         }
 
-        // Close Modal Function
-        modalClose.onclick = function() {
-            document.querySelector('.modal-content').classList.remove('show'); // Hide modal with transition
-            setTimeout(() => {
-                modal.style.display = "none"; // Hide modal after animation
-            }, 300); // Match with CSS transition duration
-        }
+        // Hide the popup and set session storage item when the button is clicked
+        consentButton.onclick = function () {
+            consent.style.display = "none";
+            sessionStorage.setItem("cookieConsentSeen", "true");
+        };
+    });
+</script>
 
-        // Close modal when clicking outside of it
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modalClose.onclick(); // Call close function
-            }
-        }
-    </script>
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+    
 </body>
-
 </html>
