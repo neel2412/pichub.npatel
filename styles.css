@@ -1,507 +1,618 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery Categories</title>
-    <!-- Google Fonts for Modern Typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        /* Reset and Basic Styling */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body,
-        html {
-            height: 100%;
-            width: 100%;
-            font-family: 'Poppins', sans-serif;
-            background-color: #fff; /* White background for contrast */
-            color: #333;
-            overflow-x: hidden;
-        }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        /* Heading */
-        .container h1 {
-            font-size: 3rem;
-            margin-bottom: 40px;
-            color: #333;
-            position: relative;
-            display: inline-block;
-        }
-
-        /* Decorative Underline */
-        .container h1::after {
-            content: '';
-            position: absolute;
-            width: 60%;
-            height: 4px;
-            background: #ffe0bdaf; /* Light color for underline */
-            left: 20%;
-            bottom: -10px;
-            border-radius: 2px;
-        }
-
-        /* Grid Layout */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 30px; /* Add some margin below the grid */
-        }
-
-        /* Grid Items */
-        .grid-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            background-color: #333; /* Dark background for grid items */
-            height: 300px;
-            cursor: pointer; /* Pointer cursor for interactive elements */
-        }
-
-        .grid-item:hover {
-            box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
-            transform: scale(1.02); /* Slight scaling on hover */
-        }
-
-        /* Image Styling */
-        .grid-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .grid-item:hover img {
-            transform: scale(1.05); /* Zoom effect on image hover */
-        }
-
-        /* Overlay */
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            background: rgba(255, 224, 189, 0.9); /* Light overlay for better readability */
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: #333;
-        }
-
-        .grid-item:hover .overlay {
-            opacity: 1;
-        }
-
-        /* Overlay Content */
-        .overlay h2 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-
-        .overlay p {
-            font-size: 1rem;
-            margin-bottom: 15px;
-        }
-
-        .overlay a {
-            text-decoration: none;
-            color: #fff; /* White color for button text */
-            font-size: 1.2rem;
-            padding: 10px 20px;
-            background: #333; /* Dark button background */
-            border-radius: 30px;
-            transition: background 0.3s ease, transform 0.3s ease;
-        }
-
-        .overlay a:hover {
-            background: #555; /* Darker shade on hover */
-            transform: scale(1.05);
-        }
-
-        /* Swipeable Carousel */
-        .carousel {
-            display: none; /* Hidden by default */
-            overflow: hidden;
-            margin-top: 30px;
-        }
-
-        .carousel-inner {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-
-        .carousel-item {
-            min-width: 100%; /* Each item takes full width */
-            transition: transform 0.3s ease;
-            position: relative; /* Position relative for overlay */
-        }
-
-        .carousel-item img {
-            height: 300px; /* Fixed height for uniformity */
-            border-radius: 15px; /* Rounded corners for carousel items */
-        }
-
-        /* Modal Styling */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 20px;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background-color: #fff;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            max-width: 500px;
-            margin: auto;
-        }
-
-        .modal h2 {
-            color: #333;
-        }
-
-        .modal p {
-            color: #555;
-            margin-bottom: 20px;
-        }
-
-        .modal a {
-            text-decoration: none;
-            color: #fff;
-            background: #333; /* Dark button background */
-            padding: 10px 20px;
-            border-radius: 30px;
-            transition: background 0.3s ease;
-        }
-
-        .modal a:hover {
-            background: #555; /* Darker shade on hover */
-        }
-
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            .container h1 {
-                font-size: 2.5rem;
-            }
-
-            .grid-item h2 {
-                font-size: 1.3rem;
-            }
-
-            .grid-item img {
-                height: 250px;
-            }
-
-            .overlay a {
-                font-size: 1rem;
-                padding: 8px 16px;
-            }
-
-            .carousel {
-                display: block; /* Show carousel on mobile */
-            }
-
-            .carousel-item {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-            }
-
-            .overlay {
-                position: relative; /* Change position for carousel */
-                background: rgba(255, 224, 189, 0.9);
-                opacity: 1;
-                transition: opacity 0.3s ease;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container h1 {
-                font-size: 2rem;
-            }
-
-            .grid-item img {
-                height: 220px;
-            }
-
-            .overlay a {
-                font-size: 0.9rem;
-                padding: 6px 12px;
-            }
-        }
-    </style>
-</head>
-
-<body>
-
-    <div class="container">
-        <h1>Our Gallery Categories</h1>
-
-        <!-- Desktop Grid Layout -->
-        <div class="grid">
-            <!-- Category 1 -->
-            <div class="grid-item" onclick="openModal('nature')">
-                <img src="https://via.placeholder.com/400x300?text=Nature" alt="Nature Photography">
-                <div class="overlay">
-                    <h2>Nature</h2>
-                    <p>Explore the beauty of nature in our stunning gallery.</p>
-                    <a href="nature-gallery.html">Open Gallery</a>
-                </div>
-            </div>
-
-            <!-- Category 2 -->
-            <div class="grid-item" onclick="openModal('urban')">
-                <img src="https://via.placeholder.com/400x300?text=Urban" alt="Urban Photography">
-                <div class="overlay">
-                    <h2>Urban</h2>
-                    <p>Discover the vibrant life of urban landscapes.</p>
-                    <a href="urban-gallery.html">Open Gallery</a>
-                </div>
-            </div>
-
-            <!-- Category 3 -->
-            <div class="grid-item" onclick="openModal('portraits')">
-                <img src="https://via.placeholder.com/400x300?text=Portraits" alt="Portrait Photography">
-                <div class="overlay">
-                    <h2>Portraits</h2>
-                    <p>Capturing the essence of individuals through portraits.</p>
-                    <a href="portrait-gallery.html">Open Gallery</a>
-                </div>
-            </div>
-
-            <!-- Category 4 -->
-            <div class="grid-item" onclick="openModal('wildlife')">
-                <img src="https://via.placeholder.com/400x300?text=Wildlife" alt="Wildlife Photography">
-                <div class="overlay">
-                    <h2>Wildlife</h2>
-                    <p>Experience the thrill of wildlife photography.</p>
-                    <a href="wildlife-gallery.html">Open Gallery</a>
-                </div>
-            </div>
-
-            <!-- Category 5 -->
-            <div class="grid-item" onclick="openModal('travel')">
-                <img src="https://via.placeholder.com/400x300?text=Travel" alt="Travel Photography">
-                <div class="overlay">
-                    <h2>Travel</h2>
-                    <p>Explore our travels through stunning photographs.</p>
-                    <a href="travel-gallery.html">Open Gallery</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Swipeable Carousel for Mobile -->
-        <div class="carousel">
-            <div class="carousel-inner">
-                <!-- Carousel Item 1 -->
-                <div class="carousel-item">
-                    <img src="https://via.placeholder.com/400x300?text=Nature" alt="Nature Photography">
-                    <div class="overlay">
-                        <h2>Nature</h2>
-                        <p>Explore the beauty of nature in our stunning gallery.</p>
-                        <a href="nature-gallery.html">Open Gallery</a>
-                    </div>
-                </div>
-
-                <!-- Carousel Item 2 -->
-                <div class="carousel-item">
-                    <img src="https://via.placeholder.com/400x300?text=Urban" alt="Urban Photography">
-                    <div class="overlay">
-                        <h2>Urban</h2>
-                        <p>Discover the vibrant life of urban landscapes.</p>
-                        <a href="urban-gallery.html">Open Gallery</a>
-                    </div>
-                </div>
-
-                <!-- Carousel Item 3 -->
-                <div class="carousel-item">
-                    <img src="https://via.placeholder.com/400x300?text=Portraits" alt="Portrait Photography">
-                    <div class="overlay">
-                        <h2>Portraits</h2>
-                        <p>Capturing the essence of individuals through portraits.</p>
-                        <a href="portrait-gallery.html">Open Gallery</a>
-                    </div>
-                </div>
-
-                <!-- Carousel Item 4 -->
-                <div class="carousel-item">
-                    <img src="https://via.placeholder.com/400x300?text=Wildlife" alt="Wildlife Photography">
-                    <div class="overlay">
-                        <h2>Wildlife</h2>
-                        <p>Experience the thrill of wildlife photography.</p>
-                        <a href="wildlife-gallery.html">Open Gallery</a>
-                    </div>
-                </div>
-
-                <!-- Carousel Item 5 -->
-                <div class="carousel-item">
-                    <img src="https://via.placeholder.com/400x300?text=Travel" alt="Travel Photography">
-                    <div class="overlay">
-                        <h2>Travel</h2>
-                        <p>Explore our travels through stunning photographs.</p>
-                        <a href="travel-gallery.html">Open Gallery</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal for Detailed View -->
-    <div class="modal" id="categoryModal">
-        <div class="modal-content">
-            <span class="close" id="modalClose">&times;</span>
-            <h2 id="modalTitle"></h2>
-            <p id="modalDescription"></p>
-            <a id="modalLink" href="#" target="_blank">Open Gallery</a>
-        </div>
-    </div>
-
-    <script>
-        // Simple swipe detection for touch devices
-        let startX;
-        const carouselInner = document.querySelector('.carousel-inner');
-        const carousel = document.querySelector('.carousel');
-        const carouselItems = document.querySelectorAll('.carousel-item');
-        const modal = document.getElementById('categoryModal');
-        const modalClose = document.getElementById('modalClose');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalDescription = document.getElementById('modalDescription');
-        const modalLink = document.getElementById('modalLink');
-
-        // Show carousel on mobile screens
-        if (window.innerWidth <= 768) {
-            carousel.style.display = 'block';
-        }
-
-        // Touch start event
-        carouselInner.addEventListener('touchstart', function (event) {
-            startX = event.touches[0].clientX; // Get the initial touch position
-        });
-
-        // Touch move event
-        carouselInner.addEventListener('touchmove', function (event) {
-            const moveX = event.touches[0].clientX;
-            const differenceX = startX - moveX;
-
-            // Allow swiping left or right
-            if (differenceX > 50) {
-                // Swipe left
-                moveToNext();
-            } else if (differenceX < -50) {
-                // Swipe right
-                moveToPrevious();
-            }
-        });
-
-        // Function to move to the next item
-        function moveToNext() {
-            const currentIndex = getCurrentIndex();
-            const nextIndex = (currentIndex + 1) % carouselItems.length;
-            updateCarouselPosition(nextIndex);
-        }
-
-        // Function to move to the previous item
-        function moveToPrevious() {
-            const currentIndex = getCurrentIndex();
-            const prevIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
-            updateCarouselPosition(prevIndex);
-        }
-
-        // Function to get the current visible index
-        function getCurrentIndex() {
-            return Math.abs(parseInt(carouselInner.style.transform.replace(/[^\d.-]/g, '')) / window.innerWidth);
-        }
-
-        // Function to update carousel position
-        function updateCarouselPosition(index) {
-            carouselInner.style.transform = 'translateX(-' + (index * 100) + '%)';
-        }
-
-        // Auto slide functionality
-        setInterval(moveToNext, 5000); // Automatically move to next every 5 seconds
-
-        // Open Modal Function
-        function openModal(category) {
-            const categories = {
-                nature: {
-                    title: "Nature",
-                    description: "Explore the beauty of nature in our stunning gallery.",
-                    link: "nature-gallery.html"
-                },
-                urban: {
-                    title: "Urban",
-                    description: "Discover the vibrant life of urban landscapes.",
-                    link: "urban-gallery.html"
-                },
-                portraits: {
-                    title: "Portraits",
-                    description: "Capturing the essence of individuals through portraits.",
-                    link: "portrait-gallery.html"
-                },
-                wildlife: {
-                    title: "Wildlife",
-                    description: "Experience the thrill of wildlife photography.",
-                    link: "wildlife-gallery.html"
-                },
-                travel: {
-                    title: "Travel",
-                    description: "Explore our travels through stunning photographs.",
-                    link: "travel-gallery.html"
-                }
-            };
-
-            // Set the modal content based on the selected category
-            modalTitle.textContent = categories[category].title;
-            modalDescription.textContent = categories[category].description;
-            modalLink.href = categories[category].link;
-
-            modal.style.display = "flex"; // Show the modal
-        }
-
-        // Close Modal Function
-        modalClose.onclick = function() {
-            modal.style.display = "none"; // Hide the modal
-        }
-
-        // Close modal when clicking outside of it
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none"; // Hide the modal
-            }
-        }
-    </script>
-</body>
-
-</html>
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffe0bdaf;
+    position: inherit;
+    color: #000000;
+    line-height: 1.6;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+/* Intro Section */
+.intro {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    
+    
+}
+
+
+
+.intro h2 {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+
+}
+
+.intro p {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    
+}
+
+.intro button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    color: #000000;
+    background-color: transparent;
+    border: 0.15em solid black;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.intro a:hover{
+    text-decoration: none;
+        color: #000000;
+
+}
+
+
+.text-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-container h1 {
+    margin: 0;
+    font-size: 150px;
+    color: rgba(0, 0, 0, 0);
+    background-image: url("https://images.unsplash.com/photo-1499195333224-3ce974eecb47?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=2cf549433129d4227d1879347b9e78ce&auto=format&fit=crop&w=1248&q=80");
+    background-repeat: repeat;
+    -webkit-background-clip: text;
+    animation: animate 15s ease-in-out infinite;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 900;
+    
+    
+}
+
+@keyframes animate {
+    0%, 100% {
+        background-position: left top;
+    }
+    25% {
+        background-position: right bottom;
+    }
+    50% {
+        background-position: left bottom;
+    }
+    75% {
+        background-position: right top;
+    }
+}
+
+
+
+
+
+/* Cookies Consent CSS */
+#cookieConsent {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    overflow: hidden;
+    animation: fadeIn 0.5s ease-out;
+}
+
+#cookieConsentPopup {
+    background-color: #222;
+    color: #eee;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 350px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    font-family: Arial, sans-serif;
+    text-align: center;
+    opacity: 0;
+    animation: slideIn 0.5s ease-out forwards;
+}
+
+#cookieConsentPopup p {
+    margin: 0 0 15px 0;
+    font-size: 14px;
+}
+
+#cookieConsentPopup button {
+    background-color: #444;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+#cookieConsentPopup button:hover {
+    background-color: #555;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translate(-50%, -60%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
+
+/* Enhanced Media Queries */
+
+/* Extra Small Devices (Portrait Phones, less than 480px) */
+@media (max-width: 479px) {
+    .intro h2 {
+        font-size: 2.5rem;
+    }
+
+    .intro p {
+        font-size: 1.2rem;
+    }
+
+    .intro button {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .text-container h1 {
+        font-size: 60px;
+    }
+}
+
+/* Small Devices (Landscape Phones, 480px and up) */
+@media (min-width: 480px) and (max-width: 599px) {
+    .intro h2 {
+        font-size: 3rem;
+    }
+
+    .intro p {
+        font-size: 1.4rem;
+    }
+
+    .intro button {
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+    }
+
+    .text-container h1 {
+        font-size: 80px;
+    }
+}
+
+/* Medium Devices (Tablets, 600px and up) */
+@media (min-width: 600px) and (max-width: 767px) {
+    .intro h2 {
+        font-size: 3.5rem;
+    }
+
+    .intro p {
+        font-size: 1.6rem;
+    }
+
+    .intro button {
+        padding: 0.65rem 1.3rem;
+        font-size: 1rem;
+    }
+
+    .text-container h1 {
+        font-size: 100px;
+    }
+}
+
+/* Large Devices (Small Laptops, 768px and up) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .intro h2 {
+        font-size: 4rem;
+    }
+
+    .intro p {
+        font-size: 1.8rem;
+    }
+
+    .intro button {
+        padding: 0.7rem 1.4rem;
+        font-size: 1.1rem;
+    }
+
+    .text-container h1 {
+        font-size: 120px;
+    }
+}
+
+/* Extra Large Devices (Desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .intro h2 {
+        font-size: 4.5rem;
+    }
+
+    .intro p {
+        font-size: 1.9rem;
+    }
+
+    .intro button {
+        padding: 0.75rem 1.5rem;
+        font-size: 1.2rem;
+    }
+
+    .text-container h1 {
+        font-size: 140px;
+    }
+}
+
+/* Ultra Large Devices (Large Desktops, 1200px and up) */
+@media (min-width: 1200px) and (max-width: 1439px) {
+    .intro h2 {
+        font-size: 5rem;
+    }
+
+    .intro p {
+        font-size: 2rem;
+    }
+
+    .intro button {
+        padding: 0.8rem 1.6rem;
+        font-size: 1.3rem;
+    }
+
+    .text-container h1 {
+        font-size: 160px;
+    }
+}
+
+/* Extra Extra Large Devices (Very Large Desktops, 1440px and up) */
+@media (min-width: 1440px) {
+    .intro h2 {
+        font-size: 5rem;
+    }
+
+    .intro p {
+        font-size: 2rem;
+    }
+
+    .intro button {
+        padding: 0.9rem 1.8rem;
+        font-size: 1.4rem;
+    }
+
+    .text-container h1 {
+        font-size: 200px;
+    }
+}
+
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+
+:root {
+  --glow-color:#ffecd1;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.glowing-btn {
+  position: relative;
+  color: var(--glow-color);
+  cursor: pointer;
+  padding: 0.35em 1em;
+  border: 0.15em solid var(--glow-color);
+  border-radius: 0.45em;
+  background: none;
+  perspective: 2em;
+  font-family: "Raleway", sans-serif;
+  font-size: 2em;
+  font-weight: 900;
+  letter-spacing: 1em;
+  animation: border-flicker 2s linear infinite;
+}
+
+.glowing-txt {
+  float: left;
+  margin-right: -0.8em;
+  animation: text-flicker 3s linear infinite;
+}
+
+.faulty-letter {
+  opacity: 0.5;
+  animation: faulty-flicker 2s linear infinite;
+}
+
+.glowing-btn:hover {
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: none;
+  animation: none;
+}
+
+.glowing-btn a:hover {
+  color:     #000000;
+  text-shadow: none;
+  animation: none;
+}
+
+.glowing-btn:hover .glowing-txt {
+  animation: none;
+}
+
+.glowing-btn:hover .faulty-letter {
+  animation: none;
+  text-shadow: none;
+  opacity: 1;
+}
+
+
+
+@keyframes faulty-flicker {
+  0% {
+    opacity: 0.1;
+  }
+  2% {
+    opacity: 0.1;
+  }
+  4% {
+    opacity: 0.5;
+  }
+  19% {
+    opacity: 0.5;
+  }
+  21% {
+    opacity: 0.1;
+  }
+  23% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.5;
+  }
+  83% {
+    opacity: 0.4;
+  }
+
+  87% {
+    opacity: 1;
+  }
+}
+
+@keyframes text-flicker {
+  0% {
+    opacity: 0.1;
+  }
+
+  2% {
+    opacity: 1;
+  }
+
+  8% {
+    opacity: 0.1;
+  }
+
+  9% {
+    opacity: 1;
+  }
+
+  12% {
+    opacity: 0.1;
+  }
+  20% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.3;
+  }
+  30% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 0.7;
+  }
+  72% {
+    opacity: 0.2;
+  }
+
+  77% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes border-flicker {
+  0% {
+    opacity: 0.1;
+  }
+  2% {
+    opacity: 1;
+  }
+  4% {
+    opacity: 0.1;
+  }
+
+  8% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .glowing-btn{
+    font-size: 1em;
+  }
+}
+
+
+.team {
+  padding: 4em 2em;
+  text-align: center;
+  background-color: #ffffff;
+  color: #111;
+}
+
+.team h2 {
+  margin-bottom: 1em;
+  font-size: 5rem;
+}
+
+.team-grid {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2em;
+  position: center;
+  justify-content: center;
+}
+
+.team-grid {
+  display: flex;
+  flex-direction: row; /* Display items in a row */
+  justify-content: center; /* Center items horizontally */
+  gap: 2em;
+  padding: 4em 2em;
+  text-align: center;
+  background-color: #ffffff;
+}
+
+.team-member {
+  width: 300px; /* Adjust based on your content */
+  background-color: #ffe0bdaf;
+  border-radius: 10px;
+  border: 3px solid #000000; /* Gray border */
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  margin: 0 1em; /* Adjust spacing between team members */
+}
+
+.team-member img {
+  border-radius: 10px;
+  width: 80%; /* Ensure the image takes up the full width of its container */
+  margin-top: 20px;
+}
+
+.team-member h3 {
+  margin: 0.5em 0 0.2em 0;
+  font-size: 1.8em;
+  color: black;
+}
+
+.team-member p {
+  font-size: 1.2em;
+  color: #666;
+  margin-bottom: 1em;
+}
+
+
+
+      /* Media Queries */
+      @media only screen and (max-width: 1200px) {
+          .team h2 {
+              font-size: 3em;
+          }
+          .team-member {
+              width: 250px;
+          }
+          .team-member h3 {
+              font-size: 1.5em;
+          }
+          .team-member p {
+              font-size: 1em;
+          }
+      }
+
+      @media only screen and (max-width: 992px) {
+          .team h2 {
+              font-size: 2.8em;
+          }
+          .team-member {
+              width: 200px;
+          }
+          .team-member h3 {
+              font-size: 1.3em;
+          }
+          .team-member p {
+              font-size: 0.9em;
+          }
+      }
+
+      @media only screen and (max-width: 768px) {
+          .team-grid {
+              flex-direction: column;
+              gap: 1em;
+          }
+          .team-member {
+              width: 90%;
+          }
+      }
+
+      @media only screen and (max-width: 600px) {
+          .team h2 {
+              font-size: 2.5em;
+          }
+          .team-member {
+              width: 80%;
+              margin: 0.5em 0;
+          }
+          .team-member h3 {
+              font-size: 1.5em;
+          }
+          .team-member p {
+              font-size: 1em;
+          }
+      }
+
+      @media only screen and (max-width: 480px) {
+          .team h2 {
+              font-size: 2.3em;
+          }
+          .team-member {
+              width: 80%;
+          }
+          .team-member h3 {
+              font-size: 1em;
+          }
+          .team-member p {
+              font-size: 0.8em;
+          }
+      }
