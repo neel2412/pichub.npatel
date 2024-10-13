@@ -210,6 +210,15 @@
             text-align: center;
             max-width: 400px; /* Limit width for better mobile experience */
             width: 90%; /* Responsive width */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(-30px);
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .modal-content.show {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .close {
@@ -286,15 +295,15 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Modal Structure -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2 id="modal-title"></h2>
-            <p id="modal-description"></p>
-            <a id="modal-link" href="#">View Gallery</a>
+        <!-- Modal Structure -->
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 id="modal-title"></h2>
+                <p id="modal-description"></p>
+                <a id="modal-link" href="#">View Gallery</a>
+            </div>
         </div>
     </div>
 
@@ -341,17 +350,23 @@
             modalLink.href = categories[category].link;
 
             modal.style.display = "flex"; // Show the modal
+            setTimeout(() => {
+                document.querySelector('.modal-content').classList.add('show');
+            }, 10); // Allow a slight delay for the transition
         }
 
         // Close Modal Function
         modalClose.onclick = function() {
-            modal.style.display = "none"; // Hide the modal
+            document.querySelector('.modal-content').classList.remove('show'); // Hide modal with transition
+            setTimeout(() => {
+                modal.style.display = "none"; // Hide modal after animation
+            }, 300); // Match with CSS transition duration
         }
 
         // Close modal when clicking outside of it
         window.onclick = function(event) {
             if (event.target == modal) {
-                modal.style.display = "none"; // Hide the modal
+                modalClose.onclick(); // Call close function
             }
         }
     </script>
