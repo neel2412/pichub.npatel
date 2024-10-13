@@ -616,3 +616,246 @@ body {
               font-size: 0.8em;
           }
       }
+
+      
+/* ----------------------------
+ About Us Section Styles
+----------------------------- */
+
+.about-section {
+  padding: 80px 20px;
+  background-color: #ffffff; /* White background */
+  color: #000000; /* Black text */
+  position: relative;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 4%;
+  
+}
+
+/* Header Styling */
+.about-header h2 {
+  text-align: center;
+  font-size: 48px;
+  color: #000000; /* Black */
+  margin-bottom: 40px;
+  position: relative;
+}
+
+/* Underline Decoration */
+.about-header h2::after {
+  content: "";
+  width: 60px;
+  height: 4px;
+  background-color: #ffe0bd; /* Accent color */
+  display: block;
+  margin: 10px auto 0 auto;
+  border-radius: 2px;
+}
+
+/* Content Styling */
+.about-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffe0bdaf; /* White background */
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  width: 100%;
+  max-width: 1000px;
+}
+
+/* Image Section */
+.about-image {
+  flex: 0.5;
+  padding-right: 20px;
+}
+
+.about-image img {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Text Section */
+.about-text {
+  flex: 1;
+  padding-left: 20px;
+}
+
+.about-text p {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #000000; /* Black text */
+}
+
+.about-text strong {
+  color: #000000; /* Accent color for emphasis */
+  font-weight: 600;
+}
+
+/* Highlights Section */
+.highlights {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.highlight-item {
+  text-align: center;
+  color: #000000; /* Black */
+  max-width: 200px;
+}
+
+.highlight-item i {
+  font-size: 40px;
+  color: #ffe0bdaf; /* Accent color */
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
+}
+
+.highlight-item i:hover {
+  transform: scale(1.1);
+}
+
+.highlight-item p {
+  font-size: 18px;
+  font-weight: bold;
+  color: #000000; /* Black */
+}
+
+/* CTA Button */
+.cta-button {
+  display: inline-block;
+  margin-top: 40px;
+  padding: 15px 35px;
+  background-color: #000000af; /* Accent color */
+  color: #ffffff; /* Black text */
+  text-transform: uppercase;
+  font-weight: bold;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.cta-button:hover {
+  background-color: #000000; /* Slightly darker accent on hover */
+  transform: translateY(-3px);
+  text-decoration: none;
+  color: #fff;
+}
+
+/* ----------------------------
+ Responsive Design
+----------------------------- */
+
+/* Large Desktops and Up (≥1200px) */
+/* No changes needed as default styles handle large screens */
+
+/* Desktops and Laptops (992px - 1199px) */
+/* Already handled by default .about-content flex layout */
+
+/* Tablets (768px - 991px) */
+@media (max-width: 991.98px) {
+  .about-content {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .about-image, .about-text {
+      padding: 0;
+  }
+
+  .about-image {
+      margin-bottom: 30px;
+  }
+
+  .about-header h2 {
+      font-size: 40px;
+  }
+
+  .highlight-item {
+      max-width: 180px;
+  }
+
+  .highlight-item i {
+      font-size: 36px;
+  }
+}
+
+/* Mobile Devices (576px - 767.98px) */
+@media (max-width: 767.98px) {
+  .about-section {
+      padding: 60px 15px;
+  }
+
+  .about-header h2 {
+      font-size: 36px;
+  }
+
+  .about-content {
+      padding: 30px;
+  }
+
+  .about-text p, .highlight-item p {
+      font-size: 16px;
+  }
+
+  .highlight-item i {
+      font-size: 32px;
+  }
+
+  .cta-button {
+      padding: 12px 25px;
+      font-size: 14px;
+  }
+
+  .highlights {
+      gap: 40px;
+  }
+}
+
+/* Small Mobile Devices (<576px) */
+@media (max-width: 575.98px) {
+  .about-header h2 {
+      font-size: 28px;
+  }
+
+  .about-content {
+      padding: 20px;
+  }
+
+  .highlight-item {
+      max-width: 160px;
+  }
+
+  .highlight-item i {
+      font-size: 28px;
+  }
+
+  .cta-button {
+      padding: 10px 20px;
+      font-size: 13px;
+  }
+
+  .highlights {
+      gap: 30px;
+  }
+}
