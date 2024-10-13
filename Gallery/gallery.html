@@ -130,15 +130,19 @@
             color: #fff; /* White color for button text */
             font-size: 1.2rem;
             padding: 10px 20px;
-            background: #333; /* Dark button background */
+            background: #ff5722; /* New color for button background */
             border-radius: 30px;
             transition: background 0.3s ease, transform 0.3s ease;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            font-weight: 600; /* Bold button text */
+            letter-spacing: 1px; /* Slightly increase letter spacing for better readability */
+            border: 2px solid transparent; /* Border for better visual appearance */
         }
 
         .overlay a:hover {
-            background: #555; /* Darker shade on hover */
+            background: #e64a19; /* Darker shade on hover */
             transform: scale(1.05);
+            border: 2px solid #ffe0bdaf; /* Border color on hover */
         }
 
         /* Responsive Adjustments */
@@ -302,7 +306,7 @@
                 <span class="close">&times;</span>
                 <h2 id="modal-title"></h2>
                 <p id="modal-description"></p>
-                <a id="modal-link" href="#">View Gallery</a>
+                <a id="modal-link" href="#" class="modal-button">View Gallery</a>
             </div>
         </div>
     </div>
