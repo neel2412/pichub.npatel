@@ -125,6 +125,9 @@ height: 30vh;
 .square {
   flex-basis: 100%; /* 1 card per row on mobile screens */
 }
+.textcenter h1 {
+  padding-top: 8%;
+}
 }
 
 .square:hover {
@@ -187,8 +190,7 @@ right: 0; /* Slide in from the right */
 opacity: 0.8; /* Fade in */
 }
 
-
-
+/* Main Contain Class - Full Screen Flexbox Layout */
 .contain {
   width: 100%;
   max-width: 100vw;
@@ -198,10 +200,10 @@ opacity: 0.8; /* Fade in */
   align-items: stretch;
   gap: 1.25rem;
   transition: all 400ms;
-  margin-top: 5%;
 
 }
 
+/* Inner Container with Flexbox and Centering */
 .container {
   width: 100%;
   max-width: 80vw;
@@ -211,9 +213,9 @@ opacity: 0.8; /* Fade in */
   align-items: stretch;
   gap: 1.25rem;
   transition: all 400ms;
-
 }
 
+/* Card Flexbox Layout */
 .card {
   flex: 50;
   height: 90%;
@@ -221,6 +223,8 @@ opacity: 0.8; /* Fade in */
   cursor: pointer;
   margin-top: 6%;
 }
+
+/* Card Image Responsive to Parent */
 .card > img {
   display: block;
   width: 100%;
@@ -228,16 +232,64 @@ opacity: 0.8; /* Fade in */
   object-fit: cover;
 }
 
+/* Odd Cards Slightly Translated for Layout Variation */
 .card:nth-child(odd) {
   translate: 0 -20px;
 }
+
+/* Even Cards Slightly Translated for Layout Variation */
 .card:nth-child(even) {
   translate: 0 20px;
 }
 
+/* Grayscale All Cards Except Hovered */
 .container:hover .card:not(:hover) {
   filter: grayscale(100%);
 }
+
+/* Expand Hovered Card for Emphasis */
 .card:hover {
   flex: 150;
+}
+
+/* RESPONSIVENESS */
+
+/* Hide on Small Screens (Phones) and Only Display in Landscape Mode */
+@media screen and (max-width: 768px) and (orientation: portrait) {
+  .contain, .container {
+    display: none; /* Hide the layout on small portrait screens */
+  }
+}
+
+/* Adjust Layout for Smaller Landscape Devices (Tablets, etc.) */
+@media screen and (max-width: 1024px) and (orientation: landscape) {
+  .container {
+    max-width: 95vw; /* Make the container wider on small landscape screens */
+    height: 70vh; /* Adjust the height to fit */
+  }
+
+  .card {
+    flex: 40; /* Slightly reduce card size */
+    margin-top: 4%; /* Adjust margin */
+  }
+
+  .card:hover {
+    flex: 120; /* Less expansion on hover */
+  }
+}
+
+/* Further Adaptation for Very Large Screens */
+@media screen and (min-width: 1920px) {
+  .container {
+    max-width: 70vw; /* Limit container width for very large screens */
+    height: 90vh; /* Increase height */
+  }
+
+  .card {
+    flex: 60; /* Larger default size for cards */
+  }
+
+  .card:hover {
+    flex: 170; /* Larger expansion on hover */
+  }
 }
