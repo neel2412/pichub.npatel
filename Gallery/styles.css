@@ -95,7 +95,6 @@ html {
     padding: 60px 20px;
     text-align: center;
     height: auto; /* Change from 100vh to auto for better flexibility */
-    margin-top: 5%;
     align-content: center;
 }
 
@@ -263,3 +262,4 @@ html {
         font-size: 0.8rem; /* Reduce font size for even smaller screens */
     }
 }
+

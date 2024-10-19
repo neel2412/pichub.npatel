@@ -485,7 +485,7 @@ body {
 .team {
   padding: 4em 2em;
   text-align: center;
-  background-color: #ffffff;
+  background-color: #ffe0bdaf;
   color: #111;
 }
 
@@ -510,12 +510,12 @@ body {
   gap: 2em;
   padding: 4em 2em;
   text-align: center;
-  background-color: #ffffff;
+  background-color: #ffe0bdaf;
 }
 
 .team-member {
   width: 300px; /* Adjust based on your content */
-  background-color: #ffe0bdaf;
+  background-color: #fff;
   border-radius: 10px;
   border: 3px solid #000000; /* Gray border */
   box-shadow: 0 15px 20px rgba(0, 0, 0, 0.1);
