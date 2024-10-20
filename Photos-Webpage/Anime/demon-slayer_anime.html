@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demon-Slayer Gallery | PicHub</title>
+    <title>Tokyo-Revengers Gallery | PicHub</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -17,9 +19,6 @@
 <body>
 
 
-
-
-
     <!-- HTML -->
 <div id="cookieConsent" style="display: none;">
     <div id="cookieConsentPopup">
@@ -28,79 +27,6 @@
     </div>
 </div>
 
-<!-- CSS -->
-<style>
-    #cookieConsent {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 1000;
-        overflow: hidden;
-        animation: fadeIn 0.5s ease-out;
-    }
-    
-    #cookieConsentPopup {
-        background-color: #222;
-        color: #eee;
-        padding: 20px;
-        border-radius: 8px;
-        width: 90%;
-        max-width: 350px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        font-family: Arial, sans-serif;
-        text-align: center;
-        opacity: 0;
-        animation: slideIn 0.5s ease-out forwards;
-    }
-    
-    #cookieConsentPopup p {
-        margin: 0 0 15px 0;
-        font-size: 14px;
-    }
-    
-    #cookieConsentPopup button {
-        background-color: #444;
-        color: #fff;
-        border: none;
-        padding: 8px 16px;
-        cursor: pointer;
-        border-radius: 4px;
-        font-size: 14px;
-        transition: background-color 0.3s ease;
-    }
-    
-    #cookieConsentPopup button:hover {
-        background-color: #555;
-    }
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
-    }
-
-    @keyframes slideIn {
-        from {
-            transform: translate(-50%, -60%);
-            opacity: 0;
-        }
-        to {
-            transform: translate(-50%, -50%);
-            opacity: 1;
-        }
-    }
-</style>
 
 <!-- JavaScript -->
 <script>
@@ -123,45 +49,37 @@
 </script>
 
 
-
-
-
-
-
-
-    <header>
-        <div class="logo">
-            <img src="Photos/PicHubStudios-Circle.png" alt="Logo">
-            <span>PicHub</span>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="https://pichub.co.uk/">Home</a></li>
-                <li><a href="https://pichub.co.uk/about%20us">About Us</a></li>
-                <li><a href="https://pichub.co.uk/gallery">Gallery</a></li>
-                <li><a href="https://pichub.co.uk/Anime/anime_gallery">Anime Gallery</a></li>
-                <li><a href="https://pichub.co.uk/contactus">Contact Us</a></li>
-                <li><a href="https://pichub.co.uk/newsletter/templates/">Subscribe</a></li>
-                
-            </ul>
-        </nav>
-        <div class="menu-icon" onclick="toggleMenu()">
-            <i class="fas fa-bars"></i>
-        </div>
-    </header>
-
-
-    <div id="sidebar-menu">
-        <ul>
-            <li><a href="https://pichub.co.uk/">Home</a></li>
-            <li><a href="https://pichub.co.uk/about%20us">About Us</a></li>
-            <li><a href="https://pichub.co.uk/gallery">Gallery</a></li>
-            <li><a href="https://pichub.co.uk/Anime/anime_gallery">Anime Gallery</a></li>
-            <li><a href="https://pichub.co.uk/contactus">Contact Us</a></li>
-            <li><a href="https://pichub.co.uk/newsletter/templates/">Subscribe</a></li>
-        </ul>
+<header>
+    <div class="logo">
+        <img src="Photos/PicHubStudios-Circle.png" alt="Logo">
+        <span>PicHub</span>
     </div>
-    <div id="overlay" onclick="toggleMenu()"></div>  
+    <nav>
+        <ul>
+            <li><a href="https://pichub.npatel.co.uk">Home</a></li>
+            <li><a href="https://pichub.npatel.co.uk/About-US/About US.html">About Us</a></li>
+            <li><a href="https://pichub.npatel.co.uk/Gallery/gallery.html">Gallery</a></li>
+            <li><a href="https://pichub.npatel.co.uk/photos-webpage/anime/anime_gallery.html">Anime Gallery</a></li>
+            <li><a href="https://pichub.npatel.co.uk/Newsletter/templates/index.html">Subscribe</a></li>
+        </ul>
+    </nav>
+    <div class="menu-icon" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+    </div>
+</header>
+
+
+<div id="sidebar-menu">
+    <ul>
+      <li><a href="https://pichub.npatel.co.uk">Home</a></li>
+      <li><a href="https://pichub.npatel.co.uk/About-US/About US.html">About Us</a></li>
+      <li><a href="https://pichub.npatel.co.uk/Gallery/gallery.html">Gallery</a></li>
+      <li><a href="https://pichub.npatel.co.uk/photos-webpage/anime/anime_gallery.html">Anime Gallery</a></li>
+      <li><a href="https://pichub.npatel.co.uk/Newsletter/templates/index.html">Subscribe</a></li>
+    </ul>
+</div>
+<div id="overlay" onclick="toggleMenu()"></div>  
+
 
     <div class="w3-content">
         <!-- Pagination and Download Multiple button container -->
@@ -169,9 +87,7 @@
             <div class="pagination" id="paginationTop">
                 <!-- Pagination buttons will be added here dynamically -->
             </div>
-            <div class="download-btn-container">
-                <button class="download-multiple"><strong>Download Multiple</strong></button>
-            </div>
+            
         </div>
     
         <!-- Photo Grid -->
@@ -192,256 +108,270 @@
                 <button class="close-btn" onclick="closeModal()">×</button>
             </div>
         </div>
-        <!-- Floating Download Button -->
-        <div id="floatingDownloadBtnContainer">
-            <button id="floatingDownloadBtn">Download Selected</button>
-        </div>
-
-    </div>
-    <footer>
-        <div class="footer-container">
-            
-            <ul class="footer-link">
-                <li><a class="social_link" href="https://www.facebook.com/people/PicHub/61563090242216/">
-                    <ion-icon name="logo-facebook"></ion-icon>
-                  </a></li>
-                <li><a class="social_link" href="mailto:info@npatel.co.uk">
-                    <ion-icon name="mail"></ion-icon>
-                  </a></li>
-                <li><a class="social_link" href="https://www.instagram.com/pichub__official/">
-                    <ion-icon name="logo-instagram"></ion-icon>
-                  </a></li>
-            </ul>
-            <ul class="footer-nav">
-                <li><a href="https://pichub.co.uk/">Home</a></li>
-                <li><a href="https://pichub.co.uk/about%20us">About Us</a></li>
-                <li><a href="https://pichub.co.uk/gallery">Gallery</a></li>
-                <li><a href="https://pichub.co.uk/about%20us#team-grid">Team</a></li>
-                <li><a href="anime_gallery.html">Anime Gallery</a></li>
-                <li><a href="https://pichub.co.uk/contactus">Contact Us</a></li>
-                <li><a href="https://pichub.co.uk/newsletter/templates/">Subscribe</a></li>
-            </ul>
-            <div class="copyright">
-                &copy;  PicHub | All rights reserved |
-                <b><u><a href="https://pichub.co.uk/privacy%20policy" style="text-decoration: none; color: white; " >Privacy Policy</a></u></b>
-            </div>
-        </div>
-    </footer>
-    
-    <script>
-        let currentPage = 1;
-        const imagesPerPage = 20;
-        const totalImages = 100; // Total number of images
-        const folderPath = 'Anime/demon-slayer/';
-    
-        function openModal(src) {
-            const modalImage = document.getElementById('modalImage');
-            const imageModal = document.getElementById('imageModal');
-            const imgContainer = document.querySelector('#imageModal .img-container');
-            const modalDownloadBtn = document.getElementById('modalDownloadBtn');
-    
-            modalImage.src = src;
-            modalDownloadBtn.href = src;
-    
-            imgContainer.style.width = 'auto';
-            imgContainer.style.height = 'auto';
-    
-            imageModal.style.display = 'flex';
-    
-            if (modalImage.complete) {
-                adjustModal();
-            } else {
-                modalImage.onload = adjustModal;
-            }
-    
-            modalImage.onerror = function() {
-                console.error('Image failed to load.');
-                imageModal.style.display = 'none';
-            };
-    
-            function adjustModal() {
-                const imgAspectRatio = modalImage.naturalWidth / modalImage.naturalHeight;
-                const containerAspectRatio = imgContainer.clientWidth / imgContainer.clientHeight;
-    
-                if (imgAspectRatio > containerAspectRatio) {
-                    imgContainer.style.width = '90%';
-                    imgContainer.style.height = 'auto';
-                } else {
-                    imgContainer.style.width = 'auto';
-                    imgContainer.style.height = '90%';
-                }
-            }
-        }
-    
-        function closeModal() {
-            document.getElementById('imageModal').style.display = 'none';
-        }
-    
-        function loadImages(page = 1) {
-            const w3RowPadding = document.getElementById('photoGrid');
-            const screenWidth = window.innerWidth;
-            let columnCount = 4;
-    
-            if (screenWidth <= 1600) columnCount = (screenWidth > 1200) ? 3 : (screenWidth > 768) ? 2 : 1;
-    
-            const startImage = totalImages - (page - 1) * imagesPerPage;
-            const endImage = Math.max(totalImages - page * imagesPerPage + 1, 1);
-    
-            const totalPages = Math.ceil(totalImages / imagesPerPage);
-    
-            w3RowPadding.innerHTML = '';
-            for (let i = 0; i < columnCount; i++) {
-                const column = document.createElement('div');
-                column.classList.add('w3-column');
-                w3RowPadding.appendChild(column);
-            }
-    
-            let loadedImages = 0;
-            const totalToLoad = startImage - endImage + 1;
-            const loadComplete = () => {
-                loadedImages++;
-                if (loadedImages === totalToLoad) {
-                    w3RowPadding.classList.add('show');
-                }
-            };
-    
-            for (let i = startImage; i >= endImage; i--) {
-                const imgContainer = document.createElement('div');
-                imgContainer.classList.add('img-container');
-    
-                const img = document.createElement('img');
-                img.src = `${folderPath}${i}.jpg`;
-                img.alt = `Image ${i}`;
-                img.addEventListener('click', () => openModal(img.src));
-    
-                img.onload = loadComplete;
-                img.onerror = loadComplete;
-    
-                imgContainer.appendChild(img);
-    
-                const checkbox = document.createElement('input');
-                checkbox.type = 'checkbox';
-                checkbox.className = 'image-checkbox';
-                imgContainer.appendChild(checkbox);
-    
-                const previewText = document.createElement('div');
-                previewText.classList.add('preview-text');
-                previewText.textContent = 'Preview';
-    
-                imgContainer.appendChild(previewText);
-    
-                w3RowPadding.children[(startImage - i) % columnCount].appendChild(imgContainer);
-            }
-    
-            createPagination(totalPages, page);
-        }
-    
-        function createPagination(totalPages, page) {
-            const paginationTop = document.getElementById('paginationTop');
-            const paginationBottom = document.getElementById('paginationBottom');
-            paginationTop.innerHTML = '';
-            paginationBottom.innerHTML = '';
-    
-            if (page > 1) {
-                const prevButtonTop = document.createElement('button');
-                const prevButtonBottom = document.createElement('button');
-                prevButtonTop.innerHTML = '&laquo;';
-                prevButtonBottom.innerHTML = '&laquo;';
-                prevButtonTop.classList.add('arrow');
-                prevButtonBottom.classList.add('arrow');
-                prevButtonTop.addEventListener('click', () => loadImages(page - 1));
-                prevButtonBottom.addEventListener('click', () => loadImages(page - 1));
-                paginationTop.appendChild(prevButtonTop);
-                paginationBottom.appendChild(prevButtonBottom);
-            }
-    
-            const visiblePages = 5;
-            const startPage = Math.max(1, page - Math.floor(visiblePages / 2));
-            const endPage = Math.min(totalPages, startPage + visiblePages - 1);
-    
-            for (let i = startPage; i <= endPage; i++) {
-                const buttonTop = document.createElement('button');
-                const buttonBottom = document.createElement('button');
-    
-                buttonTop.textContent = buttonBottom.textContent = i;
-    
-                if (i === page) {
-                    buttonTop.disabled = buttonBottom.disabled = true;
-                    buttonTop.style.backgroundColor = '#555';
-                    buttonBottom.style.backgroundColor = '#555';
-                }
-    
-                buttonTop.addEventListener('click', () => loadImages(i));
-                buttonBottom.addEventListener('click', () => loadImages(i));
-    
-                paginationTop.appendChild(buttonTop);
-                paginationBottom.appendChild(buttonBottom);
-            }
-    
-            if (page < totalPages) {
-                const nextButtonTop = document.createElement('button');
-                const nextButtonBottom = document.createElement('button');
-                nextButtonTop.innerHTML = '&raquo;';
-                nextButtonBottom.innerHTML = '&raquo;';
-                nextButtonTop.classList.add('arrow');
-                nextButtonBottom.classList.add('arrow');
-                nextButtonTop.addEventListener('click', () => loadImages(page + 1));
-                nextButtonBottom.addEventListener('click', () => loadImages(page + 1));
-                paginationTop.appendChild(nextButtonTop);
-                paginationBottom.appendChild(nextButtonBottom);
-            }
-        }
-    
-        document.addEventListener('DOMContentLoaded', () => {
-    // Load images initially
-    loadImages(currentPage);
-    
-    // Ensure "Download Multiple" button works on the first click
-    document.querySelector('.download-multiple').addEventListener('click', function () {
-        const checkboxes = document.querySelectorAll('.image-checkbox');
-        const floatingDownloadBtnContainer = document.getElementById('floatingDownloadBtnContainer');
         
-        // Toggle checkboxes visibility
-        if (checkboxes.length > 0) {
-            if (checkboxes[0].style.display === 'none' || checkboxes[0].style.display === '') {
-                checkboxes.forEach(checkbox => checkbox.style.display = 'block');
-                floatingDownloadBtnContainer.style.display = 'block';
+    </div>
+
+
+        <footer>
+          <div class="footer-wrapper">
+            <div class="footer-section">
+              <div class="footer-subscribe">
+                <h2>
+                  Subscribe to the PicHub newsletter to stay up-to-date with the latest releases
+                </h2>
+                  <form id="subscriptionForm">
+                    <div class="input-box">
+                      <input type="email" id="email" placeholder="Email Address" required />
+                      <button type="submit" id="submitBtn">
+                        <svg width="41" height="22" viewBox="0 0 41 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M40.002 11.001H0.501953M40.002 11.001L30.002 1.00098M40.002 11.001L30.002 21.001" stroke="white"></path>
+                        </svg>
+                      </button>
+                    </div>
+                  </form>
+                  <div id="message"></div>
+                </div>
+             
+              <nav class="footer-nav">
+                <div>
+                  <h2>Company</h2>
+                  <ul>
+                    <li><a href="https://pichub.npatel.co.uk/About-US/About US.html">About</a></li>
+                    <li><a href="https://pichub.npatel.co.uk/comingsoon">Contact Us</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <h2>PicHub</h2>
+                  <ul>
+                    <li><a href="https://pichub.npatel.co.uk/Gallery/gallery.html">Gallery</a></li>
+                    <li><a href="https://pichub.npatel.co.uk/comingsoon">Team</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <h2>Connect</h2>
+                  <ul>
+                    <li><a href="https://pichub.npatel.co.uk/newsletter/templates/">Subscribe</a></li>
+                    <li><a href="https://www.instagram.com/pichub__official/">Instgram</a></li>
+                    <li><a href="https://www.facebook.com/people/PicHub/61563090242216/">Facebook</a></li>
+                  </ul>
+                </div>
+              </nav>
+            </div>
+      
+            <div class="footer-copyright">
+              <p>©2024 PicHub, Inc. All rights reserved.</p>
+              <p>Privacy Policy.</p>
+              <p>Terms of Use.</p>
+            </div>
+          </div>
+        </footer>
+      
+        <script>document.getElementById('subscriptionForm').addEventListener('submit', function(event) {
+          event.preventDefault(); // Prevent the default form submission
+      
+          const email = document.getElementById('email').value;
+      
+          // Prepare data to send
+          const formData = {
+              email: email
+          };
+      
+          // Send data to the backend
+          fetch('https://tick-full-lobster.ngrok-free.app/', {  // Replace with your actual URL
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(formData)
+          }).then(response => response.text())
+            .then(result => {
+                document.getElementById('message').textContent = result;
+            }).catch(error => {
+                console.error('Error:', error);
+                document.getElementById('message').textContent = 'An error occurred.';
+            });
+      });
+      </script>
+    
+
+<script>
+    let currentPage = 1;
+    const imagesPerPage = 20;
+    const totalImages = 93; // Total number of images
+    const folderPath = 'Anime/tokyo-revengers/';
+
+    function openModal(src) {
+        const modalImage = document.getElementById('modalImage');
+        const imageModal = document.getElementById('imageModal');
+        const imgContainer = document.querySelector('#imageModal .img-container');
+        const modalDownloadBtn = document.getElementById('modalDownloadBtn');
+
+        modalImage.src = src;
+        modalDownloadBtn.href = src;
+
+        imgContainer.style.width = 'auto';
+        imgContainer.style.height = 'auto';
+
+        imageModal.style.display = 'flex';
+
+        if (modalImage.complete) {
+            adjustModal();
+        } else {
+            modalImage.onload = adjustModal;
+        }
+
+        modalImage.onerror = function() {
+            console.error('Image failed to load.');
+            imageModal.style.display = 'none';
+        };
+
+        function adjustModal() {
+            const imgAspectRatio = modalImage.naturalWidth / modalImage.naturalHeight;
+            const containerAspectRatio = imgContainer.clientWidth / imgContainer.clientHeight;
+
+            if (imgAspectRatio > containerAspectRatio) {
+                imgContainer.style.width = '90%';
+                imgContainer.style.height = 'auto';
             } else {
-                checkboxes.forEach(checkbox => checkbox.style.display = 'none');
-                floatingDownloadBtnContainer.style.display = 'none';
+                imgContainer.style.width = 'auto';
+                imgContainer.style.height = '90%';
             }
         }
-    });
+    }
 
-    // Handle floating download button click
-    document.getElementById('floatingDownloadBtn').addEventListener('click', () => {
-        const checkboxes = document.querySelectorAll('.image-checkbox:checked');
-        const urls = Array.from(checkboxes).map(checkbox => {
-            const img = checkbox.previousElementSibling; // Adjust to get the correct image
-            return img.src;
-        });
+    function closeModal() {
+        document.getElementById('imageModal').style.display = 'none';
+    }
 
-        if (urls.length === 0) {
-            alert('No images selected!');
-            return;
+    function loadImages(page = 1) {
+        const w3RowPadding = document.getElementById('photoGrid');
+        const screenWidth = window.innerWidth;
+        let columnCount = 4;
+
+        if (screenWidth <= 1600) columnCount = (screenWidth > 1200) ? 3 : (screenWidth > 768) ? 2 : 1;
+
+        const startImage = totalImages - (page - 1) * imagesPerPage;
+        const endImage = Math.max(totalImages - page * imagesPerPage + 1, 1);
+
+        const totalPages = Math.ceil(totalImages / imagesPerPage);
+
+        w3RowPadding.innerHTML = '';
+        for (let i = 0; i < columnCount; i++) {
+            const column = document.createElement('div');
+            column.classList.add('w3-column');
+            w3RowPadding.appendChild(column);
         }
 
-        urls.forEach(url => {
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = url.split('/').pop(); // Extract filename from URL
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        });
+        let loadedImages = 0;
+        const totalToLoad = startImage - endImage + 1;
+        const loadComplete = () => {
+            loadedImages++;
+            if (loadedImages === totalToLoad) {
+                w3RowPadding.classList.add('show');
+            }
+        };
 
-        // Hide checkboxes and floating button after download
-        document.querySelectorAll('.image-checkbox').forEach(checkbox => checkbox.style.display = 'none');
-        document.getElementById('floatingDownloadBtnContainer').style.display = 'none';
-    });
+        for (let i = startImage; i >= endImage; i--) {
+            const imgContainer = document.createElement('div');
+            imgContainer.classList.add('img-container');
+
+            const img = document.createElement('img');
+            img.src = `${folderPath}${i}.jpg`;
+            img.alt = `Image ${i}`;
+            img.addEventListener('click', () => openModal(img.src));
+
+            img.onload = loadComplete;
+            img.onerror = loadComplete;
+
+            imgContainer.appendChild(img);
+
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.className = 'image-checkbox';
+            imgContainer.appendChild(checkbox);
+
+            const previewText = document.createElement('div');
+            previewText.classList.add('preview-text');
+            previewText.textContent = 'Preview';
+
+            imgContainer.appendChild(previewText);
+
+            w3RowPadding.children[(startImage - i) % columnCount].appendChild(imgContainer);
+        }
+
+        createPagination(totalPages, page);
+    }
+
+    function createPagination(totalPages, page) {
+        const paginationTop = document.getElementById('paginationTop');
+        const paginationBottom = document.getElementById('paginationBottom');
+        paginationTop.innerHTML = '';
+        paginationBottom.innerHTML = '';
+
+        if (page > 1) {
+            const prevButtonTop = document.createElement('button');
+            const prevButtonBottom = document.createElement('button');
+            prevButtonTop.innerHTML = '&laquo;';
+            prevButtonBottom.innerHTML = '&laquo;';
+            prevButtonTop.classList.add('arrow');
+            prevButtonBottom.classList.add('arrow');
+            prevButtonTop.addEventListener('click', () => loadImages(page - 1));
+            prevButtonBottom.addEventListener('click', () => loadImages(page - 1));
+            paginationTop.appendChild(prevButtonTop);
+            paginationBottom.appendChild(prevButtonBottom);
+        }
+
+        const visiblePages = 5;
+        const startPage = Math.max(1, page - Math.floor(visiblePages / 2));
+        const endPage = Math.min(totalPages, startPage + visiblePages - 1);
+
+        for (let i = startPage; i <= endPage; i++) {
+            const buttonTop = document.createElement('button');
+            const buttonBottom = document.createElement('button');
+
+            buttonTop.textContent = buttonBottom.textContent = i;
+
+            if (i === page) {
+                buttonTop.disabled = buttonBottom.disabled = true;
+                buttonTop.style.backgroundColor = '#000';
+                buttonBottom.style.backgroundColor = '#000';
+                buttonTop.style.color = '#fff';
+                buttonBottom.style.color = '#fff';
+                buttonTop.style.fontSize = '1.5em';
+                buttonBottom.style.fontSize = '1.5em';
+            }
+
+            buttonTop.addEventListener('click', () => loadImages(i));
+            buttonBottom.addEventListener('click', () => loadImages(i));
+
+            paginationTop.appendChild(buttonTop);
+            paginationBottom.appendChild(buttonBottom);
+        }
+
+        if (page < totalPages) {
+            const nextButtonTop = document.createElement('button');
+            const nextButtonBottom = document.createElement('button');
+            nextButtonTop.innerHTML = '&raquo;';
+            nextButtonBottom.innerHTML = '&raquo;';
+            nextButtonTop.classList.add('arrow');
+            nextButtonBottom.classList.add('arrow');
+            nextButtonTop.addEventListener('click', () => loadImages(page + 1));
+            nextButtonBottom.addEventListener('click', () => loadImages(page + 1));
+            paginationTop.appendChild(nextButtonTop);
+            paginationBottom.appendChild(nextButtonBottom);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+// Load images initially
+loadImages(currentPage);
+
+
 });
 
-    </script>
+</script>
+
+
     <script>
         // JavaScript to handle the header fade in and out on scroll
         let lastScrollTop = 0;
