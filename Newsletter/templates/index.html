@@ -3,185 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Newsletter Subscription</title>
-    
+    <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/x-icon" href="Photos/PicHubStudios-Circle.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
-            color: #e0e0e0;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-        }
-
-        h1 {
-            text-align: center;
-            color: #e0f2f1;
-            margin-bottom: 20px;
-            font-size: 2.5rem; /* Responsive font size */
-            font-weight: 400;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
-        }
-
-        #subscriptionForm {
-            max-width: 90%;
-            width: 100%;
-            padding: 20px;
-            background: linear-gradient(135deg, #2c2c2c, #1c1c1c);
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
-            border: 1px solid #444;
-            animation: fadeIn 1s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #b0bec5;
-            text-transform: capitalize;
-            font-size: 1rem; /* Responsive font size */
-        }
-
-        input[type="text"], input[type="email"] {
-            width: calc(100% - 24px);
-            height: 35px;
-            margin-bottom: 18px;
-            padding: 0 12px;
-            border: 1px solid #666;
-            border-radius: 8px;
-            background-color: #444;
-            color: #e0e0e0;
-            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
-            font-size: 1rem; /* Responsive font size */
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-
-        input[type="text"]:focus, input[type="email"]:focus {
-            border-color: #575454;
-            box-shadow: 0 0 8px #333;
-            outline: none;
-        }
-
-        input[type="checkbox"] {
-            margin-right: 10px;
-            transform: scale(1.2);
-            cursor: pointer;
-            accent-color: #4caf50;
-        }
-
-        button[type="submit"] {
-            width: 100%;
-            height: 45px;
-            background-color: #4caf50;
-            color: #ffffff;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 700;
-            font-size: 1rem; /* Responsive font size */
-            text-transform: uppercase;
-            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
-            margin-top: 10px;
-        }
-
-        button[type="submit"]:hover {
-            background-color: #388e3c;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
-        }
-
-        /* Improved "Go Back" button */
-        button.go-back, button.home {
-            width: 49.6%;
-            height: 40px;
-            background: transparent;
-            color: #b0bec5;
-            border: 2px solid #4caf50;
-            border-radius: 8px;
-            font-size: 1rem; /* Responsive font size */
-            font-weight: 600;
-            text-transform: uppercase;
-            cursor: pointer;
-            margin-top: 15px;
-            transition: background-color 0.4s, border-color 0.4s, box-shadow 0.4s, color 0.4s;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-            display: inline-block;
-            text-align: center;
-        }
-
-        button.go-back:hover, button.home:hover {
-            background-color: #4caf50;
-            border-color: #4caf50;
-            color: #ffffff;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.7);
-            transform: translateY(-3px);
-        }
-
-    
-
-        #message {
-            text-align: center;
-            color: #e0e0e0;
-            margin-top: 20px;
-            font-size: 1.125rem; /* Responsive font size */
-            font-weight: 600;
-        }
-
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
-        /* Media Queries for Responsiveness */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem; /* Smaller font size for tablets and small desktops */
-            }
-
-            input[type="text"], input[type="email"] {
-                font-size: 0.875rem; /* Smaller font size */
-            }
-
-            button[type="submit"], button.go-back, button.home {
-                font-size: 0.875rem; /* Smaller font size */
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.5rem; /* Smaller font size for mobile devices */
-            }
-
-            #subscriptionForm {
-                padding: 15px;
-                max-width: 100%;
-            }
-
-            input[type="text"], input[type="email"] {
-                height: 30px; /* Smaller input fields */
-                font-size: 0.75rem; /* Smaller font size */
-            }
-
-            button[type="submit"], button.go-back, button.home {
-                height: 35px;
-                font-size: 0.75rem; /* Smaller font size */
-            }
-        }
-    </style>
 </head>
 <body>
+    <body>
+        <div id="cookieConsent" style="display: none;">
+          <div id="cookieConsentPopup">
+              <p>This website doesn’t store any cookies or data on your device.</p>
+              <button id="cookieConsentButton">Got it!</button>
+          </div>
+      </div>
+      
+      
+      
+      <!-- JavaScript -->
+      <script>
+          document.addEventListener("DOMContentLoaded", function () {
+              var consent = document.getElementById("cookieConsent");
+              var consentButton = document.getElementById("cookieConsentButton");
+      
+              // Check if the user has already seen the consent popup
+              if (!sessionStorage.getItem("cookieConsentSeen")) {
+                  // Show the consent popup
+                  consent.style.display = "block";
+              }
+      
+              // Hide the popup and set session storage item when the button is clicked
+              consentButton.onclick = function () {
+                  consent.style.display = "none";
+                  sessionStorage.setItem("cookieConsentSeen", "true");
+              };
+          });
+      </script>
+
+      
     <div id="container">
         <form id="subscriptionForm">
             <h1>Subscribe to Our Newsletter</h1>
@@ -191,8 +48,10 @@
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
 
-            <input type="checkbox" id="privacyPolicy" name="privacyPolicy" required>
-            <label for="privacyPolicy">I have read and understood the Privacy Policy</label>
+            <div class="checkbox-container">
+                <input type="checkbox" id="privacyPolicy" name="privacyPolicy" required>
+                <label for="privacyPolicy">I have read and understood the Privacy Policy</label>
+            </div>
 
             <button type="submit">Subscribe</button>
             <button type="button" class="go-back" onclick="goBack()">Go Back</button>
@@ -202,17 +61,13 @@
         <p id="message"></p>
     </div>
 
-
-
-    
-
     <script>
         function goBack() {
             window.history.back();
         }
 
         function goHome() {
-            window.location.href = 'https://pichub.co.uk'; // Replace with your homepage URL
+            window.location.href = 'https://pichub.npatel.co.uk'; // Replace with your homepage URL
         }
 
         document.getElementById('subscriptionForm').addEventListener('submit', function(event) {
