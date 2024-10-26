@@ -1,94 +1,117 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    text-align: center;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+body {
 
+        font-family: 'Playlist Script', cursive;
 
+    overflow: hidden;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.video-background {
+.background {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: -1;
-}
-.video-background video {
-    width: 100%;
-    height: 100%;
-    object-fit: fill;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #ffe0bd, #ff6347);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+    z-index: -1; /* Place behind content */
 }
 
-.content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 20px;
-    max-width: 80%;
-    background-color: rgba(0, 0, 0, 0.7);
-    border-radius: 10px;
-    box-shadow: 0 0 80px rgba(0, 0, 0, 0.2);
+.container {
     text-align: center;
-    color: white;
+    max-width: 600px;
+    position: relative;
+    z-index: 1; /* Bring content in front */
 }
-
 
 h1 {
-    font-size: 3em;
-    color: #e0e0e0;
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    opacity: 0; /* Start invisible */
+    animation: fadeIn 1s forwards; /* Fade-in animation */
+    body {
+    font-family: 'Playlist Script', cursive;
 }
+
+}
+
 p {
-    font-size: 2em;
-    color: #e0e0e0;
-}
-.countdown {
-    margin-top: 10px;
     font-size: 1.5em;
-    color: #e0e0e0;
+    color: black; /* Ensure the text is black */
+    opacity: 0; /* Start invisible */
+    animation: slideIn 1s forwards 0.5s; /* Slide-in animation */
+}
+
+.loader {
+    margin-top: 30px;
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    border-top: 5px solid #ff6347; /* Spin color */
+    animation: spin 1s linear infinite; /* Spinner animation */
+}
+
+.explore-button {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 12px 24px;
+    background-color: #ff6347; /* Button color */
+    color: white; /* Button text color */
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    opacity: 0; /* Start invisible */
+    animation: fadeIn 1s forwards 1s; /* Fade-in animation */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.explore-button:hover {
+    background-color: #ff4500; /* Darker shade on hover */
+    transform: scale(1.1); /* Button grows slightly on hover */
+}
+
+/* Keyframes for animations */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }

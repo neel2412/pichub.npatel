@@ -77,7 +77,7 @@ body {
     text-align: center;
     text-transform: uppercase;
     font-weight: 900;
-    
+    font-family: 'Playlist Script', cursive;
     
 }
 
@@ -211,6 +211,7 @@ body {
 
     .text-container h1 {
         font-size: 80px;
+
     }
 }
 
