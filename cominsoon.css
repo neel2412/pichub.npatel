@@ -10,28 +10,18 @@ body, html {
         linear-gradient(180deg, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.4) 20%, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 0.6) 40%, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0.8) 60%, rgba(0, 0, 0, 0.8) 80%, rgba(0, 0, 0, 0.9) 80%);
   }
   
-  .bgimg {
-    /* Background image */
+/* General Styles for All Devices */
+.bgimg {
     background-image: url('/w3images/forestbridge.jpg');
-    /* Full-screen */
-    height: 100%;
-    /* Center the background image */
+    height: 100vh; /* Set to 100% of the viewport height */
     background-position: center;
-    /* Scale and zoom in the image */
     background-size: cover;
-    /* Add position: relative to enable absolutely positioned elements inside the image (place text) */
     position: relative;
-    /* Add a white text color to all elements inside the .bgimg container */
     color: rgb(0, 0, 0);
-    /* Add a font */
     font-family: "Courier New", Courier, monospace;
-    /* Set the font-size to 25 pixels */
     font-size: 25px;
   }
   
-
-  
-  /* Position text in the middle */
   .middle {
     position: absolute;
     top: 50%;
@@ -42,18 +32,115 @@ body, html {
     background-color: #000000ce;
     height: 50vh;
     width: 50vw;
-    justify-content: center;
-    align-content: center;
     color: #fff;
     border-radius: 5px;
+    align-content: center;
+    justify-content: center
   }
-
   
-  
-  /* Style the <hr> element */
   hr {
     margin: auto;
     width: 50%;
     background-color: #fff;
     height: 2px;
   }
+  
+  /* Media Query for Tablets and Phones */
+  @media (max-width: 768px) {
+    .bgimg {
+      font-size: 20px; /* Reduce font size for smaller screens */
+    }
+    
+    .middle {
+      font-size: 2.5em; /* Reduce font size for the middle text */
+      height: 40vh; /* Adjust height of the middle element */
+      width: 70vw; /* Adjust width of the middle element */
+    }
+  }
+  
+  /* Media Query for Phones */
+  @media (max-width: 480px) {
+    .bgimg {
+      font-size: 18px; /* Further reduce font size for small phones */
+    }
+    
+    .middle {
+      font-size: 2em; /* Further reduce font size for the middle text */
+      height: 30vh; /* Adjust height of the middle element */
+      width: 80vw; /* Adjust width of the middle element */
+    }
+  }
+  
+
+  
+/* Cookies Consent CSS */
+#cookieConsent {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    overflow: hidden;
+    animation: fadeIn 0.5s ease-out;
+}
+
+#cookieConsentPopup {
+    background-color: #222;
+    color: #eee;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 350px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    font-family: Arial, sans-serif;
+    text-align: center;
+    opacity: 0;
+    animation: slideIn 0.5s ease-out forwards;
+}
+
+#cookieConsentPopup p {
+    margin: 0 0 15px 0;
+    font-size: 14px;
+}
+
+#cookieConsentPopup button {
+    background-color: #444;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+#cookieConsentPopup button:hover {
+    background-color: #555;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translate(-50%, -60%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
