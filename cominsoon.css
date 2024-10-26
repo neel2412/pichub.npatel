@@ -1,0 +1,59 @@
+/* Set height to 100% for body and html to enable the background image to cover the whole page: */
+body, html {
+    height: 100%;
+    background : 
+        linear-gradient(180deg, rgba(255, 224, 189, 0) 20%, rgba(255, 224, 189, 0.1) 20%, rgba(255, 224, 189, 0.1) 40%, rgba(255, 224, 189, 0.2) 40%, rgba(255, 224, 189, 0.2) 60%, rgba(255, 224, 189, 0.4) 60%, rgba(255, 224, 189, 0.4) 80%, rgba(255, 224, 189, 0.5) 80%),
+        linear-gradient(45deg, rgba(255, 255, 255, 0.3) 20%, rgba(255, 255, 255, 0.4) 20%, rgba(255, 255, 255, 0.4) 40%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.5) 60%, rgba(255, 255, 255, 0.6) 60%, rgba(255, 255, 255, 0.6) 80%, rgba(255, 255, 255, 0.7) 80%),
+        linear-gradient(-45deg, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.1) 20%, rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.2) 40%, rgba(0, 0, 0, 0.2) 60%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0.4) 80%, rgba(0, 0, 0, 0.6) 80%),
+        linear-gradient(90deg, rgba(255, 224, 189, 0) 20%, rgba(255, 224, 189, 0.3) 20%, rgba(255, 224, 189, 0.3) 40%, rgba(255, 224, 189, 0.5) 40%, rgba(255, 224, 189, 0.5) 60%, rgba(255, 224, 189, 0.7) 60%, rgba(255, 224, 189, 0.7) 80%, rgba(255, 224, 189, 0.8) 80%),
+        linear-gradient(-90deg, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0.4) 20%, rgba(255, 255, 255, 0.4) 40%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.5) 60%, rgba(255, 255, 255, 0.6) 60%, rgba(255, 255, 255, 0.6) 80%, rgba(255, 255, 255, 0.8) 80%),
+        linear-gradient(180deg, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.4) 20%, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 0.6) 40%, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0.8) 60%, rgba(0, 0, 0, 0.8) 80%, rgba(0, 0, 0, 0.9) 80%);
+  }
+  
+  .bgimg {
+    /* Background image */
+    background-image: url('/w3images/forestbridge.jpg');
+    /* Full-screen */
+    height: 100%;
+    /* Center the background image */
+    background-position: center;
+    /* Scale and zoom in the image */
+    background-size: cover;
+    /* Add position: relative to enable absolutely positioned elements inside the image (place text) */
+    position: relative;
+    /* Add a white text color to all elements inside the .bgimg container */
+    color: rgb(0, 0, 0);
+    /* Add a font */
+    font-family: "Courier New", Courier, monospace;
+    /* Set the font-size to 25 pixels */
+    font-size: 25px;
+  }
+  
+
+  
+  /* Position text in the middle */
+  .middle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 3em;
+    background-color: #000000ce;
+    height: 50vh;
+    width: 50vw;
+    justify-content: center;
+    align-content: center;
+    color: #fff;
+    border-radius: 5px;
+  }
+
+  
+  
+  /* Style the <hr> element */
+  hr {
+    margin: auto;
+    width: 50%;
+    background-color: #fff;
+    height: 2px;
+  }
