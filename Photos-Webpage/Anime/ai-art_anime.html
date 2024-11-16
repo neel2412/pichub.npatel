@@ -197,22 +197,24 @@
 <script>
     let currentPage = 1;
 const imagesPerPage = 20;
-const totalImages = 100; // Total number of images (adjust as needed)
-const folderPath = 'Anime/Ai-art/'; // Folder path where images are stored
+const totalImages = 100; // Total number of images, adjust accordingly
+const folderPath = ''; // No predefined folder, categories will be dynamic
 
-// Open the modal with the full image and set up the download link
-function openModal(src) {
+function openModal(src, category) {
     const modalImage = document.getElementById('modalImage');
     const imageModal = document.getElementById('imageModal');
     const imgContainer = document.querySelector('#imageModal .img-container');
     const modalDownloadBtn = document.getElementById('modalDownloadBtn');
 
     modalImage.src = src;
-    
-    // Change the download link to open the download page in a new tab
+
+    // Extract the image filename from the URL (e.g., 'image123.jpg')
+    const imageName = src.split('/').pop();
+
+    // Update the download button to point to the downloader page with category and photo in the URL
     modalDownloadBtn.onclick = function() {
-        // Open the downloader page with the image name as a query parameter
-        window.open(`https://pichub.npatel.co.uk/downloader/index.html?photo=${src.split('/').pop()}`, '_blank');
+        // Open the downloader page and pass category and photo in the URL
+        window.open(`https://pichub.npatel.co.uk/downloader/index.html?category=${category}&photo=${imageName}`, '_blank');
     };
 
     imgContainer.style.width = 'auto';
@@ -249,8 +251,7 @@ function closeModal() {
     document.getElementById('imageModal').style.display = 'none';
 }
 
-// Load images for the gallery
-function loadImages(page = 1) {
+function loadImages(page = 1, category = '') {
     const w3RowPadding = document.getElementById('photoGrid');
     const screenWidth = window.innerWidth;
     let columnCount = 4;
@@ -282,19 +283,16 @@ function loadImages(page = 1) {
         const imgContainer = document.createElement('div');
         imgContainer.classList.add('img-container');
 
+        // Dynamically build image path with category (if available)
+        const imgPath = category ? `${category}/image${i}.jpg` : `image${i}.jpg`;
+
         const img = document.createElement('img');
-        const lowResPath = `${folderPath}${i}.jpg?res=low`; // Request for lower resolution image
-        img.src = lowResPath; // Low resolution for gallery view
+        img.src = imgPath;
         img.alt = `Image ${i}`;
+        img.addEventListener('click', () => openModal(img.src, category));
 
-        // Check if the image exists before adding it to the gallery
         img.onload = loadComplete;
-        img.onerror = function() {
-            console.error(`Failed to load image: ${lowResPath}`);
-            loadComplete();
-        };
-
-        img.addEventListener('click', () => openModal(`${folderPath}${i}.jpg`));  // Full image for modal view
+        img.onerror = loadComplete;
 
         imgContainer.appendChild(img);
 
@@ -306,16 +304,16 @@ function loadImages(page = 1) {
         const previewText = document.createElement('div');
         previewText.classList.add('preview-text');
         previewText.textContent = 'Preview';
+
         imgContainer.appendChild(previewText);
 
         w3RowPadding.children[(startImage - i) % columnCount].appendChild(imgContainer);
     }
 
-    createPagination(totalPages, page);
+    createPagination(totalPages, page, category);
 }
 
-// Create pagination buttons for gallery navigation
-function createPagination(totalPages, page) {
+function createPagination(totalPages, page, category) {
     const paginationTop = document.getElementById('paginationTop');
     const paginationBottom = document.getElementById('paginationBottom');
     paginationTop.innerHTML = '';
@@ -328,8 +326,8 @@ function createPagination(totalPages, page) {
         prevButtonBottom.innerHTML = '&laquo;';
         prevButtonTop.classList.add('arrow');
         prevButtonBottom.classList.add('arrow');
-        prevButtonTop.addEventListener('click', () => loadImages(page - 1));
-        prevButtonBottom.addEventListener('click', () => loadImages(page - 1));
+        prevButtonTop.addEventListener('click', () => loadImages(page - 1, category));
+        prevButtonBottom.addEventListener('click', () => loadImages(page - 1, category));
         paginationTop.appendChild(prevButtonTop);
         paginationBottom.appendChild(prevButtonBottom);
     }
@@ -354,8 +352,8 @@ function createPagination(totalPages, page) {
             buttonBottom.style.fontSize = '1.5em';
         }
 
-        buttonTop.addEventListener('click', () => loadImages(i));
-        buttonBottom.addEventListener('click', () => loadImages(i));
+        buttonTop.addEventListener('click', () => loadImages(i, category));
+        buttonBottom.addEventListener('click', () => loadImages(i, category));
 
         paginationTop.appendChild(buttonTop);
         paginationBottom.appendChild(buttonBottom);
@@ -368,15 +366,20 @@ function createPagination(totalPages, page) {
         nextButtonBottom.innerHTML = '&raquo;';
         nextButtonTop.classList.add('arrow');
         nextButtonBottom.classList.add('arrow');
-        nextButtonTop.addEventListener('click', () => loadImages(page + 1));
-        nextButtonBottom.addEventListener('click', () => loadImages(page + 1));
+        nextButtonTop.addEventListener('click', () => loadImages(page + 1, category));
+        nextButtonBottom.addEventListener('click', () => loadImages(page + 1, category));
         paginationTop.appendChild(nextButtonTop);
         paginationBottom.appendChild(nextButtonBottom);
     }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    loadImages(currentPage);
+    // Get the category from the URL (optional)
+    const urlParams = new URLSearchParams(window.location.search);
+    const category = urlParams.get('category') || ''; // Default to an empty string if no category is passed
+    
+    // Load images based on the page and category
+    loadImages(currentPage, category);
 });
 
 </script>

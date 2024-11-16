@@ -3,30 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download Image</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Image Download</title>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        #imagePreview {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        #downloadBtn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-
-    <div id="downloadContainer">
-        <h2>Download Image</h2>
-        <img id="downloadImage" src="" alt="Image for download" />
-        <a id="downloadBtn" href="" download>Download Full-Resolution Image</a>
-    </div>
+    <h1>Image Preview</h1>
+    <img id="imagePreview" src="" alt="Preview Image">
+    <br>
+    <button id="downloadBtn">Download Image</button>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const photoId = urlParams.get('photo');
-            const fullImageSrc = `https://pichub.npatel.co.uk/Anime/Ai-art/${photoId}`;  // Full image URL
+        // Get the 'category' and 'photo' from the URL query parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const category = urlParams.get('category'); // e.g., 'Ai-art'
+        const photo = urlParams.get('photo'); // e.g., 'image123.jpg'
 
-            // Set the image source for preview and the download link
-            const downloadImage = document.getElementById('downloadImage');
-            const downloadBtn = document.getElementById('downloadBtn');
-            downloadImage.src = fullImageSrc;
-            downloadBtn.href = fullImageSrc;
-        });
+        if (category && photo) {
+            // Set the preview image source dynamically
+            const imagePath = `${category}/${photo}`;
+            document.getElementById('imagePreview').src = imagePath;
+
+            // Set the download button to download the actual image
+            document.getElementById('downloadBtn').onclick = function() {
+                const link = document.createElement('a');
+                link.href = imagePath; // Use the dynamically constructed path
+                link.download = photo; // Keep the same filename as the image
+                link.click();
+            };
+        } else {
+            alert("No image or category found in URL.");
+        }
     </script>
-
 </body>
 </html>
