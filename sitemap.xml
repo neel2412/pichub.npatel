@@ -1,54 +1,92 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-		<!--	created with www.mysitemapgenerator.com	-->
-		<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
 <url>
-	<loc>https://pichub.co.uk/</loc>
-	<lastmod>2024-09-17T22:45:45+01:00</lastmod>
-	<priority>1.0</priority>
+  <loc>https://pichub.npatel.co.uk/</loc>
+  <lastmod>2024-11-16T18:19:15+00:00</lastmod>
+  <priority>1.00</priority>
 </url>
 <url>
-	<loc>https://pichub.co.uk/gallery</loc>
-	<lastmod>2024-09-17T22:45:45+01:00</lastmod>
-	<priority>1.0</priority>
+  <loc>https://pichub.npatel.co.uk/about-us/about%20us</loc>
+  <lastmod>2024-11-16T18:19:15+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-	<loc>https://pichub.co.uk/contactus</loc>
-	<lastmod>2024-09-17T22:45:45+01:00</lastmod>
-	<priority>1.0</priority>
+  <loc>https://pichub.npatel.co.uk/gallery/gallery</loc>
+  <lastmod>2024-11-16T18:19:15+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-	<loc>https://pichub.co.uk/newsletter/templates/</loc>
-	<lastmod>2024-09-17T22:45:45+01:00</lastmod>
-	<priority>0.6</priority>
+  <loc>https://pichub.npatel.co.uk/newsletter/templates/</loc>
+  <lastmod>2024-11-16T18:19:15+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-	<loc>https://pichub.co.uk/about%20us</loc>
-	<lastmod>2024-09-17T22:45:45+01:00</lastmod>
-	<priority>1.0</priority>
+  <loc>https://pichub.npatel.co.uk/comingsoon</loc>
+  <lastmod>2024-11-16T18:19:15+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-	<loc>https://pichub.co.uk/anime/anime_gallery</loc>
-	<lastmod>2024-09-17T22:45:47+01:00</lastmod>
-	<priority>0.8</priority>
+  <loc>https://pichub.npatel.co.uk/photos-webpage/vintage/vintage</loc>
+  <lastmod>2024-11-16T18:19:15+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-	<loc>https://pichub.co.uk/vintage/vintage</loc>
-	<lastmod>2024-09-17T22:45:47+01:00</lastmod>
-	<priority>0.8</priority>
+  <loc>https://pichub.npatel.co.uk/photos-webpage/anime/anime_gallery</loc>
+  <lastmod>2024-11-16T18:19:15+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-	<loc>https://pichub.co.uk/comingsoon</loc>
-	<lastmod>2024-09-17T22:45:47+01:00</lastmod>
-	<priority>1.0</priority>
+  <loc>https://pichub.npatel.co.uk/photos-webpage/digital%20painting/digital-painting</loc>
+  <lastmod>2024-11-16T18:19:15+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 <url>
-	<loc>https://pichub.co.uk/digital%20painting/digital-painting</loc>
-	<lastmod>2024-09-17T22:45:47+01:00</lastmod>
-	<priority>0.8</priority>
+  <loc>https://pichub.npatel.co.uk/photos-webpage/anime/tokyo-ghoul_anime</loc>
+  <lastmod>2024-11-16T18:19:15+00:00</lastmod>
+  <priority>0.51</priority>
 </url>
 <url>
-	<loc>https://pichub.co.uk/privacy%20policy</loc>
-	<lastmod>2024-09-17T22:45:48+01:00</lastmod>
-	<priority>1.0</priority>
+  <loc>https://pichub.npatel.co.uk/photos-webpage/anime/naruto_anime</loc>
+  <lastmod>2024-11-16T18:19:15+00:00</lastmod>
+  <priority>0.51</priority>
 </url>
+<url>
+  <loc>https://pichub.npatel.co.uk/photos-webpage/anime/jujutsu-kaisen_anime</loc>
+  <lastmod>2024-11-16T18:19:15+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://pichub.npatel.co.uk/photos-webpage/anime/tokyo-revengers_anime</loc>
+  <lastmod>2024-11-16T18:19:15+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://pichub.npatel.co.uk/photos-webpage/anime/dbs_anime</loc>
+  <lastmod>2024-11-16T18:19:15+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://pichub.npatel.co.uk/photos-webpage/anime/solo-leveling_anime</loc>
+  <lastmod>2024-11-16T18:19:15+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://pichub.npatel.co.uk/photos-webpage/anime/demon-slayer_anime</loc>
+  <lastmod>2024-11-16T18:19:15+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://pichub.npatel.co.uk/photos-webpage/anime/ai-art_anime</loc>
+  <lastmod>2024-11-16T18:19:15+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+
+
 </urlset>
