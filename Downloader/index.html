@@ -3,84 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download Photo</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f4f4f4;
-        }
-        #container {
-            text-align: center;
-            max-width: 90%;
-            margin: 20px;
-        }
-        img {
-            width: 80%;
-            height: auto;
-            border-radius: 10px;
-        }
-        .download-btn, .back-btn {
-            display: inline-block;
-            padding: 10px 20px;
-            margin-top: 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            color: white;
-        }
-        .download-btn {
-            background-color: #007bff;
-        }
-        .download-btn:hover {
-            background-color: #0056b3;
-        }
-        .back-btn {
-            background-color: #28a745;
-        }
-        .back-btn:hover {
-            background-color: #218838;
-        }
-    </style>
+    <title>Download Image</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="container">
-        <img id="photo" src="" alt="Selected Photo">
-        <br>
-        <a id="download-link" href="" download class="download-btn">Download High-Resolution Photo</a>
-        <br>
-        <a href="index.html" class="back-btn">Back to Gallery</a>
+
+    <div id="downloadContainer">
+        <h2>Download Image</h2>
+        <img id="downloadImage" src="" alt="Image for download" />
+        <a id="downloadBtn" href="" download>Download Full-Resolution Image</a>
     </div>
 
     <script>
-        // Get the URL parameter (photo)
-        const urlParams = new URLSearchParams(window.location.search);
-        const photo = urlParams.get('photo');  // The image name (without extension)
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const photoId = urlParams.get('photo');
+            const fullImageSrc = `https://pichub.npatel.co.uk/Anime/Ai-art/${photoId}`;  // Full image URL
 
-        const folderPath = 'Anime/Ai-art/';  // Root folder for images
-
-        if (photo) {
-            const photoElement = document.getElementById('photo');
-            const downloadLink = document.getElementById('download-link');
-            
-            // Construct the image paths
-            const previewImage = `${folderPath}${photo}_thumb.jpg`;  // Thumbnail (low-res)
-            const fullImage = `${folderPath}${photo}_full.jpg`;  // Full image (high-res)
-
-            // Set the preview image (low-resolution)
-            photoElement.src = previewImage;
-            photoElement.alt = `Preview of ${photo}`;
-
-            // Set the download link to the full resolution image
-            downloadLink.href = fullImage;
-            downloadLink.download = `${photo}_full.jpg`;  // Ensure the file is named correctly
-        } else {
-            document.getElementById('container').innerHTML = '<p>Photo not found!</p>';
-        }
+            // Set the image source for preview and the download link
+            const downloadImage = document.getElementById('downloadImage');
+            const downloadBtn = document.getElementById('downloadBtn');
+            downloadImage.src = fullImageSrc;
+            downloadBtn.href = fullImageSrc;
+        });
     </script>
+
 </body>
 </html>
