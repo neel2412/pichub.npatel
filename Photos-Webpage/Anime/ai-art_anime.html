@@ -195,26 +195,24 @@
     
 
 <script>
-    let currentPage = 1;
+let currentPage = 1;
 const imagesPerPage = 20;
-const totalImages = 100; // Total number of images, adjust accordingly
-const folderPath = 'Anime/Ai-art/'; // No predefined folder, categories will be dynamic
+const totalImages = 100; // Total number of images (adjust as needed)
+const folderPath = 'Anime/Ai-art/'; // Folder path where images are stored
 
-function openModal(src, category) {
+// Open the modal with the full image and set up the download link
+function openModal(src) {
     const modalImage = document.getElementById('modalImage');
     const imageModal = document.getElementById('imageModal');
     const imgContainer = document.querySelector('#imageModal .img-container');
     const modalDownloadBtn = document.getElementById('modalDownloadBtn');
 
     modalImage.src = src;
-
-    // Extract the image filename from the URL (e.g., 'image123.jpg')
-    const imageName = src.split('/').pop();
-
-    // Update the download button to point to the downloader page with category and photo in the URL
+    
+    // Change the download link to open the download page in a new tab
     modalDownloadBtn.onclick = function() {
-        // Open the downloader page and pass category and photo in the URL
-        window.open(`https://pichub.npatel.co.uk/downloader/index.html?category=${category}&photo=${imageName}`, '_blank');
+        // Open the downloader page with the image name as a query parameter
+        window.open(`https://pichub.npatel.co.uk/photos-webpage/anime/ai-art_anime-downloader?photo=${src.split('/').pop()}`, '_blank');
     };
 
     imgContainer.style.width = 'auto';
@@ -251,7 +249,8 @@ function closeModal() {
     document.getElementById('imageModal').style.display = 'none';
 }
 
-function loadImages(page = 1, category = '') {
+// Load images for the gallery
+function loadImages(page = 1) {
     const w3RowPadding = document.getElementById('photoGrid');
     const screenWidth = window.innerWidth;
     let columnCount = 4;
@@ -283,16 +282,19 @@ function loadImages(page = 1, category = '') {
         const imgContainer = document.createElement('div');
         imgContainer.classList.add('img-container');
 
-        // Dynamically build image path with category (if available)
-        const imgPath = category ? `${category}/image${i}.jpg` : `image${i}.jpg`;
-
         const img = document.createElement('img');
-        img.src = imgPath;
+        const lowResPath = `${folderPath}${i}.jpg?res=low`; // Request for lower resolution image
+        img.src = lowResPath; // Low resolution for gallery view
         img.alt = `Image ${i}`;
-        img.addEventListener('click', () => openModal(img.src, category));
 
+        // Check if the image exists before adding it to the gallery
         img.onload = loadComplete;
-        img.onerror = loadComplete;
+        img.onerror = function() {
+            console.error(`Failed to load image: ${lowResPath}`);
+            loadComplete();
+        };
+
+        img.addEventListener('click', () => openModal(`${folderPath}${i}.jpg`));  // Full image for modal view
 
         imgContainer.appendChild(img);
 
@@ -304,16 +306,16 @@ function loadImages(page = 1, category = '') {
         const previewText = document.createElement('div');
         previewText.classList.add('preview-text');
         previewText.textContent = 'Preview';
-
         imgContainer.appendChild(previewText);
 
         w3RowPadding.children[(startImage - i) % columnCount].appendChild(imgContainer);
     }
 
-    createPagination(totalPages, page, category);
+    createPagination(totalPages, page);
 }
 
-function createPagination(totalPages, page, category) {
+// Create pagination buttons for gallery navigation
+function createPagination(totalPages, page) {
     const paginationTop = document.getElementById('paginationTop');
     const paginationBottom = document.getElementById('paginationBottom');
     paginationTop.innerHTML = '';
@@ -326,8 +328,8 @@ function createPagination(totalPages, page, category) {
         prevButtonBottom.innerHTML = '&laquo;';
         prevButtonTop.classList.add('arrow');
         prevButtonBottom.classList.add('arrow');
-        prevButtonTop.addEventListener('click', () => loadImages(page - 1, category));
-        prevButtonBottom.addEventListener('click', () => loadImages(page - 1, category));
+        prevButtonTop.addEventListener('click', () => loadImages(page - 1));
+        prevButtonBottom.addEventListener('click', () => loadImages(page - 1));
         paginationTop.appendChild(prevButtonTop);
         paginationBottom.appendChild(prevButtonBottom);
     }
@@ -352,8 +354,8 @@ function createPagination(totalPages, page, category) {
             buttonBottom.style.fontSize = '1.5em';
         }
 
-        buttonTop.addEventListener('click', () => loadImages(i, category));
-        buttonBottom.addEventListener('click', () => loadImages(i, category));
+        buttonTop.addEventListener('click', () => loadImages(i));
+        buttonBottom.addEventListener('click', () => loadImages(i));
 
         paginationTop.appendChild(buttonTop);
         paginationBottom.appendChild(buttonBottom);
@@ -366,22 +368,16 @@ function createPagination(totalPages, page, category) {
         nextButtonBottom.innerHTML = '&raquo;';
         nextButtonTop.classList.add('arrow');
         nextButtonBottom.classList.add('arrow');
-        nextButtonTop.addEventListener('click', () => loadImages(page + 1, category));
-        nextButtonBottom.addEventListener('click', () => loadImages(page + 1, category));
+        nextButtonTop.addEventListener('click', () => loadImages(page + 1));
+        nextButtonBottom.addEventListener('click', () => loadImages(page + 1));
         paginationTop.appendChild(nextButtonTop);
         paginationBottom.appendChild(nextButtonBottom);
     }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Get the category from the URL (optional)
-    const urlParams = new URLSearchParams(window.location.search);
-    const category = urlParams.get('category') || ''; // Default to an empty string if no category is passed
-    
-    // Load images based on the page and category
-    loadImages(currentPage, category);
+    loadImages(currentPage);
 });
-
 </script>
 
 
