@@ -195,178 +195,189 @@
     
 
 <script>
-    let currentPage = 1;
-    const imagesPerPage = 20;
-    const totalImages = 93; // Total number of images
-    const folderPath = 'Anime/tokyo-ghoul/';
+    
+let currentPage = 1;
+const imagesPerPage = 20;
+const totalImages = 100; // Total number of images (adjust as needed)
+const folderPath = 'Anime/Ai-art/'; // Folder path where images are stored
 
-    function openModal(src) {
-        const modalImage = document.getElementById('modalImage');
-        const imageModal = document.getElementById('imageModal');
-        const imgContainer = document.querySelector('#imageModal .img-container');
-        const modalDownloadBtn = document.getElementById('modalDownloadBtn');
+// Open the modal with the full image and set up the download link
+function openModal(src) {
+    const modalImage = document.getElementById('modalImage');
+    const imageModal = document.getElementById('imageModal');
+    const imgContainer = document.querySelector('#imageModal .img-container');
+    const modalDownloadBtn = document.getElementById('modalDownloadBtn');
 
-        modalImage.src = src;
-        modalDownloadBtn.href = src;
+    modalImage.src = src;
+    
+    // Change the download link to open the download page in a new tab
+    modalDownloadBtn.onclick = function() {
+        // Open the downloader page with the image name as a query parameter
+        window.open(`https://pichub.npatel.co.uk/photos-webpage/anime/tokyo-ghoul_anime-downloader?photo=${src.split('/').pop()}`, '_blank');
+    };
 
-        imgContainer.style.width = 'auto';
-        imgContainer.style.height = 'auto';
+    imgContainer.style.width = 'auto';
+    imgContainer.style.height = 'auto';
 
-        imageModal.style.display = 'flex';
+    imageModal.style.display = 'flex';
 
-        if (modalImage.complete) {
-            adjustModal();
+    if (modalImage.complete) {
+        adjustModal();
+    } else {
+        modalImage.onload = adjustModal;
+    }
+
+    modalImage.onerror = function() {
+        console.error('Image failed to load.');
+        imageModal.style.display = 'none';
+    };
+
+    function adjustModal() {
+        const imgAspectRatio = modalImage.naturalWidth / modalImage.naturalHeight;
+        const containerAspectRatio = imgContainer.clientWidth / imgContainer.clientHeight;
+
+        if (imgAspectRatio > containerAspectRatio) {
+            imgContainer.style.width = '90%';
+            imgContainer.style.height = 'auto';
         } else {
-            modalImage.onload = adjustModal;
+            imgContainer.style.width = 'auto';
+            imgContainer.style.height = '90%';
         }
+    }
+}
 
-        modalImage.onerror = function() {
-            console.error('Image failed to load.');
-            imageModal.style.display = 'none';
+function closeModal() {
+    document.getElementById('imageModal').style.display = 'none';
+}
+
+// Load images for the gallery
+function loadImages(page = 1) {
+    const w3RowPadding = document.getElementById('photoGrid');
+    const screenWidth = window.innerWidth;
+    let columnCount = 4;
+
+    if (screenWidth <= 1600) columnCount = (screenWidth > 1200) ? 3 : (screenWidth > 768) ? 2 : 1;
+
+    const startImage = totalImages - (page - 1) * imagesPerPage;
+    const endImage = Math.max(totalImages - page * imagesPerPage + 1, 1);
+
+    const totalPages = Math.ceil(totalImages / imagesPerPage);
+
+    w3RowPadding.innerHTML = '';
+    for (let i = 0; i < columnCount; i++) {
+        const column = document.createElement('div');
+        column.classList.add('w3-column');
+        w3RowPadding.appendChild(column);
+    }
+
+    let loadedImages = 0;
+    const totalToLoad = startImage - endImage + 1;
+    const loadComplete = () => {
+        loadedImages++;
+        if (loadedImages === totalToLoad) {
+            w3RowPadding.classList.add('show');
+        }
+    };
+
+    for (let i = startImage; i >= endImage; i--) {
+        const imgContainer = document.createElement('div');
+        imgContainer.classList.add('img-container');
+
+        const img = document.createElement('img');
+        const lowResPath = `${folderPath}${i}.jpg?res=low`; // Request for lower resolution image
+        img.src = lowResPath; // Low resolution for gallery view
+        img.alt = `Image ${i}`;
+
+        // Check if the image exists before adding it to the gallery
+        img.onload = loadComplete;
+        img.onerror = function() {
+            console.error(`Failed to load image: ${lowResPath}`);
+            loadComplete();
         };
 
-        function adjustModal() {
-            const imgAspectRatio = modalImage.naturalWidth / modalImage.naturalHeight;
-            const containerAspectRatio = imgContainer.clientWidth / imgContainer.clientHeight;
+        img.addEventListener('click', () => openModal(`${folderPath}${i}.jpg`));  // Full image for modal view
 
-            if (imgAspectRatio > containerAspectRatio) {
-                imgContainer.style.width = '90%';
-                imgContainer.style.height = 'auto';
-            } else {
-                imgContainer.style.width = 'auto';
-                imgContainer.style.height = '90%';
-            }
-        }
+        imgContainer.appendChild(img);
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.className = 'image-checkbox';
+        imgContainer.appendChild(checkbox);
+
+        const previewText = document.createElement('div');
+        previewText.classList.add('preview-text');
+        previewText.textContent = 'Preview';
+        imgContainer.appendChild(previewText);
+
+        w3RowPadding.children[(startImage - i) % columnCount].appendChild(imgContainer);
     }
 
-    function closeModal() {
-        document.getElementById('imageModal').style.display = 'none';
+    createPagination(totalPages, page);
+}
+
+// Create pagination buttons for gallery navigation
+function createPagination(totalPages, page) {
+    const paginationTop = document.getElementById('paginationTop');
+    const paginationBottom = document.getElementById('paginationBottom');
+    paginationTop.innerHTML = '';
+    paginationBottom.innerHTML = '';
+
+    if (page > 1) {
+        const prevButtonTop = document.createElement('button');
+        const prevButtonBottom = document.createElement('button');
+        prevButtonTop.innerHTML = '&laquo;';
+        prevButtonBottom.innerHTML = '&laquo;';
+        prevButtonTop.classList.add('arrow');
+        prevButtonBottom.classList.add('arrow');
+        prevButtonTop.addEventListener('click', () => loadImages(page - 1));
+        prevButtonBottom.addEventListener('click', () => loadImages(page - 1));
+        paginationTop.appendChild(prevButtonTop);
+        paginationBottom.appendChild(prevButtonBottom);
     }
 
-    function loadImages(page = 1) {
-        const w3RowPadding = document.getElementById('photoGrid');
-        const screenWidth = window.innerWidth;
-        let columnCount = 4;
+    const visiblePages = 5;
+    const startPage = Math.max(1, page - Math.floor(visiblePages / 2));
+    const endPage = Math.min(totalPages, startPage + visiblePages - 1);
 
-        if (screenWidth <= 1600) columnCount = (screenWidth > 1200) ? 3 : (screenWidth > 768) ? 2 : 1;
+    for (let i = startPage; i <= endPage; i++) {
+        const buttonTop = document.createElement('button');
+        const buttonBottom = document.createElement('button');
 
-        const startImage = totalImages - (page - 1) * imagesPerPage;
-        const endImage = Math.max(totalImages - page * imagesPerPage + 1, 1);
+        buttonTop.textContent = buttonBottom.textContent = i;
 
-        const totalPages = Math.ceil(totalImages / imagesPerPage);
-
-        w3RowPadding.innerHTML = '';
-        for (let i = 0; i < columnCount; i++) {
-            const column = document.createElement('div');
-            column.classList.add('w3-column');
-            w3RowPadding.appendChild(column);
+        if (i === page) {
+            buttonTop.disabled = buttonBottom.disabled = true;
+            buttonTop.style.backgroundColor = '#000';
+            buttonBottom.style.backgroundColor = '#000';
+            buttonTop.style.color = '#fff';
+            buttonBottom.style.color = '#fff';
+            buttonTop.style.fontSize = '1.5em';
+            buttonBottom.style.fontSize = '1.5em';
         }
 
-        let loadedImages = 0;
-        const totalToLoad = startImage - endImage + 1;
-        const loadComplete = () => {
-            loadedImages++;
-            if (loadedImages === totalToLoad) {
-                w3RowPadding.classList.add('show');
-            }
-        };
+        buttonTop.addEventListener('click', () => loadImages(i));
+        buttonBottom.addEventListener('click', () => loadImages(i));
 
-        for (let i = startImage; i >= endImage; i--) {
-            const imgContainer = document.createElement('div');
-            imgContainer.classList.add('img-container');
-
-            const img = document.createElement('img');
-            img.src = `${folderPath}${i}.jpg`;
-            img.alt = `Image ${i}`;
-            img.addEventListener('click', () => openModal(img.src));
-
-            img.onload = loadComplete;
-            img.onerror = loadComplete;
-
-            imgContainer.appendChild(img);
-
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.className = 'image-checkbox';
-            imgContainer.appendChild(checkbox);
-
-            const previewText = document.createElement('div');
-            previewText.classList.add('preview-text');
-            previewText.textContent = 'Preview';
-
-            imgContainer.appendChild(previewText);
-
-            w3RowPadding.children[(startImage - i) % columnCount].appendChild(imgContainer);
-        }
-
-        createPagination(totalPages, page);
+        paginationTop.appendChild(buttonTop);
+        paginationBottom.appendChild(buttonBottom);
     }
 
-    function createPagination(totalPages, page) {
-        const paginationTop = document.getElementById('paginationTop');
-        const paginationBottom = document.getElementById('paginationBottom');
-        paginationTop.innerHTML = '';
-        paginationBottom.innerHTML = '';
-
-        if (page > 1) {
-            const prevButtonTop = document.createElement('button');
-            const prevButtonBottom = document.createElement('button');
-            prevButtonTop.innerHTML = '&laquo;';
-            prevButtonBottom.innerHTML = '&laquo;';
-            prevButtonTop.classList.add('arrow');
-            prevButtonBottom.classList.add('arrow');
-            prevButtonTop.addEventListener('click', () => loadImages(page - 1));
-            prevButtonBottom.addEventListener('click', () => loadImages(page - 1));
-            paginationTop.appendChild(prevButtonTop);
-            paginationBottom.appendChild(prevButtonBottom);
-        }
-
-        const visiblePages = 5;
-        const startPage = Math.max(1, page - Math.floor(visiblePages / 2));
-        const endPage = Math.min(totalPages, startPage + visiblePages - 1);
-
-        for (let i = startPage; i <= endPage; i++) {
-            const buttonTop = document.createElement('button');
-            const buttonBottom = document.createElement('button');
-
-            buttonTop.textContent = buttonBottom.textContent = i;
-
-            if (i === page) {
-                buttonTop.disabled = buttonBottom.disabled = true;
-                buttonTop.style.backgroundColor = '#000';
-                buttonBottom.style.backgroundColor = '#000';
-                buttonTop.style.color = '#fff';
-                buttonBottom.style.color = '#fff';
-                buttonTop.style.fontSize = '1.5em';
-                buttonBottom.style.fontSize = '1.5em';
-            }
-
-            buttonTop.addEventListener('click', () => loadImages(i));
-            buttonBottom.addEventListener('click', () => loadImages(i));
-
-            paginationTop.appendChild(buttonTop);
-            paginationBottom.appendChild(buttonBottom);
-        }
-
-        if (page < totalPages) {
-            const nextButtonTop = document.createElement('button');
-            const nextButtonBottom = document.createElement('button');
-            nextButtonTop.innerHTML = '&raquo;';
-            nextButtonBottom.innerHTML = '&raquo;';
-            nextButtonTop.classList.add('arrow');
-            nextButtonBottom.classList.add('arrow');
-            nextButtonTop.addEventListener('click', () => loadImages(page + 1));
-            nextButtonBottom.addEventListener('click', () => loadImages(page + 1));
-            paginationTop.appendChild(nextButtonTop);
-            paginationBottom.appendChild(nextButtonBottom);
-        }
+    if (page < totalPages) {
+        const nextButtonTop = document.createElement('button');
+        const nextButtonBottom = document.createElement('button');
+        nextButtonTop.innerHTML = '&raquo;';
+        nextButtonBottom.innerHTML = '&raquo;';
+        nextButtonTop.classList.add('arrow');
+        nextButtonBottom.classList.add('arrow');
+        nextButtonTop.addEventListener('click', () => loadImages(page + 1));
+        nextButtonBottom.addEventListener('click', () => loadImages(page + 1));
+        paginationTop.appendChild(nextButtonTop);
+        paginationBottom.appendChild(nextButtonBottom);
     }
+}
 
-    document.addEventListener('DOMContentLoaded', () => {
-// Load images initially
-loadImages(currentPage);
-
-
+document.addEventListener('DOMContentLoaded', () => {
+    loadImages(currentPage);
 });
 
 </script>
