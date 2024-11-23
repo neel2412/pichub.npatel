@@ -1,0 +1,41 @@
+body{
+    background: white;
+}
+
+
+.imagedownload{
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+    padding-top: 7vh;
+    padding-bottom: 7vh;
+}
+
+#imagePreview {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+#downloadBtn {
+        display: inline-block;
+        margin-top: 40px;
+        padding: 15px 35px;
+        background-color: #000000af; /* Accent color */
+        color: #ffffff; /* Black text */
+        text-transform: uppercase;
+        font-weight: bold;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        text-decoration: none;
+        font-size: 16px;
+      }
+      
+      #downloadBtn:hover {
+        background-color: #000000; /* Slightly darker accent on hover */
+        transform: translateY(-3px);
+        text-decoration: none;
+        color: #fff;
+      }
+      
