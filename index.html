@@ -79,72 +79,48 @@
 
 
 
-  <div class="intro">
+        <div class="intro">
     
-    <div class="text-container">
-        <h1>PicHub</h1>
-      </div>
-      <h3>Explore Stunning Photos</h3>
-      <p>Find and download amazing images from our vast collection.</p>
-      <button class='glowing-btn'><a href="https://pichub.npatel.co.uk/Gallery/gallery.html"><span class='glowing-txt'>Ex<span class='faulty-letter'>pl</span>ore</span></a></button>
-  </div>
-
-   <!-- About Us Section -->
-   <section  class="about-section">
-    <div class="container">
-      <div class="about-header">
-        <h2>About Pichub</h2>
-      </div>
-      <div class="about-content">
-        <!-- Image Section -->
-        <div class="about-image">
-          <img src="Photos/PicHubStudios-Circle 220by220.png" alt="Pichub Team">
-        </div>
-        <!-- Text Section -->
-        <div class="about-text">
-          <p>
-            Welcome to Pichub, your ultimate destination for high-quality, royalty-free photographs available for download. Our mission is to make stunning visuals accessible to everyone, from creative professionals to hobbyists and students.
-          </p>
-          <p>
-            <strong>Who We Are:</strong><br>
-            At Pichub, we are a passionate team of photographers, artists, and tech enthusiasts who believe in the power of visual storytelling. We curate a diverse collection of photographs that cater to a wide range of needs and preferences.
-          </p>
-          <p>
-            Thank you for choosing Pichub as your go-to source for exceptional photography. Explore our collection today and let your imagination soar!
-          </p>
-          <a href="https://pichub.npatel.co.uk/Newsletter/templates/index.html" class="cta-button">Join Pichub</a>
-        </div>
-        
-      </div>
-     
-      <!-- CTA Button -->
-      
-    </div>
-  </section>
- 
-  <section class="team" id="team-grid">
-    <h2>Meet Our Team</h2>
-    <div class="team-grid">
-        <div class="team-member">
-            <img src="Photos/about us/n.jpg" alt="Storm">
-            <h3>Storm</h3>
-            <p>CEO | Editor</p>
-        </div>
-        
-        <div class="team-member">
-            <img src="Photos/about us/s.jpg" alt="Shadow">
-            <h3>Shadow</h3>
-            <p>President | Editor</p>
+          <div class="text-container">
+              <h1>PicHub</h1>
+            </div>
+            <h3>Explore Stunning Photos</h3>
+            <p>Find and download amazing images from our vast collection.</p>
+            <button class='glowing-btn'><a href="https://pichub.npatel.co.uk/Gallery/gallery.html"><span class='glowing-txt'>Ex<span class='faulty-letter'>pl</span>ore</span></a></button>
         </div>
 
-        <div class="team-member">
-            <img src="Photos/about us/j.jpg" alt="Shadow">
-            <h3>Neon Ghost</h3>
-            <p>Researcher</p>
+<div class="gallery">
+  <div class="w3-content">
+    <!-- Pagination and Download Multiple button container -->
+    <div class="pagination-container">
+        <div class="pagination" id="paginationTop">
+            <!-- Pagination buttons will be added here dynamically -->
         </div>
         
     </div>
-</section>
+
+    <!-- Photo Grid -->
+    <div class="w3-row-padding" id="photoGrid"></div>
+
+    <!-- Pagination and Download Multiple button container -->
+    <div class="pagination-container">
+        <div class="pagination" id="paginationBottom">
+            <!-- Pagination buttons will be added here dynamically -->
+        </div>
+    </div>
+
+    <!-- Modal for Image Preview -->
+    <div id="imageModal" class="w3-modal" onclick="closeModal()">
+        <div class="img-container" onclick="event.stopPropagation()">
+            <img id="modalImage">
+            <a id="modalDownloadBtn" class="download-btn" download>Download</a>
+            <button class="close-btn" onclick="closeModal()">×</button>
+        </div>
+    </div>
+    
+</div>
+</div>
+  
 
 
 
@@ -201,6 +177,215 @@
       </div>
     </div>
   </footer>
+  
+
+<script>
+  let currentPage = 1;
+const folderPaths = {
+    'folder1': 'photos-webpage/vintage/photos/', // Folder 1 path
+    'folder2': 'photos-webpage/digital painting/photos/', // Folder 2 path
+    'folder3': 'photos-webpage/anime/anime/ai-art/',
+    'folder4': 'photos-webpage/anime/anime/DBS/',
+    'folder5': 'photos-webpage/anime/anime/demon-slayer/',
+    'folder6': 'photos-webpage/anime/anime/jujutsu-kaisen/',
+    'folder7': 'photos-webpage/anime/anime/Naruto/',
+    'folder8': 'photos-webpage/anime/anime/solo-leveling/',
+    'folder9': 'photos-webpage/anime/anime/tokyo-ghoul/',
+    'folder10': 'photos-webpage/anime/anime/tokyo-revengers/'
+    // Add more folders as needed
+};
+
+const imagesPerFolder = {
+    'folder1': 100, 
+    'folder2': 150, 
+    'folder3': 150,
+    'folder4': 35,
+    'folder5': 61,
+    'folder6': 45,
+    'folder7': 45,
+    'folder8': 36,
+    'folder9': 45,
+    'folder10': 45
+    // Add more folder configurations as needed
+};
+
+const totalImages = {
+    'folder1': 200, 
+    'folder2': 1462,  
+    'folder3': 1213,
+    'folder4': 55,
+    'folder5': 122,
+    'folder6': 93,
+    'folder7': 93,
+    'folder8': 74,
+    'folder9': 93,
+    'folder10': 93
+    // Add more folder total image counts as needed
+};
+
+// Custom download page links for each folder
+const downloadLinks = {
+    'folder1': 'download_page_folder1.html', 
+    'folder2': 'download_page_folder2.html', 
+    'folder3': 'download_page_folder3.html', 
+    'folder4': 'download_page_folder4.html', 
+    'folder5': 'download_page_folder5.html', 
+    'folder6': 'download_page_folder6.html', 
+    'folder7': 'download_page_folder7.html', 
+    'folder8': 'download_page_folder8.html', 
+    'folder9': 'download_page_folder9.html', 
+    'folder10': 'download_page_folder10.html'
+};
+
+// Open modal and display the image with download link
+function openModal(src, folder) {
+    const modalImage = document.getElementById('modalImage');
+    const imageModal = document.getElementById('imageModal');
+    const imgContainer = document.querySelector('#imageModal .img-container');
+    const modalDownloadBtn = document.getElementById('modalDownloadBtn');
+
+    modalImage.src = src;
+    // Set the download link based on the folder
+    const downloadLink = downloadLinks[folder] ? downloadLinks[folder] : ''; // Ensure that there's a download link
+    modalDownloadBtn.href = `${downloadLink}?image=${encodeURIComponent(src)}`;
+
+    imgContainer.style.width = 'auto';
+    imgContainer.style.height = 'auto';
+
+    imageModal.style.display = 'flex';
+
+    if (modalImage.complete) {
+        adjustModal();
+    } else {
+        modalImage.onload = adjustModal;
+    }
+
+    modalImage.onerror = function() {
+        console.error('Image failed to load.');
+        imageModal.style.display = 'none';
+    };
+
+    function adjustModal() {
+        const imgAspectRatio = modalImage.naturalWidth / modalImage.naturalHeight;
+        const containerAspectRatio = imgContainer.clientWidth / imgContainer.clientHeight;
+
+        if (imgAspectRatio > containerAspectRatio) {
+            imgContainer.style.width = '90%';
+            imgContainer.style.height = 'auto';
+        } else {
+            imgContainer.style.width = 'auto';
+            imgContainer.style.height = '90%';
+        }
+    }
+}
+
+// Close the modal
+function closeModal() {
+    document.getElementById('imageModal').style.display = 'none';
+}
+
+// Shuffle function to randomize image order
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+    }
+}
+
+// Function to load images dynamically
+function loadImages(page = 1) {
+    const w3RowPadding = document.getElementById('photoGrid');
+    const screenWidth = window.innerWidth;
+    let columnCount = 4;
+
+    if (screenWidth <= 1600) columnCount = (screenWidth > 1200) ? 3 : (screenWidth > 768) ? 2 : 1;
+
+    const totalImagesToLoad = Object.keys(folderPaths).reduce((acc, folder) => acc + imagesPerFolder[folder], 0);
+    const imagesToDisplay = totalImagesToLoad; // Total images to display for all folders
+    const startImage = imagesToDisplay - (page - 1) * totalImagesToLoad;
+    const endImage = Math.max(imagesToDisplay - page * totalImagesToLoad + 1, 1);
+
+    w3RowPadding.innerHTML = '';
+    for (let i = 0; i < columnCount; i++) {
+        const column = document.createElement('div');
+        column.classList.add('w3-column');
+        w3RowPadding.appendChild(column);
+    }
+
+    let loadedImages = 0;
+    const totalToLoad = startImage - endImage + 1;
+    const loadComplete = () => {
+        loadedImages++;
+        if (loadedImages === totalToLoad) {
+            w3RowPadding.classList.add('show');
+        }
+    };
+
+    // Create an array of image indices from all folders
+    const imageIndices = [];
+    Object.keys(folderPaths).forEach(folder => {
+        for (let i = 1; i <= imagesPerFolder[folder]; i++) {
+            imageIndices.push({ folder, index: i });
+        }
+    });
+
+    shuffleArray(imageIndices); // Shuffle image indices randomly
+
+    // Load images based on shuffled order
+    imageIndices.forEach((imageData, i) => {
+        const imgContainer = document.createElement('div');
+        imgContainer.classList.add('img-container');
+
+        const img = document.createElement('img');
+        img.src = ''; // Empty src initially for lazy loading
+        img.dataset.src = `${folderPaths[imageData.folder]}${imageData.index}.jpg`; // The actual image path to load
+        img.alt = `Image ${imageData.index}`;
+        img.setAttribute('loading', 'lazy'); // Add lazy loading attribute
+        img.addEventListener('click', () => openModal(img.src, imageData.folder));
+
+        img.onload = loadComplete;
+        img.onerror = loadComplete;
+
+        imgContainer.appendChild(img);
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.className = 'image-checkbox';
+        imgContainer.appendChild(checkbox);
+
+        const previewText = document.createElement('div');
+        previewText.classList.add('preview-text');
+        previewText.textContent = 'Preview';
+
+        imgContainer.appendChild(previewText);
+
+        w3RowPadding.children[i % columnCount].appendChild(imgContainer);
+
+        // Using IntersectionObserver for lazy loading
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const image = entry.target;
+                    image.src = image.dataset.src; // Set the image src when it's in view
+                    observer.unobserve(image); // Stop observing once the image is loaded
+                }
+            });
+        }, {
+            rootMargin: '200px', // Start loading 200px before the image is in the viewport
+        });
+
+        observer.observe(img);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Load images initially from all folders
+    loadImages(currentPage);
+});
+
+</script>
+
+    
 
   <script>document.getElementById('subscriptionForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the default form submission
@@ -228,7 +413,8 @@
       });
 });
 </script>
-  
+
+
 
 <script>
     // JavaScript to handle the header fade in and out on scroll

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>(function(s,u,z,p){s.src=u,s.setAttribute('data-zone',z),p.appendChild(s);})(document.createElement('script'),'https://shebudriftaiter.net/tag.min.js',8520126,document.body||document.documentElement)</script>
+    <meta charset="UTF-8">
+    <title>Image Download</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="header.footer.css">
+    <link rel="stylesheet" href="downloader.css">
+    <script src="header.footer.js"></script>
+    <link rel="icon" type="image/x-icon" href="Photos/PicHubStudios-Circle.png">
+</head>
+
+<body>
+
+
+
+<header>
+    <div class="logo">
+        <img src="Photos/PicHubStudios-Circle.png" alt="Logo">
+        <span>PicHub</span>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="https://pichub.npatel.co.uk">Home</a></li>
+            <li><a href="https://pichub.npatel.co.uk/About-US/About US.html">About Us</a></li>
+            <li><a href="https://pichub.npatel.co.uk/Gallery/gallery.html">Gallery</a></li>
+            <li><a href="https://pichub.npatel.co.uk/photos-webpage/anime/anime_gallery.html">Anime Gallery</a></li>
+            <li><a href="https://pichub.npatel.co.uk/Newsletter/templates/index.html">Subscribe</a></li>
+        </ul>
+    </nav>
+    <div class="menu-icon" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+    </div>
+</header>
+
+
+<div id="sidebar-menu">
+    <ul>
+      <li><a href="https://pichub.npatel.co.uk">Home</a></li>
+      <li><a href="https://pichub.npatel.co.uk/About-US/About US.html">About Us</a></li>
+      <li><a href="https://pichub.npatel.co.uk/Gallery/gallery.html">Gallery</a></li>
+      <li><a href="https://pichub.npatel.co.uk/photos-webpage/anime/anime_gallery.html">Anime Gallery</a></li>
+      <li><a href="https://pichub.npatel.co.uk/Newsletter/templates/index.html">Subscribe</a></li>
+    </ul>
+</div>
+<div id="overlay" onclick="toggleMenu()"></div>  
+
+<div class="imagedownload">
+    <h1>Image Preview</h1>
+    <img id="imagePreview" src="" alt="Preview Image">
+    <br>
+    <button id="downloadBtn">Download Image</button>
+    
+</div>
+    <footer>
+        <div class="footer-wrapper">
+          <div class="footer-section">
+            <div class="footer-subscribe">
+              <h2>
+                Subscribe to the PicHub newsletter to stay up-to-date with the latest releases
+              </h2>
+                <form id="subscriptionForm">
+                  <div class="input-box">
+                    <input type="email" id="email" placeholder="Email Address" required />
+                    <button type="submit" id="submitBtn">
+                      <svg width="41" height="22" viewBox="0 0 41 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M40.002 11.001H0.501953M40.002 11.001L30.002 1.00098M40.002 11.001L30.002 21.001" stroke="white"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </form>
+                <div id="message"></div>
+              </div>
+           
+            <nav class="footer-nav">
+              <div>
+                <h2>Company</h2>
+                <ul>
+                  <li><a href="https://pichub.npatel.co.uk/About-US/About US.html">About</a></li>
+                  <li><a href="https://pichub.npatel.co.uk/comingsoon">Contact Us</a></li>
+                </ul>
+              </div>
+              <div>
+                <h2>PicHub</h2>
+                <ul>
+                  <li><a href="https://pichub.npatel.co.uk/Gallery/gallery.html">Gallery</a></li>
+                  <li><a href="https://pichub.npatel.co.uk/comingsoon">Team</a></li>
+                </ul>
+              </div>
+              <div>
+                <h2>Connect</h2>
+                <ul>
+                  <li><a href="https://pichub.npatel.co.uk/newsletter/templates/">Subscribe</a></li>
+                  <li><a href="https://www.instagram.com/pichub__official/">Instgram</a></li>
+                  <li><a href="https://www.facebook.com/people/PicHub/61563090242216/">Facebook</a></li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+    
+          <div class="footer-copyright">
+            <p>©2024 PicHub, Inc. All rights reserved.</p>
+            <p>Privacy Policy.</p>
+            <p>Terms of Use.</p>
+          </div>
+        </div>
+      </footer>
+    
+      <script>document.getElementById('subscriptionForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+    
+        const email = document.getElementById('email').value;
+    
+        // Prepare data to send
+        const formData = {
+            email: email
+        };
+    
+        // Send data to the backend
+        fetch('https://tick-full-lobster.ngrok-free.app/', {  // Replace with your actual URL
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        }).then(response => response.text())
+          .then(result => {
+              document.getElementById('message').textContent = result;
+          }).catch(error => {
+              console.error('Error:', error);
+              document.getElementById('message').textContent = 'An error occurred.';
+          });
+    });
+    </script>
+
+    <script>
+        // Get the image filename from the URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const photo = urlParams.get('photo');
+        
+        if (photo) {
+            // Set the preview image src
+            const imagePath = 'photos/' + photo;
+            document.getElementById('imagePreview').src = imagePath;
+
+            // Set the download button to download the actual image
+            document.getElementById('downloadBtn').onclick = function() {
+                const link = document.createElement('a');
+                link.href = imagePath;
+                link.download = photo; // Download the image with the same name
+                link.click();
+            };
+        } else {
+            alert("No image found in URL.");
+        }
+    </script>
+    <script>
+        // JavaScript to handle the header fade in and out on scroll
+        let lastScrollTop = 0;
+        const header = document.querySelector('header');
+    
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) {
+                // Downscroll
+                header.classList.add('hidden');
+            } else {
+                // Upscroll
+                header.classList.remove('hidden');
+            }
+            lastScrollTop = scrollTop;
+        });
+    </script>
+    
+</body>
+</html>
