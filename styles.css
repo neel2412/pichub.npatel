@@ -19,7 +19,7 @@ body {
 }
 .intro {
     position: relative;
-    height: 60vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
