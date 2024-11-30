@@ -181,7 +181,8 @@
   
 
 <script>
-  let currentPage = 1;
+    let currentPage = 1;
+
 const folderPaths = {
     'folder1': 'photos-webpage/vintage/photos/', // Folder 1 path
     'folder2': 'photos-webpage/digital painting/photos/', // Folder 2 path
@@ -226,16 +227,16 @@ const totalImages = {
 
 // Custom download page links for each folder
 const downloadLinks = {
-    'folder1': 'download_page_folder1.html', 
-    'folder2': 'download_page_folder2.html', 
-    'folder3': 'download_page_folder3.html', 
-    'folder4': 'download_page_folder4.html', 
-    'folder5': 'download_page_folder5.html', 
-    'folder6': 'download_page_folder6.html', 
-    'folder7': 'download_page_folder7.html', 
-    'folder8': 'download_page_folder8.html', 
-    'folder9': 'download_page_folder9.html', 
-    'folder10': 'download_page_folder10.html'
+    'folder1': 'https://pichub.npatel.co.uk/photos-webpage/vintage/vintage-downloader', 
+    'folder2': 'https://pichub.npatel.co.uk/photos-webpage/digital painting/digital-downloader', 
+    'folder3': 'https://pichub.npatel.co.uk/photos-webpage/anime/ai-art_anime-downloader', 
+    'folder4': 'https://pichub.npatel.co.uk/photos-webpage/anime/DBS_anime-downloader', 
+    'folder5': 'https://pichub.npatel.co.uk/photos-webpage/anime/demon-slayer_anime-downloader', 
+    'folder6': 'https://pichub.npatel.co.uk/photos-webpage/anime/jujutsu-kaisen_anime-downloader', 
+    'folder7': 'https://pichub.npatel.co.uk/photos-webpage/anime/naruto_anime-downloader', 
+    'folder8': 'https://pichub.npatel.co.uk/photos-webpage/anime/solo-leveling_anime-downloader', 
+    'folder9': 'https://pichub.npatel.co.uk/photos-webpage/anime/tokyo-ghoul_anime-downloader', 
+    'folder10': 'https://pichub.npatel.co.uk/photos-webpage/anime/tokyo-revengers_anime-downloader'
 };
 
 // Open modal and display the image with download link
@@ -246,9 +247,16 @@ function openModal(src, folder) {
     const modalDownloadBtn = document.getElementById('modalDownloadBtn');
 
     modalImage.src = src;
-    // Set the download link based on the folder
-    const downloadLink = downloadLinks[folder] ? downloadLinks[folder] : ''; // Ensure that there's a download link
-    modalDownloadBtn.href = `${downloadLink}?image=${encodeURIComponent(src)}`;
+
+    // Generate the download link dynamically
+    if (downloadLinks[folder]) {
+        const imageName = src.substring(src.lastIndexOf('/') + 1); // Extract the image name from the src
+        modalDownloadBtn.href = `${downloadLinks[folder]}?photo=${encodeURIComponent(imageName)}`;
+        modalDownloadBtn.download = imageName; // Set the download attribute with the image name
+    } else {
+        console.error(`Download link for folder "${folder}" not found.`);
+        modalDownloadBtn.href = '#';
+    }
 
     imgContainer.style.width = 'auto';
     imgContainer.style.height = 'auto';
@@ -261,7 +269,7 @@ function openModal(src, folder) {
         modalImage.onload = adjustModal;
     }
 
-    modalImage.onerror = function() {
+    modalImage.onerror = function () {
         console.error('Image failed to load.');
         imageModal.style.display = 'none';
     };
