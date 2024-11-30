@@ -25,32 +25,6 @@
 
 
 
-<!-- JavaScript -->
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var consent = document.getElementById("cookieConsent");
-        var consentButton = document.getElementById("cookieConsentButton");
-
-        // Check if the user has already seen the consent popup
-        if (!sessionStorage.getItem("cookieConsentSeen")) {
-            // Show the consent popup
-            consent.style.display = "block";
-        }
-
-        // Hide the popup and set session storage item when the button is clicked
-        consentButton.onclick = function () {
-            consent.style.display = "none";
-            sessionStorage.setItem("cookieConsentSeen", "true");
-        };
-    });
-</script>
-
-
-
-
-
-
-
         <header>
             <div class="logo">
                 <img src="Photos/PicHubStudios-Circle.png" alt="Logo">
@@ -68,6 +42,7 @@
                 <i class="fas fa-bars"></i>
             </div>
         </header>
+
         <div id="sidebar-menu">
             <ul>
               <li><a class="active" href="https://pichub.npatel.co.uk">Home</a></li>
@@ -79,16 +54,18 @@
         <div id="overlay" onclick="toggleMenu()"></div> 
 
 
+        
 
-        <div class="intro">
+
+<div class="intro">
     
-          <div class="text-container">
-              <h1>PicHub</h1>
-            </div>
-            <h3>Explore Stunning Photos</h3>
-            <p>Find and download amazing images from our vast collection.</p>
-            <button class='glowing-btn'><a href="https://pichub.npatel.co.uk/Gallery/gallery.html"><span class='glowing-txt'>Ex<span class='faulty-letter'>pl</span>ore</span></a></button>
-        </div>
+    <div class="text-container">
+        <h1>PicHub</h1>
+    </div>
+    <h3>Explore Stunning Photos</h3>
+    <p>Find and download amazing images from our vast collection.</p>
+    <button class='glowing-btn'><a href="https://pichub.npatel.co.uk/Gallery/gallery.html"><span class='glowing-txt'>Ex<span class='faulty-letter'>pl</span>ore</span></a></button>
+</div>
 
 <div class="gallery">
   <div class="w3-content">
@@ -122,7 +99,6 @@
 </div>
 </div>
   
-
 
 
   <footer>
@@ -394,7 +370,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </script>
 
-    
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var consent = document.getElementById("cookieConsent");
+        var consentButton = document.getElementById("cookieConsentButton");
+
+        // Check if the user has already seen the consent popup
+        if (!sessionStorage.getItem("cookieConsentSeen")) {
+            // Show the consent popup
+            consent.style.display = "block";
+        }
+
+        // Hide the popup and set session storage item when the button is clicked
+        consentButton.onclick = function () {
+            consent.style.display = "none";
+            sessionStorage.setItem("cookieConsentSeen", "true");
+        };
+    });
+</script>
+
+
 
   <script>document.getElementById('subscriptionForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the default form submission
